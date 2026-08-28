@@ -73,7 +73,13 @@
   .carousel-dot::after{content:"";position:absolute;left:50%;top:50%;width:.3rem;height:.3rem;border-radius:999px;background:#DFE5DC;transform:translate(-50%,-50%);transition:width .2s ease,background-color .2s ease}
   .carousel-dot[aria-current="true"]::after{width:.85rem;background:#4C9B82}
 
-  @media (max-width:639px){.pet-switch{display:none}}
+  @media (max-width:639px){
+    .pet-switch{display:none}
+    .filter-bar{display:grid;grid-template-columns:minmax(0,1fr) 44px;gap:8px;padding:8px}
+    .mobile-filter-main{width:100%;justify-content:center}
+    .mobile-quick{grid-column:1/-1;border-top:1px solid #DFE5DC;padding:8px 2px 1px}
+    .mobile-quick .chip{min-height:40px}
+  }
 
   @media (max-width:519px){
     .sizes-strip{display:flex!important;flex:none;flex-wrap:wrap!important;overflow:visible!important;gap:4px}
@@ -227,7 +233,7 @@
   <div class="filter-sticky sticky z-30">
     <div class="mx-auto max-w-[1180px] px-4">
       <div class="filter-bar flex min-w-0 items-center gap-2 rounded-2xl border p-2 backdrop-blur-xl">
-        <button onclick="openFilters()" class="btn-press flex min-w-0 flex-1 items-center gap-2 rounded-xl bg-ink px-3.5 py-2.5 text-snow text-[13px] font-semibold sm:flex-none">
+        <button onclick="openFilters()" class="mobile-filter-main btn-press flex min-w-0 flex-1 items-center gap-2 rounded-xl bg-ink px-3.5 py-2.5 text-snow text-[13px] font-semibold sm:flex-none">
           <svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
           <span id="filterLabel" class="truncate">Фильтры</span>
           <span id="filterBadge" class="hidden grid shrink-0 place-items-center min-w-[18px] h-[18px] px-1 rounded-full bg-amber text-ink mono text-[10px]">0</span>
@@ -249,7 +255,7 @@
           <svg viewBox="0 0 24 24" class="w-4 h-4 text-steel" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
         </button>
 
-        <div class="grid w-full grid-cols-3 gap-1.5 sm:hidden" role="group" aria-label="Быстрый выбор раздела">
+        <div class="mobile-quick grid w-full grid-cols-3 gap-1.5 sm:hidden" role="group" aria-label="Быстрый выбор раздела">
           <button data-quick-pet="cat" class="quickPetBtn chip rounded-xl border border-hair bg-paper px-2 py-2 text-[12px] font-semibold" aria-pressed="false">Кошки</button>
           <button data-quick-pet="dog" class="quickPetBtn chip rounded-xl border border-hair bg-paper px-2 py-2 text-[12px] font-semibold" aria-pressed="false">Собаки</button>
           <button data-quick-pet="treat" class="quickPetBtn chip rounded-xl border border-hair bg-paper px-2 py-2 text-[12px] font-semibold" aria-pressed="false">Лакомства</button>
