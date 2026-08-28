@@ -75,10 +75,11 @@
 
   @media (max-width:639px){
     .pet-switch{display:none}
-    .filter-bar{display:grid;grid-template-columns:minmax(0,1fr) 44px;gap:8px;padding:8px}
-    .mobile-filter-main{width:100%;justify-content:center}
-    .mobile-quick{grid-column:1/-1;border-top:1px solid #DFE5DC;padding:8px 2px 1px}
-    .mobile-quick .chip{min-height:40px}
+    .filter-bar{display:grid;grid-template-columns:44px 44px repeat(3,minmax(0,1fr));gap:5px;padding:8px}
+    .mobile-filter-main{width:44px;padding:0;justify-content:center}
+    .mobile-filter-badge{position:absolute;right:-4px;top:-4px;min-width:16px;height:16px;padding:0;font-size:8px}
+    .mobile-quick{display:contents}
+    .mobile-quick .chip{min-width:0;min-height:44px;padding:.25rem .1rem;border-radius:10px;font-size:clamp(9.5px,2.8vw,11px);white-space:nowrap}
   }
 
   @media (max-width:519px){
@@ -233,10 +234,10 @@
   <div class="filter-sticky sticky z-30">
     <div class="mx-auto max-w-[1180px] px-4">
       <div class="filter-bar flex min-w-0 items-center gap-2 rounded-2xl border p-2 backdrop-blur-xl">
-        <button onclick="openFilters()" class="mobile-filter-main btn-press flex min-w-0 flex-1 items-center gap-2 rounded-xl bg-ink px-3.5 py-2.5 text-snow text-[13px] font-semibold sm:flex-none">
-          <svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
-          <span id="filterLabel" class="truncate">Фильтры</span>
-          <span id="filterBadge" class="hidden grid shrink-0 place-items-center min-w-[18px] h-[18px] px-1 rounded-full bg-amber text-ink mono text-[10px]">0</span>
+        <button onclick="openFilters()" aria-label="Открыть фильтры" class="mobile-filter-main btn-press relative flex min-w-0 flex-1 items-center gap-2 rounded-xl bg-ink px-3.5 py-2.5 text-snow text-[13px] font-semibold sm:flex-none">
+          <svg viewBox="0 0 24 24" class="h-5 w-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16l-6.5 7.2v5.3l-3 1.5v-6.8L4 5Z"/></svg>
+          <span id="filterLabel" class="hidden truncate sm:inline">Фильтры</span>
+          <span id="filterBadge" class="mobile-filter-badge hidden grid shrink-0 place-items-center min-w-[18px] h-[18px] px-1 rounded-full bg-amber text-ink mono text-[10px]">0</span>
         </button>
 
         <div class="pet-switch flex rounded-xl bg-paper p-1 shrink-0" role="group" aria-label="Питомец">
@@ -256,8 +257,8 @@
         </button>
 
         <div class="mobile-quick grid w-full grid-cols-3 gap-1.5 sm:hidden" role="group" aria-label="Быстрый выбор раздела">
-          <button data-quick-pet="cat" class="quickPetBtn chip rounded-xl border border-hair bg-paper px-2 py-2 text-[12px] font-semibold" aria-pressed="false">Кошки</button>
           <button data-quick-pet="dog" class="quickPetBtn chip rounded-xl border border-hair bg-paper px-2 py-2 text-[12px] font-semibold" aria-pressed="false">Собаки</button>
+          <button data-quick-pet="cat" class="quickPetBtn chip rounded-xl border border-hair bg-paper px-2 py-2 text-[12px] font-semibold" aria-pressed="false">Кошки</button>
           <button data-quick-pet="treat" class="quickPetBtn chip rounded-xl border border-hair bg-paper px-2 py-2 text-[12px] font-semibold" aria-pressed="false">Лакомства</button>
         </div>
       </div>
