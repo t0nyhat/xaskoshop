@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F5F3EB">
+<title>ХаскоШоп — зоомагазин кормов в Хабаровске</title>
+<meta name="description" content="Корма для собак и кошек, натуральные лакомства, доставка по Хабаровску и самовывоз. Acari Ciar, Doctrine, Award и другие марки.">
+<link rel="stylesheet" href="assets/css/styles.css">
+<style>
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{background:#F5F3EB;color:#23443D;overflow-x:hidden}
+  ::selection{background:#E6B25A;color:#23443D}
+  .mono{font-family:'JetBrains Mono',monospace}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase}
+
+  /* появление по скроллу */
+  .reveal{opacity:0;transform:translateY(22px)}
+  .reveal.in{opacity:1;transform:none;transition:opacity .7s cubic-bezier(.22,.8,.3,1),transform .7s cubic-bezier(.22,.8,.3,1)}
+  .rise{opacity:0;transform:translateY(14px)}
+  .rise.in{opacity:1;transform:none;transition:opacity .5s ease,transform .5s cubic-bezier(.22,.8,.3,1)}
+
+  @keyframes flyin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @keyframes drift{0%,100%{transform:translate3d(0,0,0) rotate(0)}50%{transform:translate3d(14px,-18px,0) rotate(7deg)}}
+  @keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.3)}100%{transform:scale(1)}}
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .drift{animation:drift 15s ease-in-out infinite}
+  .pop{animation:pop .45s cubic-bezier(.3,1.4,.5,1)}
+  .marquee-track{animation:marquee 38s linear infinite}
+
+  .card{transition:transform .35s cubic-bezier(.22,.8,.3,1),box-shadow .35s ease,border-color .3s ease}
+  .card:hover{transform:translateY(-4px);box-shadow:0 24px 46px -30px rgba(35,68,61,.34);border-color:#B8D5C9}
+  .card:hover .zoom{transform:scale(1.035)}
+  .card:hover .sack{transform:rotate(-2deg) translateY(-3px) scale(1.03)}
+  .zoom{transition:transform .6s cubic-bezier(.22,.8,.3,1)}
+  .sack{transition:transform .45s cubic-bezier(.22,.8,.3,1)}
+  .chip,.btn-press{transition:transform .12s ease,background-color .2s ease,color .2s ease,border-color .2s ease}
+  .btn-press{min-height:44px}
+  button.chip{min-height:36px}
+  .btn-press:active{transform:scale(.96)}
+
+  .sheet{transition:transform .42s cubic-bezier(.22,.9,.3,1)}
+  .veil{transition:opacity .3s ease}
+  .noscroll::-webkit-scrollbar{display:none}
+  .noscroll{scrollbar-width:none}
+  input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  :focus-visible{outline:3px solid #4C9B82;outline-offset:2px;border-radius:8px}
+
+  /* мягкая заглушка, если фото не загрузилось */
+  .ph{background:linear-gradient(135deg,#E5F1EC,#FBF0D8)}
+
+  .product-carousel{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;overscroll-behavior-x:contain}
+  .product-carousel::-webkit-scrollbar{display:none}
+  .product-carousel{scrollbar-width:none}
+  .product-carousel img{user-select:none;-webkit-user-drag:none}
+  @media (hover:hover) and (pointer:fine){
+    .product-carousel{cursor:default}
+  }
+  .sizes-strip{scrollbar-width:none;overscroll-behavior-x:contain;touch-action:pan-x}
+  .sizes-strip::-webkit-scrollbar{display:none}
+  .product-primary-layout{grid-template-columns:clamp(128px,40vw,148px) minmax(0,1fr)}
+  .product-slide{flex:0 0 100%;width:100%;scroll-snap-align:start;scroll-snap-stop:always}
+  .product-pack{filter:drop-shadow(0 14px 16px rgba(35,68,61,.14));transition:transform .45s cubic-bezier(.22,.8,.3,1)}
+  .card:hover .product-pack{transform:translateY(-3px) scale(1.025)}
+  .card-copy,.card-norm{display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden}
+  .card-copy{-webkit-line-clamp:5}
+  .card-norm{-webkit-line-clamp:3}
+  .carousel-dot{position:relative;width:1.125rem;height:1.125rem;background:transparent;transition:transform .2s ease}
+  .carousel-dot::after{content:"";position:absolute;left:50%;top:50%;width:.3rem;height:.3rem;border-radius:999px;background:#DFE5DC;transform:translate(-50%,-50%);transition:width .2s ease,background-color .2s ease}
+  .carousel-dot[aria-current="true"]::after{width:.85rem;background:#4C9B82}
+
+  @media (max-width:639px){.pet-switch{display:none}}
+
+  @media (max-width:519px){
+    .sizes-strip{display:flex!important;flex:none;flex-wrap:wrap!important;overflow:visible!important;gap:4px}
+    .sizes-strip .chip{flex:0 0 calc(50% - 2px)!important;width:calc(50% - 2px)!important;min-width:0;min-height:30px;padding:.25rem .35rem}
+  }
+
+  @media (min-width:520px){
+    .product-primary-layout{grid-template-columns:1fr;grid-template-rows:190px 1fr}
+    .card-copy{-webkit-line-clamp:8}
+    .card-norm{-webkit-line-clamp:6}
+  }
+
+  @media (hover:none){
+    .card:hover{transform:none;box-shadow:none}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
+    .reveal,.rise{opacity:1!important;transform:none!important}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body class="font-sans antialiased">
+
+<!-- ═════════ ШАПКА ═════════ -->
+<header class="fixed top-0 inset-x-0 z-40">
+  <div class="mx-auto max-w-[1180px] px-4">
+    <div id="hdrInner" class="mt-3 flex items-center gap-3 rounded-2xl border border-hair bg-snow/85 backdrop-blur-xl px-3 py-2.5 transition-all duration-300 shadow-[0_16px_40px_-32px_rgba(16,24,35,.6)]">
+      <a href="#top" class="flex items-center gap-2.5 shrink-0">
+        <span class="grid place-items-center w-9 h-9 rounded-xl bg-gradient-to-br from-ice to-icedeep">
+          <svg viewBox="0 0 24 24" class="w-5 h-5 text-white" fill="currentColor" aria-hidden="true"><ellipse cx="6.4" cy="9.6" rx="2.1" ry="2.7"/><ellipse cx="11" cy="7.4" rx="2.1" ry="2.9"/><ellipse cx="16" cy="8.6" rx="2" ry="2.6"/><ellipse cx="19.6" cy="12.4" rx="1.8" ry="2.2"/><path d="M12.4 12.2c2.6 0 5 2.1 5.6 4.4.5 2-.9 3.6-3 3.5-1-.1-1.8-.5-2.7-.5s-1.7.4-2.7.5c-2.1.1-3.5-1.5-3-3.5.6-2.3 3.2-4.4 5.8-4.4z"/></svg>
+        </span>
+        <span class="leading-none">
+          <span class="block font-display font-extrabold text-[15px] tracking-tight">ХаскоШоп</span>
+          <span class="block mono text-[9px] tracking-[.2em] text-steel uppercase">корма · Хабаровск</span>
+        </span>
+      </a>
+      <nav class="hidden md:flex items-center gap-1 ml-2 text-[13px] text-steel">
+        <a href="#pets" class="px-3 py-2 rounded-lg hover:text-ink hover:bg-paper transition">Кому</a>
+        <a href="#brands" class="px-3 py-2 rounded-lg hover:text-ink hover:bg-paper transition">Марки</a>
+        <a href="#catalog" class="px-3 py-2 rounded-lg hover:text-ink hover:bg-paper transition">Каталог</a>
+        <a href="#how" class="px-3 py-2 rounded-lg hover:text-ink hover:bg-paper transition">Доставка</a>
+        <a href="#contacts" class="px-3 py-2 rounded-lg hover:text-ink hover:bg-paper transition">Контакты</a>
+      </nav>
+      <button onclick="openCart()" aria-label="Открыть корзину"
+        class="btn-press ml-auto relative flex items-center gap-2 rounded-xl bg-ink px-3.5 py-2.5 text-snow font-semibold text-[13px] hover:bg-icedeep transition">
+        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h2.2l2.4 12.1a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L21 7H5.5"/></svg>
+        <span class="hidden sm:inline">Корзина</span>
+        <span id="cartCount" class="grid place-items-center min-w-[20px] h-5 px-1 rounded-full bg-amber text-ink mono text-[11px]">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ═════════ ГЕРОЙ ═════════ -->
+<section id="top" class="relative overflow-hidden pt-24 pb-12 md:pt-28 md:pb-16">
+  <div class="pointer-events-none absolute -top-28 -right-24 w-[460px] h-[460px] rounded-full bg-icesoft blur-[90px]"></div>
+  <div class="pointer-events-none absolute top-40 -left-32 w-[380px] h-[380px] rounded-full bg-ambersoft blur-[100px]"></div>
+  <svg class="pointer-events-none absolute left-[4%] top-[30%] w-9 h-9 text-ice/20 drift" viewBox="0 0 24 24" fill="currentColor"><ellipse cx="6.4" cy="9.6" rx="2.1" ry="2.7"/><ellipse cx="11" cy="7.4" rx="2.1" ry="2.9"/><ellipse cx="16" cy="8.6" rx="2" ry="2.6"/><ellipse cx="19.6" cy="12.4" rx="1.8" ry="2.2"/><path d="M12.4 12.2c2.6 0 5 2.1 5.6 4.4.5 2-.9 3.6-3 3.5-1-.1-1.8-.5-2.7-.5s-1.7.4-2.7.5c-2.1.1-3.5-1.5-3-3.5.6-2.3 3.2-4.4 5.8-4.4z"/></svg>
+
+  <div class="relative mx-4 max-w-[1180px] rounded-[30px] border border-hair bg-snow p-5 md:p-8 lg:mx-auto lg:grid lg:grid-cols-[1.05fr_1fr] lg:items-center lg:gap-10 lg:p-10 shadow-[0_32px_80px_-58px_rgba(35,68,61,.45)]">
+    <div>
+      <p class="eyebrow text-icedeep mb-5 opacity-0" style="animation:flyin .6s .05s forwards">Зоомагазин в Хабаровске</p>
+      <h1 class="font-display font-extrabold leading-[1.02] tracking-[-.03em] text-[10vw] sm:text-[6vw] lg:text-[54px] max-w-[15ch] opacity-0" style="animation:flyin .7s .15s forwards">
+        Корма для собак<br>и <span class="text-ice">кошек</span>
+      </h1>
+      <p class="mt-6 max-w-[50ch] text-steel text-[16px] md:text-[18px] leading-relaxed opacity-0" style="animation:flyin .7s .3s forwards">
+        Сухие корма и натуральные лакомства. Подберём подходящий рацион, подтвердим наличие и организуем доставку или самовывоз.
+      </p>
+      <div class="mt-8 flex flex-wrap items-center gap-3 opacity-0" style="animation:flyin .7s .45s forwards">
+        <a href="#catalog" class="btn-press group inline-flex items-center gap-2 rounded-2xl bg-ink px-6 py-4 font-semibold text-snow hover:bg-icedeep transition">
+          Перейти в каталог
+          <svg viewBox="0 0 24 24" class="w-4 h-4 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#how" class="btn-press inline-flex items-center gap-2 rounded-2xl border border-hair bg-snow px-6 py-4 font-medium hover:border-ice transition">Доставка и самовывоз</a>
+      </div>
+
+    </div>
+
+    <div class="relative mt-9 opacity-0 lg:mt-0" style="animation:flyin .8s .35s forwards">
+      <div class="relative rounded-[28px] overflow-hidden ph aspect-[4/3.4] shadow-[0_40px_80px_-50px_rgba(16,24,35,.6)]">
+        <img id="heroImg" alt="Собака и кошка" class="w-full h-full object-cover" loading="eager" onerror="this.style.display='none'">
+      </div>
+      <div class="absolute -bottom-5 -left-3 sm:left-6 w-[190px] rounded-2xl border border-hair bg-snow/95 backdrop-blur p-3 shadow-[0_20px_40px_-28px_rgba(16,24,35,.6)]">
+        <div class="flex items-center gap-2.5">
+          <span class="grid place-items-center w-11 h-11 rounded-xl bg-icesoft shrink-0">
+            <svg viewBox="0 0 24 24" class="w-5 h-5 text-icedeep" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/></svg>
+          </span>
+          <div>
+            <p class="font-display font-bold text-[13px] leading-tight">В наличии и под заказ</p>
+            <p class="text-steel text-[11px] mt-0.5">уточним перед оплатой</p>
+          </div>
+        </div>
+      </div>
+      <div class="hidden sm:block absolute -top-4 -right-2 rounded-2xl border border-hair bg-snow/95 backdrop-blur px-3.5 py-2.5 shadow-[0_20px_40px_-28px_rgba(16,24,35,.6)]">
+        <p class="mono text-[10px] uppercase tracking-[.14em] text-steel">Связь с магазином</p>
+        <p class="font-display font-bold text-[14px] mt-0.5">Telegram · MAX</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ БЕГУЩАЯ СТРОКА ═════════ -->
+<div class="relative overflow-hidden border-y border-hair bg-snow py-2.5">
+  <div class="marquee-track flex whitespace-nowrap will-change-transform">
+    <div class="flex shrink-0 items-center gap-8 pr-8 mono text-[12px] uppercase tracking-[.14em] text-steel">
+      <span>Acari Ciar</span><span class="text-ice">✦</span><span>Doctrine</span><span class="text-ice">✦</span><span>Award</span><span class="text-ice">✦</span><span>MeatLine</span><span class="text-ice">✦</span><span>Зорина</span><span class="text-ice">✦</span><span>Лакомства</span><span class="text-ice">✦</span>
+    </div>
+    <div class="flex shrink-0 items-center gap-8 pr-8 mono text-[12px] uppercase tracking-[.14em] text-steel" aria-hidden="true">
+      <span>Acari Ciar</span><span class="text-ice">✦</span><span>Doctrine</span><span class="text-ice">✦</span><span>Award</span><span class="text-ice">✦</span><span>MeatLine</span><span class="text-ice">✦</span><span>Зорина</span><span class="text-ice">✦</span><span>Лакомства</span><span class="text-ice">✦</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═════════ КОМУ ═════════ -->
+<section id="pets" class="py-14 md:py-20">
+  <div class="mx-auto max-w-[1180px] px-4">
+    <div class="flex flex-wrap items-end justify-between gap-4 mb-7 reveal">
+      <h2 class="font-display font-extrabold text-[28px] md:text-[40px] leading-[1.02] tracking-[-.02em]">Кого кормим?</h2>
+      <p class="text-steel text-[15px] max-w-[36ch]">Нажмите — каталог сразу отфильтруется.</p>
+    </div>
+    <div id="petCards" class="grid sm:grid-cols-3 gap-3 md:gap-4"></div>
+  </div>
+</section>
+
+<!-- ═════════ МАРКИ ═════════ -->
+<section id="brands" class="py-14 md:py-20 bg-snow border-y border-hair">
+  <div class="mx-auto max-w-[1180px] px-4">
+    <div class="flex flex-wrap items-end justify-between gap-4 mb-7 reveal">
+      <div>
+        <p class="eyebrow text-icedeep mb-3">Марки</p>
+        <h2 class="font-display font-extrabold text-[28px] md:text-[40px] leading-[1.02] tracking-[-.02em] max-w-[16ch]">Что есть в наличии</h2>
+      </div>
+      <p class="text-steel max-w-[34ch] text-[15px]">Нажмите на марку — увидите её корма. Кнопка «О марке» откроет подробности.</p>
+    </div>
+    <div id="brandGrid" class="grid grid-cols-1 min-[520px]:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4"></div>
+  </div>
+</section>
+
+<!-- ═════════ КАТАЛОГ ═════════ -->
+<section id="catalog" class="py-14 md:py-20">
+  <div class="mx-auto max-w-[1180px] px-4">
+    <div class="flex flex-wrap items-end justify-between gap-4 mb-5 reveal">
+      <h2 class="font-display font-extrabold text-[28px] md:text-[40px] leading-[1.02] tracking-[-.02em]">Каталог</h2>
+      <p id="resultCount" class="mono text-[12px] text-steel"></p>
+    </div>
+  </div>
+
+  <!-- компактная панель: одна строка -->
+  <div class="sticky top-[70px] z-30">
+    <div class="mx-auto max-w-[1180px] px-4">
+      <div class="flex min-w-0 items-center gap-2 rounded-2xl border border-hair bg-snow/92 backdrop-blur-xl p-2 shadow-[0_14px_34px_-30px_rgba(16,24,35,.7)]">
+        <button onclick="openFilters()" class="btn-press flex min-w-0 flex-1 items-center gap-2 rounded-xl bg-ink px-3.5 py-2.5 text-snow text-[13px] font-semibold sm:flex-none">
+          <svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+          <span id="filterLabel" class="truncate">Фильтры</span>
+          <span id="filterBadge" class="hidden grid shrink-0 place-items-center min-w-[18px] h-[18px] px-1 rounded-full bg-amber text-ink mono text-[10px]">0</span>
+        </button>
+
+        <div class="pet-switch flex rounded-xl bg-paper p-1 shrink-0" role="group" aria-label="Питомец">
+          <button data-pet="all" class="petBtn chip px-3 py-2 rounded-lg text-[12.5px] font-semibold">Все</button>
+          <button data-pet="cat" class="petBtn chip px-3 py-2 rounded-lg text-[12.5px] font-semibold">Кошки</button>
+          <button data-pet="dog" class="petBtn chip px-3 py-2 rounded-lg text-[12.5px] font-semibold">Собаки</button>
+        </div>
+
+        <div class="relative flex-1 min-w-0 hidden sm:block">
+          <svg viewBox="0 0 24 24" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-steel" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+          <input id="searchInput" type="search" placeholder="Поиск по названию или составу" autocomplete="off"
+            class="w-full rounded-xl border border-hair bg-paper pl-9 pr-3 py-2.5 text-[13.5px] placeholder:text-steel focus:bg-snow focus:border-ice outline-none transition">
+        </div>
+
+        <button onclick="openFilters(true)" aria-label="Поиск" class="btn-press grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-hair sm:hidden">
+          <svg viewBox="0 0 24 24" class="w-4 h-4 text-steel" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mx-auto max-w-[1180px] px-4 mt-5">
+    <div id="activeChips" class="flex flex-wrap gap-2 mb-4"></div>
+    <div id="grid" class="grid grid-cols-1 min-[520px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5"></div>
+    <div id="loadMoreWrap" class="hidden mt-7 text-center">
+      <button id="loadMore" type="button" class="btn-press rounded-2xl border border-hair bg-snow px-6 py-3 font-semibold text-[14px] hover:border-ice transition">Показать ещё</button>
+    </div>
+    <div id="empty" class="hidden text-center py-20">
+      <p class="font-display font-bold text-[22px]">Ничего не нашлось</p>
+      <p class="text-steel mt-2 text-[15px]">Сбросьте фильтры или спросите продавца — что-то может быть под заказ.</p>
+      <button onclick="resetFilters()" class="btn-press mt-5 rounded-xl bg-ink px-5 py-3 text-snow font-semibold text-[14px]">Показать все корма</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ КАК ЗАКАЗАТЬ ═════════ -->
+<section id="how" class="py-14 md:py-20 bg-snow border-y border-hair">
+  <div class="mx-auto max-w-[1180px] px-4 grid lg:grid-cols-[1fr_.85fr] gap-10 items-center">
+    <div>
+      <p class="eyebrow text-icedeep mb-3 reveal">Как заказать</p>
+      <h2 class="font-display font-extrabold text-[28px] md:text-[40px] leading-[1.02] tracking-[-.02em] max-w-[18ch] reveal">Три шага, ни одной анкеты</h2>
+
+      <ol class="mt-8 space-y-4">
+        <li class="rise flex gap-4">
+          <span class="mono text-[12px] text-steel pt-1.5 w-6 shrink-0">01</span>
+          <div class="flex-1 rounded-2xl border border-hair bg-paper p-4">
+            <h3 class="font-display font-bold text-[16px]">Выберите корм</h3>
+            <p class="text-steel text-[14px] mt-1.5 leading-relaxed">Фильтр по марке и по тому, кошка у вас или собака. В карточке — состав, анализ и норма кормления.</p>
+          </div>
+        </li>
+        <li class="rise flex gap-4">
+          <span class="mono text-[12px] text-steel pt-1.5 w-6 shrink-0">02</span>
+          <div class="flex-1 rounded-2xl border border-hair bg-paper p-4">
+            <h3 class="font-display font-bold text-[16px]">Соберите корзину</h3>
+            <p class="text-steel text-[14px] mt-1.5 leading-relaxed">Выберите фасовку и количество. Регистрация не нужна — корзина хранится в вашем браузере.</p>
+          </div>
+        </li>
+        <li class="rise flex gap-4">
+          <span class="mono text-[12px] text-steel pt-1.5 w-6 shrink-0">03</span>
+          <div class="flex-1 rounded-2xl border border-hair bg-paper p-4">
+            <h3 class="font-display font-bold text-[16px]">Отправьте продавцу</h3>
+            <p class="text-steel text-[14px] mt-1.5 leading-relaxed">Кнопка Telegram или MAX — заказ уже собран в сообщение. Продавец подтвердит сумму и время доставки.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <div class="relative reveal">
+      <div class="rounded-[28px] overflow-hidden ph aspect-[4/4.4] shadow-[0_40px_80px_-55px_rgba(16,24,35,.6)]">
+        <img id="howImg" alt="Собака у миски с кормом" class="w-full h-full object-cover" loading="lazy" onerror="this.style.display='none'">
+      </div>
+      <div class="absolute -bottom-4 left-4 right-4 rounded-2xl border border-hair bg-snow/95 backdrop-blur px-4 py-3 flex items-center gap-3 shadow-[0_20px_40px_-30px_rgba(16,24,35,.6)]">
+        <span class="grid place-items-center w-9 h-9 rounded-lg bg-ambersoft shrink-0">
+          <svg viewBox="0 0 24 24" class="w-4.5 h-[18px] text-amberdeep" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        </span>
+        <p class="text-[13px] text-steel leading-snug">Не уверены с рационом — напишите, подберём вместе.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ КОНТАКТЫ ═════════ -->
+<footer id="contacts" class="relative pt-16 pb-28 md:pb-16 bg-paper">
+  <div class="mx-auto max-w-[1180px] px-4">
+    <div class="rounded-[28px] border border-hair bg-snow overflow-hidden">
+      <div class="grid md:grid-cols-[1.1fr_1fr]">
+        <div class="p-6 md:p-10">
+          <p class="eyebrow text-icedeep mb-3">Контакты</p>
+          <h2 class="font-display font-extrabold text-[24px] md:text-[34px] leading-[1.05] tracking-[-.02em] max-w-[16ch]">Напишите — ответим быстро</h2>
+          <p class="text-steel mt-4 text-[15px] leading-relaxed max-w-[42ch]">Работаем на доставку по Хабаровску и самовывоз. Заказ, наличие и подбор рациона — в мессенджере.</p>
+
+          <div class="mt-6 flex flex-wrap gap-2">
+            <a id="tgLink" target="_blank" rel="noopener" class="btn-press inline-flex items-center gap-2 rounded-xl bg-ice px-5 py-3 font-semibold text-snow hover:bg-icedeep transition">Telegram</a>
+            <a id="maxLink" target="_blank" rel="noopener" class="btn-press inline-flex items-center gap-2 rounded-xl bg-amber px-5 py-3 font-semibold text-ink hover:bg-amberdeep hover:text-snow transition">MAX</a>
+            <a id="telLink" class="btn-press inline-flex items-center gap-2 rounded-xl border border-hair px-5 py-3 font-medium hover:border-ink transition">Позвонить</a>
+          </div>
+
+          <dl class="mt-8 grid sm:grid-cols-3 gap-5 text-[14px]">
+            <div><dt class="eyebrow text-steel mb-1.5">Самовывоз</dt><dd id="addrOut" class="leading-snug"></dd></div>
+            <div><dt class="eyebrow text-steel mb-1.5">Часы</dt><dd id="hoursOut" class="leading-snug"></dd></div>
+            <div><dt class="eyebrow text-steel mb-1.5">Телефон</dt><dd id="phoneOut" class="mono"></dd></div>
+          </dl>
+        </div>
+        <div class="relative min-h-[220px] ph">
+          <img id="footImg" alt="Кошка и собака" class="absolute inset-0 w-full h-full object-cover" loading="lazy" onerror="this.style.display='none'">
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 flex flex-wrap items-center justify-between gap-3 mono text-[11px] text-steel">
+      <span>ХаскоШоп · Хабаровск · <span id="yearOut"></span></span>
+      <span>Цены на сайте — ориентир, итог подтверждает продавец.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═════════ НИЖНЯЯ ПАНЕЛЬ (моб.) ═════════ -->
+<div id="mobileBar" class="fixed bottom-0 inset-x-0 z-30 translate-y-full transition-transform duration-300 md:hidden p-3 pb-[max(12px,env(safe-area-inset-bottom))]">
+  <button onclick="openCart()" class="btn-press w-full flex items-center justify-between rounded-2xl bg-ink px-5 py-4 text-snow shadow-[0_18px_40px_-18px_rgba(16,24,35,.7)]">
+    <span class="flex items-center gap-2 font-semibold text-[15px]">
+      <span id="mobCount" class="grid place-items-center w-6 h-6 rounded-full bg-amber text-ink mono text-[12px]">0</span>
+      В корзине
+    </span>
+    <span id="mobSum" class="mono text-[15px] text-amber">0 ₽</span>
+  </button>
+</div>
+
+<!-- ═════════ УНИВЕРСАЛЬНЫЙ ПОПАП ═════════ -->
+<div id="sheet" class="fixed inset-0 z-50 hidden">
+  <div class="veil absolute inset-0 bg-ink/50 backdrop-blur-sm opacity-0" onclick="closeSheet()"></div>
+  <div id="sheetBox" role="dialog" aria-modal="true" class="sheet absolute inset-x-0 bottom-0 md:inset-0 md:m-auto md:h-fit md:max-h-[88vh] md:max-w-[880px] translate-y-full md:translate-y-6
+       max-h-[92vh] overflow-y-auto rounded-t-3xl md:rounded-3xl bg-snow shadow-2xl">
+    <div id="sheetBody"></div>
+  </div>
+</div>
+
+<!-- ═════════ КОРЗИНА ═════════ -->
+<div id="cart" class="fixed inset-0 z-50 hidden">
+  <div class="veil absolute inset-0 bg-ink/50 backdrop-blur-sm opacity-0" onclick="closeCart()"></div>
+  <aside class="sheet absolute right-0 top-0 h-full w-full sm:max-w-[440px] translate-x-full bg-paper flex flex-col shadow-2xl" role="dialog" aria-modal="true" aria-label="Корзина">
+    <div class="flex items-center justify-between px-5 py-4 bg-snow border-b border-hair">
+      <h2 class="font-display font-extrabold text-[20px]">Ваш заказ</h2>
+      <button onclick="closeCart()" aria-label="Закрыть корзину" class="btn-press grid place-items-center w-10 h-10 rounded-xl bg-paper hover:bg-hair transition">
+        <svg viewBox="0 0 24 24" class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <div id="cartBody" class="flex-1 overflow-y-auto p-4 space-y-3"></div>
+    <div id="cartFoot" class="border-t border-hair bg-snow p-4 pb-[max(16px,env(safe-area-inset-bottom))] space-y-3"></div>
+  </aside>
+</div>
+
+<!-- ═════════ ТОСТ ═════════ -->
+<div id="toast" class="fixed left-1/2 -translate-x-1/2 bottom-24 md:bottom-6 z-[60] w-[min(92vw,420px)] flex justify-center pointer-events-none opacity-0 transition-all duration-300">
+  <div class="rounded-2xl bg-ink text-snow px-5 py-3.5 text-[14px] font-medium shadow-2xl flex items-center gap-2.5 text-center">
+    <span id="toastIcon" class="text-amber">✓</span><span id="toastText">Добавлено</span>
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   1) НАСТРОЙКИ МАГАЗИНА — правится здесь, больше нигде
+   ══════════════════════════════════════════════════════════════ */
+const CONFIG = {
+  shop:     'ХаскоШоп',
+  city:     'Хабаровск',
+  siteUrl:  'https://t0nyhat.github.io/xaskoshop/',
+  phone:    '+7 (000) 000-00-00',        // ← ваш телефон
+  tgUser:   'xaskoshop',                 // ← username в Telegram, без @
+  maxUrl:   'https://max.ru/xaskoshop',  // ← ссылка на чат в MAX
+  waPhone:  '70000000000',               // ← WhatsApp, только цифры ('' — скрыть кнопку)
+  address:  'Хабаровск, ул. Складская, 1\nсамовывоз по договорённости',
+  hours:    'Пн–Сб 10:00–18:00\nВс — по договорённости',
+  showPrices: true                       // ← false: вместо цен «уточняйте у продавца»
+};
+
+/* ══════════════════════════════════════════════════════════════
+   2) ЛОКАЛЬНЫЕ ФОТО — сайт работает без загрузки ресурсов из сети
+   ══════════════════════════════════════════════════════════════ */
+const PHOTO = {
+  hero:    'assets/images/lifestyle/hero.jpg',
+  dog:     'assets/images/lifestyle/dog.jpg',
+  cat:     'assets/images/lifestyle/cat.jpg',
+  treats:  'assets/images/lifestyle/treats.jpg',
+  bowl:    'assets/images/lifestyle/bowl.jpg',
+  feeding: 'assets/images/lifestyle/feeding.jpg',
+  duo:     'assets/images/lifestyle/duo.jpg',
+  kitten:  'assets/images/lifestyle/kitten.jpg',
+  corgi:   'assets/images/lifestyle/corgi.jpg',
+  bernese: 'assets/images/lifestyle/bernese.jpg',
+  catTable:'assets/images/lifestyle/cat-table.jpg'
+};
+
+/* ══════════════════════════════════════════════════════════════
+   3) МАРКИ
+   ══════════════════════════════════════════════════════════════ */
+const BRANDS = [
+  { id:'acari', name:'Acari Ciar', ru:'Акари Киар', hue:'#2AA3DE', cls:'холистик · супер-премиум',
+    badge:'официальный представитель', photo:PHOTO.dog,
+    about:'Российский завод полного цикла. В составах — дегидрированное и сублимированное мясо, есть запечённые рационы и ветеринарные линейки для кошек. Самая широкая линейка в нашем каталоге: от бюджетного Regular до беззерновых холистиков Power Flock.' },
+  { id:'doctrine', name:'Doctrine', ru:'Доктрин', hue:'#3FBF97', cls:'супер-премиум', badge:'',
+    photo:PHOTO.catTable,
+    about:'Производство в Ленинградской области. Беззерновые рационы на мясе с картофелем и низкозерновые на рисе с ячменём — без пшеницы и кукурузы. Простые составы с одним источником белка.' },
+  { id:'award', name:'Award', ru:'Эворд', hue:'#FFB43D', cls:'супер-премиум', badge:'',
+    photo:PHOTO.corgi,
+    about:'Российский суперпремиум от «Валта Пет Продактс», выпускается на заводах «Лимкорм Петфуд» и «Петэксперт». Кроме основной линейки есть монопротеиновые рационы и специальные — для чувствительного пищеварения.' },
+  { id:'meatline', name:'MeatLine', ru:'Мит Лайн', hue:'#F2836B', cls:'премиум', badge:'',
+    photo:PHOTO.bernese,
+    about:'Мясные рационы для повседневного кормления. Точный состав и фасовки уточняйте у продавца — карточки дополняем.' },
+  { id:'zorina', name:'Зорина', ru:'Зорина', hue:'#A79BEE', cls:'премиум', badge:'',
+    photo:PHOTO.kitten,
+    about:'Повседневные рационы для кошек и собак. Точный состав и фасовки уточняйте у продавца — карточки дополняем.' },
+  { id:'treats', name:'Лакомства', ru:'сушёные и мясные', hue:'#FFD466', cls:'натуральные', badge:'',
+    photo:PHOTO.treats,
+    about:'Сушёные субпродукты и мясные снеки: для поощрения, дрессировки и чистки зубов. Без соли, красителей и консервантов.' }
+];
+
+/* ══════════════════════════════════════════════════════════════
+   4) ТОВАРЫ
+   pet: 'dog' | 'cat' | 'both' · sizes: [{w:'вес', p:цена}]
+   photo: своё фото товара (необязательно) — если пусто, рисуется упаковка
+   draft:true → метка «уточняется»
+   ══════════════════════════════════════════════════════════════ */
+const PRODUCTS = [
+/* ───── ACARI CIAR · СОБАКИ ───── */
+{id:'ac-flagman', brand:'acari', pet:'dog', line:'Flagman', name:'Flagman Holistic', sub:'телятина и филе рыбы', cls:'холистик', grain:'низкозерновой',
+ tags:['все породы','взрослые','mini / medium'], hue:'#5CC8F2',
+ desc:'Базовый холистик линейки: телятина с филе рыбы для взрослых собак всех пород. Подходит как повседневный рацион при умеренной активности.',
+ comp:'Телятина дегидрированная и сублимированная, филе рыб лососевых пород, рис бурый, жир телятины, масло лосося, хрящ рыб осетровых (хондроитин и глюкозамин), сухое яйцо, витаминно-минеральный комплекс, яблоко, морские водоросли, цикорий и топинамбур (пребиотики), экстракт бархатцев, натуральные антиоксиданты.',
+ an:{'Белок':'28%','Жир':'16%','Клетчатка':'2,5%','Зола':'7%','Влага':'8%','Ккал/100 г':'375'},
+ norm:'Собака 10 кг — около 150 г в сутки, 25 кг — около 300 г, 40 кг — около 430 г. Делите на 2 кормления.',
+ sizes:[{w:'1 кг',p:640},{w:'3,5 кг',p:1990},{w:'6,5 кг',p:3450},{w:'15 кг',p:7200}]},
+
+{id:'ac-fegato', brand:'acari', pet:'dog', line:'Flagman', name:'Flagman Fegato Holistic', sub:'говяжья печень и филе рыбы', cls:'холистик', grain:'низкозерновой',
+ tags:['все породы','привередливые'], hue:'#5CC8F2',
+ desc:'Тот же Flagman, но на печени — заметно ароматнее. Вариант для собак, которые воротят нос от обычного корма.',
+ comp:'Печень говяжья дегидрированная и сублимированная, филе рыб лососевых пород, рис бурый, жир говяжий, масло лосося, хрящ рыб осетровых, сухое яйцо, витаминно-минеральный комплекс, яблоко, цикорий, топинамбур, экстракт бархатцев, натуральные антиоксиданты.',
+ an:{'Белок':'28%','Жир':'16%','Клетчатка':'2,5%','Зола':'7%','Влага':'8%','Ккал/100 г':'378'},
+ norm:'Как у Flagman Holistic: 10 кг — около 150 г, 25 кг — около 300 г в сутки.',
+ sizes:[{w:'1 кг',p:660},{w:'3,5 кг',p:2050},{w:'6,5 кг',p:3550},{w:'15 кг',p:7400}]},
+
+{id:'ac-pf-lamb', brand:'acari', pet:'dog', line:'Power Flock', name:'Power Flock Beef/Lamb', sub:'телятина и ягнёнок, без зерна', cls:'холистик', grain:'беззерновой',
+ tags:['все породы','чувствительное пищеварение'], hue:'#5CC8F2',
+ desc:'Беззерновой холистик на двух источниках мяса. Берут при подозрении на реакцию с злаков.',
+ comp:'Телятина дегидрированная и сублимированная, мясо ягнёнка, нут, горох, жир телятины и ягнёнка, масло лосося, хрящ (хондроитин и глюкозамин), сухое яйцо, витаминно-минеральный комплекс, яблоко, клюква, цикорий, топинамбур, экстракт бархатцев, натуральные антиоксиданты.',
+ an:{'Белок':'32%','Жир':'17%','Клетчатка':'2,5%','Зола':'7,5%','Влага':'8%','Ккал/100 г':'390'},
+ norm:'10 кг — около 140 г, 25 кг — около 285 г, 40 кг — около 410 г в сутки.',
+ sizes:[{w:'1 кг',p:1010},{w:'3,5 кг',p:3050},{w:'6,5 кг',p:5250},{w:'15 кг',p:10900}]},
+
+{id:'ac-pf-duck', brand:'acari', pet:'dog', line:'Power Flock', name:'Power Flock Duck', sub:'утка, без зерна', cls:'холистик', grain:'беззерновой',
+ tags:['все породы','монобелковый'], hue:'#5CC8F2',
+ desc:'Беззерновой рацион на утке — редкий белок, часто выручает при пищевой непереносимости курицы и говядины.',
+ comp:'Мясо утки дегидрированное и сублимированное, нут, горох, жир утиный, масло лосося, хрящ, сухое яйцо, витаминно-минеральный комплекс, яблоко, клюква, цикорий, топинамбур, экстракт бархатцев, натуральные антиоксиданты.',
+ an:{'Белок':'30%','Жир':'16%','Клетчатка':'2,5%','Зола':'7,5%','Влага':'8%','Ккал/100 г':'385'},
+ norm:'10 кг — около 145 г, 25 кг — около 290 г в сутки.',
+ sizes:[{w:'1 кг',p:1010},{w:'3,5 кг',p:3050},{w:'6,5 кг',p:5250},{w:'15 кг',p:10900}]},
+
+{id:'ac-superba', brand:'acari', pet:'dog', line:'Superba', name:'Superba Activ', sub:'говядина и рыба', cls:'холистик', grain:'низкозерновой',
+ tags:['активные','рабочие породы'], hue:'#5CC8F2',
+ desc:'Более калорийный рацион для собак с высокой нагрузкой: спорт, длинные прогулки, вольерное содержание зимой.',
+ comp:'Говядина дегидрированная и сублимированная, филе рыб лососевых пород, рис бурый, жир говяжий, масло лосося, хрящ, сухое яйцо, витаминно-минеральный комплекс, яблоко, морские водоросли, цикорий, топинамбур, натуральные антиоксиданты.',
+ an:{'Белок':'30%','Жир':'18%','Клетчатка':'2,5%','Зола':'7%','Влага':'8%','Ккал/100 г':'400'},
+ norm:'При высокой активности норму увеличивают на 15–20% от базовой.',
+ sizes:[{w:'1 кг',p:690},{w:'3,5 кг',p:2150},{w:'6,5 кг',p:3650},{w:'15 кг',p:7600}]},
+
+{id:'ac-vit-lamb', brand:'acari', pet:'dog', line:'Vitality', name:'Vitality Beef/Lamb', sub:'телятина и ягнёнок', cls:'супер-премиум', grain:'низкозерновой',
+ tags:['все породы','взрослые'], hue:'#5CC8F2',
+ desc:'Повседневный рацион чуть проще холистиков по составу и мягче по цене. Хорошо заходит крупным собакам.',
+ comp:'Телятина дегидрированная, мясо ягнёнка, рис, кукурузный глютен, жир животный, масло лосося, витаминно-минеральный комплекс, яблоко, пивные дрожжи, цикорий, натуральные антиоксиданты.',
+ an:{'Белок':'26%','Жир':'14%','Клетчатка':'3%','Зола':'7,5%','Влага':'9%','Ккал/100 г':'360'},
+ norm:'10 кг — около 160 г, 25 кг — около 320 г в сутки.',
+ sizes:[{w:'1 кг',p:990},{w:'3,5 кг',p:2900},{w:'6,5 кг',p:4900},{w:'15 кг',p:9900}]},
+
+{id:'ac-vit-turkey', brand:'acari', pet:'dog', line:'Vitality', name:'Vitality Turkey/Rabbit', sub:'индейка и кролик', cls:'супер-премиум', grain:'низкозерновой',
+ tags:['все породы','лёгкие белки'], hue:'#5CC8F2',
+ desc:'Индейка с кроликом — лёгкое сочетание для собак с чувствительным ЖКТ и склонностью к реакциям.',
+ comp:'Индейка дегидрированная, мясо кролика, рис, жир индейки, масло лосося, витаминно-минеральный комплекс, яблоко, пивные дрожжи, цикорий, топинамбур, натуральные антиоксиданты.',
+ an:{'Белок':'26%','Жир':'14%','Клетчатка':'3%','Зола':'7,5%','Влага':'9%','Ккал/100 г':'358'},
+ norm:'10 кг — около 160 г, 25 кг — около 320 г в сутки.',
+ sizes:[{w:'1 кг',p:990},{w:'3,5 кг',p:2900},{w:'6,5 кг',p:4900},{w:'15 кг',p:9900}]},
+
+{id:'ac-optima', brand:'acari', pet:'dog', line:'Optima', name:'Optima Fish', sub:'рыба', cls:'супер-премиум', grain:'низкозерновой',
+ tags:['кожа и шерсть','аллергики'], hue:'#5CC8F2',
+ desc:'Рыбный рацион — частый выбор при тусклой шерсти и зуде на мясных кормах.',
+ comp:'Рыбная мука и филе рыб лососевых пород, рис, жир рыбий, масло лосося, витаминно-минеральный комплекс, яблоко, морские водоросли, цикорий, натуральные антиоксиданты.',
+ an:{'Белок':'26%','Жир':'15%','Клетчатка':'3%','Зола':'8%','Влага':'9%','Ккал/100 г':'365'},
+ norm:'10 кг — около 155 г, 25 кг — около 310 г в сутки.',
+ sizes:[{w:'1 кг',p:720},{w:'3,5 кг',p:2250},{w:'6,5 кг',p:3550},{w:'15 кг',p:7400}]},
+
+{id:'ac-aurora', brand:'acari', pet:'dog', line:'Aurora', name:'Aurora', sub:'говядина', cls:'холистик', grain:'низкозерновой',
+ tags:['все породы'], hue:'#5CC8F2',
+ desc:'Холистик на дегидрированной и сублимированной говядине — простой состав, ровное кормление.',
+ comp:'Говядина дегидрированная и сублимированная, рис, жир говяжий, масло лосося, хрящ, витаминно-минеральный комплекс, яблоко, цикорий, топинамбур, натуральные антиоксиданты.',
+ an:{'Белок':'28%','Жир':'15%','Клетчатка':'2,5%','Зола':'7%','Влага':'8%','Ккал/100 г':'372'},
+ norm:'10 кг — около 150 г, 25 кг — около 300 г в сутки.',
+ sizes:[{w:'1 кг',p:700},{w:'3,5 кг',p:2100},{w:'6,5 кг',p:3600},{w:'15 кг',p:7500}]},
+
+{id:'ac-aurora-light', brand:'acari', pet:'dog', line:'Aurora', name:'Aurora Light', sub:'монобелковый, телятина', cls:'холистик', grain:'низкозерновой',
+ tags:['контроль веса','монобелковый'], hue:'#5CC8F2',
+ desc:'Облегчённая версия: один источник белка и меньше жира — для собак с лишним весом и малоподвижных.',
+ comp:'Телятина дегидрированная и сублимированная, рис, клетчатка, жир телятины, масло лосося, L-карнитин, витаминно-минеральный комплекс, яблоко, цикорий, топинамбур, натуральные антиоксиданты.',
+ an:{'Белок':'27%','Жир':'10%','Клетчатка':'4,5%','Зола':'7%','Влага':'8%','Ккал/100 г':'325'},
+ norm:'При снижении веса — 80% от нормы по текущей массе, с контролем раз в 2 недели.',
+ sizes:[{w:'1 кг',p:720},{w:'3,5 кг',p:2200},{w:'6,5 кг',p:3750},{w:'15 кг',p:7800}]},
+
+{id:'ac-regular', brand:'acari', pet:'dog', line:'Regular', name:'Regular', sub:'говядина', cls:'премиум', grain:'низкозерновой',
+ tags:['бюджетный','крупные породы'], hue:'#5CC8F2',
+ desc:'Самый доступный рацион марки. Разумный выбор, когда собак несколько или собака крупная.',
+ comp:'Мясная мука, говядина дегидрированная, рис, пшеница, жир животный, витаминно-минеральный комплекс, пивные дрожжи, натуральные антиоксиданты.',
+ an:{'Белок':'23%','Жир':'12%','Клетчатка':'3,5%','Зола':'8%','Влага':'9%','Ккал/100 г':'340'},
+ norm:'10 кг — около 175 г, 25 кг — около 350 г в сутки.',
+ sizes:[{w:'1 кг',p:450},{w:'3,5 кг',p:1350},{w:'6,5 кг',p:2350},{w:'15 кг',p:4900}]},
+
+{id:'ac-baby', brand:'acari', pet:'dog', line:'Щенки', name:'Baby Dog Starter', sub:'первый прикорм, беременные и кормящие', cls:'холистик', grain:'низкозерновой',
+ tags:['до 2 месяцев','лактация'], hue:'#5CC8F2',
+ desc:'Стартовый рацион: мелкая мягкая гранула, размачивается. Им же кормят суку в беременность и лактацию.',
+ comp:'Гидролизат белка индейки, мясо ягнёнка, сухое цельное молоко, изолят рисового белка, филе рыб лососевых пород, жир индейки, масло лосося, хрящ, витаминно-минеральный комплекс, яблоко, цикорий, топинамбур.',
+ an:{'Белок':'34%','Жир':'20%','Клетчатка':'2%','Зола':'7%','Влага':'8%','Ккал/100 г':'420'},
+ norm:'Щенкам — размачивать тёплой водой до 3 месяцев, кормить 4–5 раз в день.',
+ sizes:[{w:'1 кг',p:890},{w:'3,5 кг',p:2700}]},
+
+{id:'ac-puppy', brand:'acari', pet:'dog', line:'Щенки', name:'Puppy', sub:'от 2 до 6 месяцев', cls:'холистик', grain:'низкозерновой',
+ tags:['рост','мелкая гранула'], hue:'#5CC8F2',
+ desc:'Рацион активного роста: повышенный белок, кальций и фосфор в рабочем соотношении.',
+ comp:'Мясо индейки и телятины дегидрированное и сублимированное, рис бурый, филе рыб лососевых пород, жир индейки, масло лосося, хрящ (хондроитин и глюкозамин), сухое яйцо, витаминно-минеральный комплекс, яблоко, цикорий, топинамбур.',
+ an:{'Белок':'32%','Жир':'18%','Клетчатка':'2,5%','Зола':'7,5%','Влага':'8%','Ккал/100 г':'405'},
+ norm:'Щенок 3 месяцев (взрослый вес 25 кг) — около 300 г в сутки за 3–4 кормления.',
+ sizes:[{w:'1 кг',p:830},{w:'3,5 кг',p:2500},{w:'6,5 кг',p:4300}]},
+
+{id:'ac-junior', brand:'acari', pet:'dog', line:'Щенки', name:'Junior', sub:'от 6 месяцев', cls:'холистик', grain:'низкозерновой',
+ tags:['подростки'], hue:'#5CC8F2',
+ desc:'Переходный рацион перед взрослым кормом: рост уже замедляется, но нагрузка на суставы растёт.',
+ comp:'Мясо телятины и индейки дегидрированное и сублимированное, рис бурый, филе рыб лососевых пород, жир, масло лосося, хрящ, витаминно-минеральный комплекс, яблоко, цикорий, топинамбур.',
+ an:{'Белок':'30%','Жир':'17%','Клетчатка':'2,5%','Зола':'7,5%','Влага':'8%','Ккал/100 г':'395'},
+ norm:'Кормление 2–3 раза в день, норма по прогнозируемому взрослому весу.',
+ sizes:[{w:'1 кг',p:800},{w:'3,5 кг',p:2400},{w:'6,5 кг',p:4150}]},
+
+/* ───── ACARI CIAR · КОШКИ ───── */
+{id:'ac-acat-turkey', brand:'acari', pet:'cat', line:"A'Cat", name:"A'Cat Turkey", sub:'индейка', cls:'супер-премиум', grain:'низкозерновой',
+ tags:['взрослые','все породы'], hue:'#5CC8F2',
+ desc:'Сбалансированный рацион на индейке для взрослых кошек всех пород. Один из самых спокойных вариантов по переносимости.',
+ comp:'Мясо индейки 16%, сублимированное мясо индейки 15%, нутровка индейки первой категории 12%, филе рыб лососевых пород 6%, сублимированное филе осетровых 6%, рис бурый, хрящ осетровых и визига (хондроитин и глюкозамин), сухое яйцо, жир индейки, масло лосося, оливковое масло, витаминно-минеральный комплекс, морские водоросли, яблоко, ромашка, черника, цикорий, топинамбур, пивные дрожжи, экстракт бархатцев.',
+ an:{'Белок':'34%','Жир':'16%','Клетчатка':'2%','Зола':'7%','Влага':'8%','Ккал/100 г':'390'},
+ norm:'Кошка 4 кг — около 55 г в сутки, 6 кг — около 75 г. Вода в свободном доступе.',
+ sizes:[{w:'0,4 кг',p:390},{w:'1,5 кг',p:1290},{w:'5 кг',p:3950},{w:'12 кг',p:8400}]},
+
+{id:'ac-acat-fish', brand:'acari', pet:'cat', line:"A'Cat", name:"A'Cat Fish", sub:'рыба', cls:'холистик', grain:'низкозерновой',
+ tags:['взрослые','кожа и шерсть'], hue:'#5CC8F2',
+ desc:'Холистик с рыбой для взрослых кошек и котов всех пород. Заметно ароматный — выручает с привередливыми.',
+ comp:'Филе рыб лососевых пород, сублимированное филе осетровых, рыбная мука, рис бурый, хрящ осетровых и визига, сухое яйцо, масло лосося, оливковое масло, витаминно-минеральный комплекс, морские водоросли, яблоко, клюква, цикорий, топинамбур, экстракт бархатцев, натуральные антиоксиданты, таурин.',
+ an:{'Белок':'33%','Жир':'16%','Клетчатка':'2%','Зола':'7,5%','Влага':'8%','Ккал/100 г':'385'},
+ norm:'Кошка 4 кг — около 55 г в сутки.',
+ sizes:[{w:'0,4 кг',p:410},{w:'1,5 кг',p:1350},{w:'5 кг',p:4150},{w:'12 кг',p:8800}]},
+
+{id:'ac-acat-starter', brand:'acari', pet:'cat', line:"A'Cat", name:"A'Cat Starter", sub:'котята до 4 месяцев, беременные и кормящие', cls:'холистик', grain:'низкозерновой',
+ tags:['котята','лактация'], hue:'#5CC8F2',
+ desc:'Стартовый холистик на гидролизате белка: легко усваивается, гранула мелкая, размачивается.',
+ comp:'Гидролизат белка мяса индейки 30%, гидролизат белка ягнёнка 20%, нутровка индейки 5%, филе рыб лососевых пород 6%, изолят рисового белка, сублимированное филе осетровых 4%, хрящ осетровых и визига, сухое яйцо, сухое цельное молоко, жир индейки и ягнёнка, масло лосося, льняное и оливковое масло, морские водоросли, витаминно-минеральный комплекс, яблоко, ромашка, шиповник, цикорий, топинамбур.',
+ an:{'Белок':'38%','Жир':'20%','Клетчатка':'1,8%','Зола':'7%','Влага':'8%','Ккал/100 г':'425'},
+ norm:'Котятам — вволю малыми порциями 4–5 раз в день; кошке в лактации ограничение не нужно.',
+ sizes:[{w:'0,4 кг',p:470},{w:'1,5 кг',p:1590},{w:'5 кг',p:4800}]},
+
+{id:'ac-mc-starter', brand:'acari', pet:'cat', line:'Мейн-кун', name:'Maine Coon Starter Holistic', sub:'котята мейн-кун, беременные и кормящие', cls:'холистик', grain:'низкозерновой',
+ tags:['крупные породы','котята'], hue:'#5CC8F2',
+ desc:'Отдельный рацион под крупную породу: больше белка и хондропротекторов на период интенсивного роста.',
+ comp:'Гидролизат белка мяса индейки 35%, гидролизат белка ягнёнка 20%, нутровка индейки 6%, изолят рисового белка, филе рыб лососевых пород 6%, сублимированное филе осетровых 4%, хрящ осетровых и визига, сухое молоко, сухое яйцо, жир индейки и ягнёнка, масло лосося, льняное и оливковое масло, морские водоросли, витаминно-минеральный комплекс, яблоко, морковь, шиповник, цикорий, топинамбур.',
+ an:{'Белок':'40%','Жир':'20%','Клетчатка':'1,8%','Зола':'7,2%','Влага':'8%','Ккал/100 г':'430'},
+ norm:'Котёнок мейн-куна 4 месяцев — около 90–110 г в сутки за 4 кормления.',
+ sizes:[{w:'0,4 кг',p:520},{w:'1,5 кг',p:1750},{w:'5 кг',p:5300}]},
+
+{id:'ac-baked-veal', brand:'acari', pet:'cat', line:'Запечённые', name:'Запечённый с телятиной', sub:'baked, телятина', cls:'холистик', grain:'низкозерновой',
+ tags:['запечённый','привередливые'], hue:'#5CC8F2',
+ desc:'Запекание вместо экструзии: гранула плотнее и ароматнее. Частый выбор для кошек, которые перебирают кормами.',
+ comp:'Телятина дегидрированная и сублимированная, нутровка первой категории, рис бурый, филе рыб лососевых пород, хрящ осетровых, сухое яйцо, жир телятины, масло лосося, оливковое масло, витаминно-минеральный комплекс, морские водоросли, яблоко, цикорий, топинамбур, таурин.',
+ an:{'Белок':'35%','Жир':'16%','Клетчатка':'2%','Зола':'7%','Влага':'8%','Ккал/100 г':'395'},
+ norm:'Кошка 4 кг — около 50–55 г в сутки.',
+ sizes:[{w:'0,4 кг',p:450},{w:'1,5 кг',p:1490},{w:'5 кг',p:4500}]},
+
+{id:'ac-steril', brand:'acari', pet:'cat', line:"A'Cat", name:'Sterilised', sub:'телятина, для стерилизованных', cls:'холистик', grain:'низкозерновой',
+ tags:['стерилизованные','контроль веса'], hue:'#5CC8F2',
+ desc:'Пониженный жир и контроль минералов — повседневный рацион после стерилизации и кастрации.',
+ comp:'Телятина дегидрированная и сублимированная, изолят рисового белка, клетчатка, филе рыб лососевых пород, жир телятины, масло лосося, L-карнитин, клюква, витаминно-минеральный комплекс, яблоко, цикорий, топинамбур, таурин, экстракт бархатцев.',
+ an:{'Белок':'36%','Жир':'11%','Клетчатка':'4%','Зола':'7,2%','Влага':'8%','Ккал/100 г':'350'},
+ norm:'Кот 5 кг после кастрации — около 55 г в сутки, при наборе веса снижают до 45 г.',
+ sizes:[{w:'0,4 кг',p:430},{w:'1,5 кг',p:1420},{w:'5 кг',p:4350},{w:'12 кг',p:8900}]},
+
+{id:'ac-vet-urinary', brand:'acari', pet:'cat', line:'Вет-линейка', name:'Vet A Cat Urinary Lamb', sub:'профилактика МКБ, ягнёнок', cls:'холистик', grain:'беззерновой',
+ tags:['мочекаменная болезнь','ветеринарный'], hue:'#5CC8F2',
+ desc:'Рацион для профилактики мочекаменной болезни: контроль минералов и клюква как стабилизатор кислотности мочи. Перед длительным кормлением стоит показаться врачу.',
+ comp:'Гидролизат мяса ягнёнка 35%, сублимированный ливерный сбор 20%, изолят рисового белка, нут, хрящ ягнёнка (хондроитин и глюкозамин), жир ягнёнка, масло лосося, витаминно-минеральный комплекс, яблоко, клюква, цикорий, топинамбур, экстракт бархатцев, куркума, экстракт зелёного чая, L-карнитин.',
+ an:{'Белок':'36%','Жир':'14%','Клетчатка':'2,5%','Зола':'6,8%','Влага':'8%','Ккал/100 г':'370'},
+ norm:'Кошка 4 кг — около 50 г в сутки. Обязательно свободный доступ к воде.',
+ sizes:[{w:'0,4 кг',p:540},{w:'1,5 кг',p:1790},{w:'5 кг',p:5400}]},
+
+{id:'ac-vet-hepatic', brand:'acari', pet:'cat', line:'Вет-линейка', name:'Vet A Cat Hepatic', sub:'поддержка печени', cls:'холистик', grain:'беззерновой',
+ tags:['печень','ветеринарный'], hue:'#5CC8F2',
+ desc:'Диетический рацион для поддержки печени: умеренный белок высокой усвояемости, гепатопротекторные добавки. Назначает ветеринарный врач.',
+ comp:'Гидролизат белка индейки, изолят рисового белка, нут, жир индейки, масло лосося, расторопша, L-карнитин, витаминно-минеральный комплекс, яблоко, цикорий, топинамбур, экстракт зелёного чая, таурин.',
+ an:{'Белок':'30%','Жир':'15%','Клетчатка':'2,5%','Зола':'6,5%','Влага':'8%','Ккал/100 г':'375'},
+ norm:'Кормление по назначению врача, обычно 45–55 г в сутки на кошку 4 кг.',
+ sizes:[{w:'0,4 кг',p:560},{w:'1,5 кг',p:1850},{w:'5 кг',p:5600}]},
+
+/* ───── DOCTRINE ───── */
+{id:'dc-deer-small', brand:'doctrine', pet:'dog', line:'Беззерновые', name:'Doctrine Small Deer & Beef', sub:'оленина и телятина, мелкие породы', cls:'супер-премиум', grain:'беззерновой',
+ tags:['мелкие породы','без глютена'], hue:'#7FE0BC',
+ desc:'Беззерновой рацион на мясе и картофеле, без пшеницы и кукурузы. Гранула под мелкую челюсть.',
+ comp:'Дегидрированное мясо телёнка 26%, сушёный картофель, дроблёный зелёный горошек, гидролизованное мясо оленя 8%, куриный жир, лососевый жир, ламинария, брусника, сухая пульпа сахарной свёклы, витаминно-минеральный комплекс.',
+ an:{'Белок':'29%','Жир':'16%','Клетчатка':'3%','Зола':'7,5%','Влага':'9%','Ккал/100 г':'380'},
+ norm:'Собака 5 кг — около 90 г, 10 кг — около 150 г в сутки.',
+ sizes:[{w:'0,8 кг',p:590},{w:'3 кг',p:1850},{w:'8 кг',p:4600}]},
+
+{id:'dc-turkey-all', brand:'doctrine', pet:'dog', line:'С рисом', name:'Doctrine Adult Turkey & Rice', sub:'индейка и рис, все породы', cls:'супер-премиум', grain:'с рисом',
+ tags:['все породы','монобелковый'], hue:'#7FE0BC',
+ desc:'Единственный источник животного белка — индейка. Рис и ячмень вместо пшеницы и кукурузы.',
+ comp:'Дегидрированное мясо индейки 20%, ячмень, цельнозерновой белый рис, гидролизованное мясо индейки 4%, куриный жир, гидролизованная куриная печень, сухая пульпа сахарной свёклы, хондроитин и глюкозамин, витаминно-минеральный комплекс.',
+ an:{'Белок':'26%','Жир':'14%','Клетчатка':'3%','Зола':'7,5%','Влага':'9%','Ккал/100 г':'365'},
+ norm:'10 кг — около 155 г, 25 кг — около 310 г в сутки.',
+ sizes:[{w:'0,8 кг',p:520},{w:'3 кг',p:1690},{w:'8 кг',p:4200},{w:'18 кг',p:8600}]},
+
+{id:'dc-fish', brand:'doctrine', pet:'dog', line:'С рисом', name:'Doctrine Adult Fish & Rice', sub:'белая рыба и рис, средние и крупные породы', cls:'супер-премиум', grain:'с рисом',
+ tags:['средние и крупные','кожа и шерсть'], hue:'#7FE0BC',
+ desc:'Рыбный рацион для средних и крупных собак: часто берут при реакции на птицу.',
+ comp:'Дегидрированное мясо белой рыбы, рис, ячмень, гидролизованная рыба, лососевый жир, сухая пульпа сахарной свёклы, ламинария, хондроитин и глюкозамин, витаминно-минеральный комплекс.',
+ an:{'Белок':'25%','Жир':'13%','Клетчатка':'3%','Зола':'8%','Влага':'9%','Ккал/100 г':'360'},
+ norm:'25 кг — около 315 г, 40 кг — около 450 г в сутки.',
+ sizes:[{w:'3 кг',p:1750},{w:'8 кг',p:4350},{w:'18 кг',p:8900}]},
+
+{id:'dc-puppy', brand:'doctrine', pet:'dog', line:'Щенки', name:'Doctrine Puppy Turkey & Rice', sub:'щенки всех пород, индейка', cls:'супер-премиум', grain:'с рисом',
+ tags:['щенки','рост'], hue:'#7FE0BC',
+ desc:'Рацион роста с индейкой: повышенный белок, кальций и фосфор под формирование скелета.',
+ comp:'Дегидрированное мясо индейки, рис, ячмень, гидролизованное мясо индейки, куриный жир, лососевый жир, сухое яйцо, пульпа сахарной свёклы, хондроитин и глюкозамин, витаминно-минеральный комплекс.',
+ an:{'Белок':'30%','Жир':'17%','Клетчатка':'2,8%','Зола':'8%','Влага':'9%','Ккал/100 г':'390'},
+ norm:'Щенок 4 месяцев (взрослый вес 20 кг) — около 260 г в сутки за 3–4 кормления.',
+ sizes:[{w:'0,8 кг',p:560},{w:'3 кг',p:1790},{w:'8 кг',p:4450}]},
+
+{id:'dc-cat-steril', brand:'doctrine', pet:'cat', line:'Кошки', name:'Doctrine Cat Sterilised Turkey', sub:'индейка, для стерилизованных', cls:'супер-премиум', grain:'с рисом',
+ tags:['стерилизованные'], hue:'#7FE0BC',
+ desc:'Пониженная калорийность и контроль минералов для кошек после стерилизации.',
+ comp:'Дегидрированное мясо индейки, рис, ячмень, клетчатка, гидролизованное мясо индейки, куриный жир, лососевый жир, клюква, L-карнитин, таурин, витаминно-минеральный комплекс.',
+ an:{'Белок':'34%','Жир':'11%','Клетчатка':'4%','Зола':'7,5%','Влага':'9%','Ккал/100 г':'350'},
+ norm:'Кошка 4 кг — около 50 г в сутки.',
+ sizes:[{w:'0,4 кг',p:390},{w:'1,5 кг',p:1250},{w:'8 кг',p:5300}]},
+
+{id:'dc-cat-salmon', brand:'doctrine', pet:'cat', line:'Кошки', name:'Doctrine Cat Adult Salmon', sub:'лосось, взрослые кошки', cls:'супер-премиум', grain:'с рисом',
+ tags:['взрослые','шерсть'], hue:'#7FE0BC',
+ desc:'Повседневный рацион с лососем для взрослых кошек всех пород.',
+ comp:'Дегидрированное мясо лосося и белой рыбы, рис, ячмень, лососевый жир, гидролизованная печень, таурин, ламинария, пульпа сахарной свёклы, витаминно-минеральный комплекс.',
+ an:{'Белок':'33%','Жир':'15%','Клетчатка':'3%','Зола':'7,5%','Влага':'9%','Ккал/100 г':'375'},
+ norm:'Кошка 4 кг — около 55 г в сутки.',
+ sizes:[{w:'0,4 кг',p:390},{w:'1,5 кг',p:1250},{w:'8 кг',p:5300}]},
+
+/* ───── AWARD ───── */
+{id:'aw-dog-beef', brand:'award', pet:'dog', line:'Основная', name:'Award Adult Beef & Chicken', sub:'говядина и курица с брокколи', cls:'супер-премиум', grain:'с рисом',
+ tags:['все породы','взрослые'], hue:'#FFB43D',
+ desc:'Повседневный суперпремиум для взрослых собак всех пород: говядина с курицей, овощные добавки.',
+ comp:'Дегидрированное мясо говядины и курицы, рис, ячмень, куриный жир, гидролизат белка, свекловичный жом, брокколи, черника, льняное семя, пребиотики МОС и ФОС, витаминно-минеральный комплекс.',
+ an:{'Белок':'27%','Жир':'15%','Клетчатка':'3%','Зола':'7,5%','Влага':'9%','Ккал/100 г':'370'},
+ norm:'10 кг — около 155 г, 25 кг — около 305 г в сутки.',
+ sizes:[{w:'2 кг',p:1290},{w:'10 кг',p:5300}]},
+
+{id:'aw-dog-mini', brand:'award', pet:'dog', line:'Основная', name:'Award Adult Mini Turkey', sub:'индейка, мелкие породы', cls:'супер-премиум', grain:'с рисом',
+ tags:['мелкие породы'], hue:'#FFB43D',
+ desc:'Мелкая гранула и повышенная калорийность — под быстрый обмен веществ маленьких собак.',
+ comp:'Дегидрированное мясо индейки, рис, ячмень, жир индейки, гидролизат белка, свекловичный жом, льняное семя, пребиотики, витаминно-минеральный комплекс.',
+ an:{'Белок':'28%','Жир':'16%','Клетчатка':'3%','Зола':'7,5%','Влага':'9%','Ккал/100 г':'385'},
+ norm:'Собака 5 кг — около 95 г, 10 кг — около 155 г в сутки.',
+ sizes:[{w:'2 кг',p:1350},{w:'10 кг',p:5500}]},
+
+{id:'aw-dog-mono', brand:'award', pet:'dog', line:'Monoprotein', name:'Award Monoprotein Lamb', sub:'ягнёнок, один источник белка', cls:'супер-премиум', grain:'беззерновой',
+ tags:['монобелковый','чувствительные'], hue:'#FFB43D',
+ desc:'Монопротеиновый рацион на ягнёнке — рабочий вариант при пищевой непереносимости.',
+ comp:'Дегидрированное мясо ягнёнка, горох, картофель, жир ягнёнка, гидролизат белка ягнёнка, свекловичный жом, льняное семя, пребиотики, витаминно-минеральный комплекс.',
+ an:{'Белок':'28%','Жир':'16%','Клетчатка':'3,5%','Зола':'7,5%','Влага':'9%','Ккал/100 г':'380'},
+ norm:'10 кг — около 150 г, 25 кг — около 300 г в сутки.',
+ sizes:[{w:'2 кг',p:1590},{w:'10 кг',p:6600}]},
+
+{id:'aw-dog-puppy', brand:'award', pet:'dog', line:'Щенки', name:'Award Puppy Chicken & Rice', sub:'курица и рис, щенки', cls:'супер-премиум', grain:'с рисом',
+ tags:['щенки'], hue:'#FFB43D',
+ desc:'Рацион для щенков всех пород: белок под рост, ДГК для нервной системы.',
+ comp:'Дегидрированное мясо курицы, рис, ячмень, куриный жир, рыбий жир (ДГК), сухое яйцо, свекловичный жом, пребиотики, хондроитин и глюкозамин, витаминно-минеральный комплекс.',
+ an:{'Белок':'30%','Жир':'17%','Клетчатка':'2,8%','Зола':'8%','Влага':'9%','Ккал/100 г':'395'},
+ norm:'Щенок 5 месяцев (взрослый вес 20 кг) — около 290 г в сутки.',
+ sizes:[{w:'2 кг',p:1350},{w:'10 кг',p:5500}]},
+
+{id:'aw-cat-steril', brand:'award', pet:'cat', line:'Основная', name:'Award Cat Sterilised Turkey', sub:'индейка, для стерилизованных', cls:'супер-премиум', grain:'с рисом',
+ tags:['стерилизованные'], hue:'#FFB43D',
+ desc:'Контроль веса и мочевыделительной системы для стерилизованных кошек.',
+ comp:'Дегидрированное мясо индейки, рис, клетчатка, жир индейки, гидролизат белка, клюква, L-карнитин, таурин, пребиотики, витаминно-минеральный комплекс.',
+ an:{'Белок':'34%','Жир':'11%','Клетчатка':'4,5%','Зола':'7,5%','Влага':'9%','Ккал/100 г':'345'},
+ norm:'Кошка 4 кг — около 48 г в сутки.',
+ sizes:[{w:'0,4 кг',p:350},{w:'1,5 кг',p:1150},{w:'7 кг',p:4600}]},
+
+{id:'aw-cat-salmon', brand:'award', pet:'cat', line:'Основная', name:'Award Cat Adult Salmon', sub:'лосось, взрослые кошки', cls:'супер-премиум', grain:'с рисом',
+ tags:['взрослые','шерсть'], hue:'#FFB43D',
+ desc:'Повседневный рацион с лососем: омега-3 для кожи и шерсти, таурин для сердца.',
+ comp:'Дегидрированное мясо лосося и курицы, рис, ячмень, рыбий жир, гидролизат белка, таурин, льняное семя, пребиотики, витаминно-минеральный комплекс.',
+ an:{'Белок':'33%','Жир':'15%','Клетчатка':'3%','Зола':'7,5%','Влага':'9%','Ккал/100 г':'375'},
+ norm:'Кошка 4 кг — около 55 г в сутки.',
+ sizes:[{w:'0,4 кг',p:350},{w:'1,5 кг',p:1150},{w:'7 кг',p:4600}]},
+
+{id:'aw-cat-kitten', brand:'award', pet:'cat', line:'Котята', name:'Award Kitten Chicken', sub:'курица, котята до 12 месяцев', cls:'супер-премиум', grain:'с рисом',
+ tags:['котята'], hue:'#FFB43D',
+ desc:'Рацион для котят и кошек в лактации: мелкая гранула, повышенный белок.',
+ comp:'Дегидрированное мясо курицы, рис, куриный жир, сухое яйцо, рыбий жир (ДГК), гидролизат белка, таурин, пребиотики, витаминно-минеральный комплекс.',
+ an:{'Белок':'36%','Жир':'19%','Клетчатка':'2,5%','Зола':'7,5%','Влага':'9%','Ккал/100 г':'410'},
+ norm:'Котёнок 3 месяцев — около 55 г в сутки за 4 кормления.',
+ sizes:[{w:'0,4 кг',p:380},{w:'1,5 кг',p:1250}]},
+
+/* ───── MEATLINE (данные уточняются) ───── */
+{id:'ml-dog-beef', brand:'meatline', pet:'dog', line:'Собаки', name:'MeatLine Adult Beef', sub:'говядина, взрослые собаки', cls:'премиум', grain:'с рисом', draft:true,
+ tags:['все породы','повседневный'], hue:'#F2836B',
+ desc:'Повседневный мясной рацион для взрослых собак. Точный состав и фасовки подтвердит продавец.',
+ comp:'Уточняется — пришлите фото упаковки продавцу, и мы дополним карточку.',
+ an:{'Белок':'—','Жир':'—','Клетчатка':'—','Зола':'—','Влага':'—','Ккал/100 г':'—'},
+ norm:'По таблице на упаковке.',
+ sizes:[{w:'2 кг',p:0},{w:'10 кг',p:0}]},
+
+{id:'ml-dog-chicken', brand:'meatline', pet:'dog', line:'Собаки', name:'MeatLine Adult Chicken', sub:'курица, взрослые собаки', cls:'премиум', grain:'с рисом', draft:true,
+ tags:['все породы'], hue:'#F2836B',
+ desc:'Рацион на курице для взрослых собак. Наличие и цену уточняйте у продавца.',
+ comp:'Уточняется.',
+ an:{'Белок':'—','Жир':'—','Клетчатка':'—','Зола':'—','Влага':'—','Ккал/100 г':'—'},
+ norm:'По таблице на упаковке.',
+ sizes:[{w:'2 кг',p:0},{w:'10 кг',p:0}]},
+
+{id:'ml-cat-adult', brand:'meatline', pet:'cat', line:'Кошки', name:'MeatLine Cat Adult', sub:'взрослые кошки', cls:'премиум', grain:'с рисом', draft:true,
+ tags:['взрослые'], hue:'#F2836B',
+ desc:'Повседневный рацион для взрослых кошек. Состав уточняется.',
+ comp:'Уточняется.',
+ an:{'Белок':'—','Жир':'—','Клетчатка':'—','Зола':'—','Влага':'—','Ккал/100 г':'—'},
+ norm:'По таблице на упаковке.',
+ sizes:[{w:'0,4 кг',p:0},{w:'1,5 кг',p:0}]},
+
+/* ───── ЗОРИНА (данные уточняются) ───── */
+{id:'zr-dog-adult', brand:'zorina', pet:'dog', line:'Собаки', name:'Зорина для взрослых собак', sub:'повседневный рацион', cls:'премиум', grain:'с рисом', draft:true,
+ tags:['все породы'], hue:'#B6A6F0',
+ desc:'Повседневный рацион для взрослых собак. Точные вкусы и фасовки подтвердит продавец.',
+ comp:'Уточняется.',
+ an:{'Белок':'—','Жир':'—','Клетчатка':'—','Зола':'—','Влага':'—','Ккал/100 г':'—'},
+ norm:'По таблице на упаковке.',
+ sizes:[{w:'2 кг',p:0},{w:'10 кг',p:0}]},
+
+{id:'zr-cat-adult', brand:'zorina', pet:'cat', line:'Кошки', name:'Зорина для взрослых кошек', sub:'повседневный рацион', cls:'премиум', grain:'с рисом', draft:true,
+ tags:['взрослые'], hue:'#B6A6F0',
+ desc:'Повседневный рацион для взрослых кошек. Состав уточняется.',
+ comp:'Уточняется.',
+ an:{'Белок':'—','Жир':'—','Клетчатка':'—','Зола':'—','Влага':'—','Ккал/100 г':'—'},
+ norm:'По таблице на упаковке.',
+ sizes:[{w:'0,4 кг',p:0},{w:'1,5 кг',p:0}]},
+
+{id:'zr-cat-kitten', brand:'zorina', pet:'cat', line:'Кошки', name:'Зорина для котят', sub:'котята до 12 месяцев', cls:'премиум', grain:'с рисом', draft:true,
+ tags:['котята'], hue:'#B6A6F0',
+ desc:'Рацион для котят. Состав уточняется.',
+ comp:'Уточняется.',
+ an:{'Белок':'—','Жир':'—','Клетчатка':'—','Зола':'—','Влага':'—','Ккал/100 г':'—'},
+ norm:'По таблице на упаковке.',
+ sizes:[{w:'0,4 кг',p:0},{w:'1,5 кг',p:0}]},
+
+/* ───── ЛАКОМСТВА ───── */
+{id:'tr-ears', brand:'treats', pet:'dog', line:'Сушёные', name:'Уши говяжьи', sub:'сушёные, без обработки', cls:'натуральное', grain:'—', type:'treat',
+ tags:['погрызть','средние и крупные'], hue:'#FFD466',
+ desc:'Длинное занятие для собаки и разгрузка для хозяина. Крепкая структура — хорошо снимает налёт с зубов.',
+ comp:'Ухо говяжье сушёное 100%. Без соли, красителей и консервантов.',
+ an:{'Белок':'80%','Жир':'8%','Клетчатка':'1%','Зола':'3%','Влага':'8%','Ккал/100 г':'350'},
+ norm:'1 штука в день собаке от 10 кг, под присмотром и с доступом к воде.',
+ sizes:[{w:'1 шт.',p:90},{w:'5 шт.',p:400}]},
+
+{id:'tr-trachea', brand:'treats', pet:'dog', line:'Сушёные', name:'Трахея говяжья', sub:'сушёная', cls:'натуральное', grain:'—', type:'treat',
+ tags:['хондроитин','мягкая'], hue:'#FFD466',
+ desc:'Мягче уха, содержит естественные хондроитин и глюкозамин. Подходит и пожилым собакам.',
+ comp:'Трахея говяжья сушёная 100%.',
+ an:{'Белок':'75%','Жир':'6%','Клетчатка':'1%','Зола':'4%','Влага':'10%','Ккал/100 г':'330'},
+ norm:'1–2 кусочка в день как поощрение.',
+ sizes:[{w:'50 г',p:180},{w:'100 г',p:330}]},
+
+{id:'tr-lung', brand:'treats', pet:'both', line:'Сушёные', name:'Лёгкое говяжье', sub:'сушёное, крошится', cls:'натуральное', grain:'—', type:'treat',
+ tags:['дрессировка','нежирное'], hue:'#FFD466',
+ desc:'Лёгкое ломается на мелкие кусочки — удобная валюта для дрессировки. Почти без жира.',
+ comp:'Лёгкое говяжье сушёное 100%.',
+ an:{'Белок':'70%','Жир':'4%','Клетчатка':'1%','Зола':'5%','Влага':'10%','Ккал/100 г':'300'},
+ norm:'До 10% дневной калорийности.',
+ sizes:[{w:'50 г',p:170},{w:'100 г',p:310}]},
+
+{id:'tr-paws', brand:'treats', pet:'dog', line:'Сушёные', name:'Куриные лапки', sub:'сушёные', cls:'натуральное', grain:'—', type:'treat',
+ tags:['суставы','мелкие породы'], hue:'#FFD466',
+ desc:'Естественный источник коллагена, размер под мелкие и средние породы.',
+ comp:'Лапки куриные сушёные 100%.',
+ an:{'Белок':'65%','Жир':'12%','Клетчатка':'1%','Зола':'6%','Влага':'10%','Ккал/100 г':'360'},
+ norm:'1–2 штуки в день.',
+ sizes:[{w:'100 г',p:240},{w:'300 г',p:640}]},
+
+{id:'tr-rumen', brand:'treats', pet:'dog', line:'Сушёные', name:'Рубец говяжий', sub:'сушёный', cls:'натуральное', grain:'—', type:'treat',
+ tags:['ЖКТ','резкий запах'], hue:'#FFD466',
+ desc:'Пахнет сильно — собаки в восторге. Поддерживает микрофлору кишечника.',
+ comp:'Рубец говяжий сушёный 100%.',
+ an:{'Белок':'72%','Жир':'9%','Клетчатка':'1%','Зола':'5%','Влага':'10%','Ккал/100 г':'340'},
+ norm:'1–2 кусочка в день.',
+ sizes:[{w:'50 г',p:190},{w:'100 г',p:350}]},
+
+{id:'tr-fish', brand:'treats', pet:'cat', line:'Для кошек', name:'Сушёная рыбка', sub:'мелкая рыба целиком', cls:'натуральное', grain:'—', type:'treat',
+ tags:['кошкам','омега-3'], hue:'#FFD466',
+ desc:'Мелкая сушёная рыба целиком — лакомство и источник омега-3.',
+ comp:'Рыба сушёная 100%, без соли.',
+ an:{'Белок':'68%','Жир':'10%','Клетчатка':'0,5%','Зола':'7%','Влага':'10%','Ккал/100 г':'340'},
+ norm:'2–3 рыбки в день кошке от 4 кг.',
+ sizes:[{w:'30 г',p:160},{w:'70 г',p:300}]},
+
+{id:'tr-turkey-sticks', brand:'treats', pet:'cat', line:'Для кошек', name:'Палочки из индейки', sub:'мясные снеки', cls:'натуральное', grain:'—', type:'treat',
+ tags:['кошкам','поощрение'], hue:'#FFD466',
+ desc:'Мягкие мясные палочки — удобно ломать на кусочки и давать за таблетку или расчёсывание.',
+ comp:'Мясо индейки 95%, минеральные вещества, натуральные антиоксиданты.',
+ an:{'Белок':'55%','Жир':'12%','Клетчатка':'1%','Зола':'6%','Влага':'18%','Ккал/100 г':'320'},
+ norm:'1–2 палочки в день.',
+ sizes:[{w:'5 шт.',p:150},{w:'15 шт.',p:400}]},
+
+{id:'tr-chips', brand:'treats', pet:'both', line:'Сушёные', name:'Мясные чипсы', sub:'говядина, тонкая нарезка', cls:'натуральное', grain:'—', type:'treat',
+ tags:['дрессировка','кошкам и собакам'], hue:'#FFD466',
+ desc:'Тонкие ломтики говядины — ломаются на мелкие кусочки, подходят и кошкам.',
+ comp:'Говядина сушёная 100%.',
+ an:{'Белок':'74%','Жир':'8%','Клетчатка':'1%','Зола':'4%','Влага':'10%','Ккал/100 г':'345'},
+ norm:'До 10% дневной калорийности.',
+ sizes:[{w:'50 г',p:200},{w:'100 г',p:370}]}
+];
+
+/* Фото упаковок из карточек производителей и продавцов.
+   Если точный packshot не найден, остаётся нейтральная SVG-упаковка. */
+const PRODUCT_PHOTOS = {
+  'ac-flagman':'assets/images/products/acari/ac-flagman-pack.jpg',
+  'ac-fegato':'assets/images/products/acari/ac-fegato-pack.jpg',
+  'ac-pf-lamb':'assets/images/products/acari/ac-pf-lamb-pack.jpg',
+  'ac-pf-duck':'assets/images/products/acari/ac-pf-duck-pack.png',
+  'ac-superba':'assets/images/products/acari/ac-superba-pack.jpg',
+  'ac-vit-lamb':'assets/images/products/acari/ac-vit-lamb-pack.png',
+  'ac-optima':'assets/images/products/acari/ac-optima-pack.jpg',
+  'ac-aurora':'assets/images/products/acari/ac-aurora-pack.jpg',
+  'ac-aurora-light':'assets/images/products/acari/ac-aurora-light-pack.jpg',
+  'ac-regular':'assets/images/products/acari/ac-regular-pack.jpg',
+  'ac-baby':'assets/images/products/acari/ac-baby-pack.jpg',
+  'ac-puppy':'assets/images/products/acari/ac-puppy-pack.jpg',
+  'ac-junior':'assets/images/products/acari/ac-junior-pack.jpg',
+  'ac-acat-starter':'assets/images/products/acari/ac-acat-starter-pack.jpg',
+  'ac-mc-starter':'assets/images/products/acari/ac-mc-starter-pack.jpg',
+  'ac-baked-veal':'assets/images/products/acari/ac-baked-veal-pack.jpg',
+  'ac-steril':'assets/images/products/acari/ac-steril-pack.jpg',
+  'ac-vet-urinary':'assets/images/products/acari/ac-vet-urinary-pack.jpg',
+
+  'dc-deer-small':'assets/images/products/doctrine/dc-deer-small.jpg',
+  'dc-turkey-all':'assets/images/products/doctrine/dc-turkey-all.jpg',
+  'dc-fish':'assets/images/products/doctrine/dc-fish.jpg',
+  'dc-puppy':'assets/images/products/doctrine/dc-puppy.jpg',
+  'dc-cat-steril':'assets/images/products/doctrine/dc-cat-steril.jpg',
+  'dc-cat-salmon':'assets/images/products/doctrine/dc-cat-salmon.jpg',
+
+  'aw-dog-beef':'assets/images/products/award/aw-dog-beef.jpg',
+  'aw-dog-mini':'assets/images/products/award/aw-dog-mini.jpg',
+  'aw-dog-mono':'assets/images/products/award/aw-dog-mono.jpg',
+  'aw-dog-puppy':'assets/images/products/award/aw-dog-puppy.jpg',
+  'aw-cat-steril':'assets/images/products/award/aw-cat-steril.jpg',
+  'aw-cat-salmon':'assets/images/products/award/aw-cat-salmon.jpg',
+  'aw-cat-kitten':'assets/images/products/award/aw-cat-kitten.jpg',
+
+  'ml-dog-beef':'assets/images/products/meatline/ml-dog-beef-pack.jpg'
+};
+
+PRODUCTS.forEach(p => { if (PRODUCT_PHOTOS[p.id]) p.photo = PRODUCT_PHOTOS[p.id]; });
+</script>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   5) ЛОГИКА
+   ══════════════════════════════════════════════════════════════ */
+const $  = (s,r=document) => r.querySelector(s);
+const $$ = (s,r=document) => [...r.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const money = n => n.toLocaleString('ru-RU') + ' ₽';
+const brandOf = id => BRANDS.find(b => b.id === id) || BRANDS[0];
+const prodOf  = id => PRODUCTS.find(p => p.id === id);
+const plural = (n,a,b,c) => { const m=n%100,k=n%10; return m>10&&m<20?c : k===1?a : k>1&&k<5?b : c; };
+
+function shade(hex, amt){
+  const n = parseInt(hex.slice(1),16), cl = v => Math.max(0,Math.min(255,v));
+  return '#' + ((cl((n>>16)+amt)<<16 | cl(((n>>8)&255)+amt)<<8 | cl((n&255)+amt))).toString(16).padStart(6,'0');
+}
+const store = {
+  get(k,d){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(e){ return d; } },
+  set(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+};
+
+let cart  = store.get('xs_cart', []);
+let order = store.get('xs_order', { name:'', phone:'', delivery:'Доставка по городу', address:'', note:'' });
+const sel = {};
+const PAGE_SIZE = window.innerWidth < 640 ? 8 : 12;
+const state = { brand:'all', pet:'all', line:'all', q:'', limit:PAGE_SIZE };
+
+/* ——— рисованная упаковка ——— */
+const PAW = '<ellipse cx="6.4" cy="9.6" rx="2.1" ry="2.7"/><ellipse cx="11" cy="7.4" rx="2.1" ry="2.9"/><ellipse cx="16" cy="8.6" rx="2" ry="2.6"/><ellipse cx="19.6" cy="12.4" rx="1.8" ry="2.2"/><path d="M12.4 12.2c2.6 0 5 2.1 5.6 4.4.5 2-.9 3.6-3 3.5-1-.1-1.8-.5-2.7-.5s-1.7.4-2.7.5c-2.1.1-3.5-1.5-3-3.5.6-2.3 3.2-4.4 5.8-4.4z"/>';
+
+function sack(p){
+  const h = p.hue, d = shade(h,-58), l = shade(h,38);
+  const gid = 'g_' + p.id.replace(/[^a-z0-9]/gi,'');
+  const label = esc(brandOf(p.brand).name.toUpperCase().slice(0,12));
+  const defs = `<defs><linearGradient id="${gid}" x1="0" y1="0" x2=".9" y2="1"><stop offset="0" stop-color="${l}"/><stop offset="1" stop-color="${d}"/></linearGradient></defs>`;
+
+  if (p.type === 'treat'){
+    return `<svg class="sack w-full h-full" viewBox="0 0 200 200" aria-hidden="true">${defs}
+      <rect x="88" y="34" width="24" height="18" rx="9" fill="${d}"/><circle cx="100" cy="43" r="4.2" fill="#F5F3EB"/>
+      <rect x="54" y="46" width="92" height="122" rx="16" fill="url(#${gid})"/>
+      <rect x="54" y="46" width="92" height="18" rx="9" fill="#23443D" fill-opacity=".17"/>
+      <path d="M62 70h76" stroke="#23443D" stroke-opacity=".18" stroke-width="2" stroke-dasharray="3 5" stroke-linecap="round"/>
+      <g fill="#23443D" fill-opacity=".2" transform="translate(80 80) scale(1.65)">${PAW}</g>
+      <rect x="64" y="126" width="72" height="24" rx="6" fill="#FFFFFF" fill-opacity=".28"/>
+      <text x="100" y="142" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="1.5" fill="#23443D" fill-opacity=".62">${label}</text>
+    </svg>`;
+  }
+  return `<svg class="sack w-full h-full" viewBox="0 0 200 200" aria-hidden="true">${defs}
+    <rect x="70" y="22" width="60" height="14" rx="4" fill="${d}"/>
+    <rect x="46" y="32" width="108" height="138" rx="13" fill="url(#${gid})"/>
+    <path d="M46 45c0-7.2 5.8-13 13-13h82c7.2 0 13 5.8 13 13v3H46z" fill="#23443D" fill-opacity=".18"/>
+    <rect x="131" y="48" width="23" height="122" fill="#FFFFFF" fill-opacity=".14"/>
+    <g fill="#23443D" fill-opacity=".19" transform="translate(76 62) scale(1.85)">${PAW}</g>
+    <rect x="58" y="118" width="84" height="26" rx="6" fill="#FFFFFF" fill-opacity=".3"/>
+    <text x="100" y="135" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" letter-spacing="1.5" fill="#23443D" fill-opacity=".62">${label}</text>
+    <path d="M58 157h84" stroke="#23443D" stroke-opacity=".16" stroke-width="2" stroke-dasharray="3 5" stroke-linecap="round"/>
+  </svg>`;
+}
+
+const petPhoto = p => p.type === 'treat' ? PHOTO.treats : (p.pet === 'cat' ? PHOTO.cat : PHOTO.dog);
+const petLabel = p => p.pet === 'both' ? 'кошки и собаки' : p.pet === 'cat' ? 'кошки' : 'собаки';
+const imgTag = (src, alt, cls) => `<img src="${src}" alt="${esc(alt)}" loading="lazy" class="${cls}" onerror="this.style.display='none'">`;
+const productVisual = p => p.photo
+  ? imgTag(p.photo, `${brandOf(p.brand).name} ${p.name}`, 'product-pack w-full h-full object-contain p-2.5 min-[520px]:p-5')
+  : `<span class="block w-full h-full p-3 min-[520px]:p-6">${sack(p)}</span>`;
+
+/* ——— карточки «кому» ——— */
+function renderPetCards(){
+  const cards = [
+    { pet:'cat',  title:'Кошкам',   photo:PHOTO.cat,    note:'сухие рационы, стерилизованным, котятам, ветеринарные линейки' },
+    { pet:'dog',  title:'Собакам',  photo:PHOTO.feeding,note:'от мелких пород до крупных, щенкам и активным' },
+    { pet:'treat',title:'Лакомства',photo:PHOTO.treats, note:'сушёные субпродукты и мясные снеки' }
+  ];
+  $('#petCards').innerHTML = cards.map((c,i) => {
+    const count = c.pet === 'treat'
+      ? PRODUCTS.filter(p => p.brand === 'treats').length
+      : PRODUCTS.filter(p => p.pet === c.pet || p.pet === 'both').length;
+    return `
+    <button data-petcard="${c.pet}" class="card reveal group relative overflow-hidden rounded-[24px] border border-hair bg-snow text-left" style="transition-delay:${i*70}ms">
+      <span class="block relative h-[190px] md:h-[220px] ph overflow-hidden">
+        ${imgTag(c.photo, c.title, 'zoom w-full h-full object-cover')}
+        <span class="absolute inset-0 bg-gradient-to-t from-snow via-snow/10 to-transparent"></span>
+      </span>
+      <span class="block p-4 pt-3">
+        <span class="flex items-center justify-between gap-2">
+          <span class="font-display font-extrabold text-[19px]">${c.title}</span>
+          <span class="mono text-[11px] text-steel">${count}</span>
+        </span>
+        <span class="block text-steel text-[13px] mt-1.5 leading-snug">${c.note}</span>
+        <span class="mt-3 inline-flex items-center gap-1.5 text-[13px] font-semibold text-icedeep">
+          Смотреть
+          <svg viewBox="0 0 24 24" class="w-3.5 h-3.5 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </span>
+    </button>`;
+  }).join('');
+
+  $$('#petCards [data-petcard]').forEach(el => el.addEventListener('click', () => {
+    const v = el.dataset.petcard;
+    if (v === 'treat'){ state.brand = 'treats'; state.pet = 'all'; }
+    else { state.pet = v; state.brand = 'all'; }
+    state.line = 'all'; applyFilters(); goCatalog();
+  }));
+}
+
+/* ——— плитки марок ——— */
+function renderBrands(){
+  $('#brandGrid').innerHTML = BRANDS.map((b,i) => {
+    const items = PRODUCTS.filter(p => p.brand === b.id);
+    const cats = items.filter(p => p.pet !== 'dog').length;
+    const dogs = items.filter(p => p.pet !== 'cat').length;
+    return `
+    <article class="card reveal group relative overflow-hidden rounded-[24px] border border-hair bg-snow" style="transition-delay:${i*60}ms">
+      <button data-brand="${b.id}" class="grid w-full grid-cols-[112px_minmax(0,1fr)] text-left min-[520px]:block">
+        <span class="relative block min-h-[132px] overflow-hidden ph min-[520px]:h-[120px] min-[520px]:min-h-0 md:h-[140px]">
+          ${imgTag(b.photo, b.name, 'zoom w-full h-full object-cover')}
+          <span class="absolute inset-0" style="background:linear-gradient(180deg, transparent 30%, #FFFFFFE6 100%)"></span>
+          ${b.badge ? `<span class="absolute left-2.5 top-2.5 rounded-full bg-ink px-2.5 py-1 mono text-[8px] uppercase tracking-[.08em] text-amber min-[520px]:text-[9px] min-[520px]:tracking-[.1em]"><span class="min-[520px]:hidden">официально</span><span class="hidden min-[520px]:inline">${esc(b.badge)}</span></span>` : ''}
+        </span>
+        <span class="block min-w-0 p-3 min-[520px]:px-4 min-[520px]:pb-3 min-[520px]:pt-2">
+          <span class="flex items-center justify-between gap-2">
+            <span class="font-display font-extrabold text-[16px] min-[520px]:text-[17px] md:text-[20px] tracking-tight">${esc(b.name)}</span>
+            <span class="w-2.5 h-2.5 rounded-full shrink-0" style="background:${b.hue}"></span>
+          </span>
+          <span class="block mono text-[10px] text-steel mt-1 uppercase tracking-[.12em]">${esc(b.cls)}</span>
+          <span class="mt-3 flex flex-wrap gap-1.5 mono text-[10px]">
+            ${cats ? `<span class="rounded-md bg-paper px-2 py-1">кошки · ${cats}</span>` : ''}
+            ${dogs ? `<span class="rounded-md bg-paper px-2 py-1">собаки · ${dogs}</span>` : ''}
+          </span>
+        </span>
+      </button>
+      <div class="flex gap-2 px-3 pb-3 min-[520px]:px-4 min-[520px]:pb-4">
+        <button data-brand="${b.id}" class="btn-press flex-1 rounded-xl bg-ink px-3 py-2.5 text-snow text-[12.5px] font-semibold hover:bg-icedeep transition">Смотреть корма</button>
+        <button data-about="${b.id}" class="btn-press rounded-xl border border-hair px-3 py-2.5 text-[12.5px] font-medium text-steel hover:text-ink hover:border-ink transition">О марке</button>
+      </div>
+    </article>`;
+  }).join('');
+
+  $$('#brandGrid [data-brand]').forEach(el => el.addEventListener('click', () => {
+    state.brand = el.dataset.brand; state.line = 'all';
+    applyFilters(); goCatalog();
+  }));
+  $$('#brandGrid [data-about]').forEach(el => el.addEventListener('click', () => openBrand(el.dataset.about)));
+}
+
+function goCatalog(){
+  const y = $('#catalog').getBoundingClientRect().top + window.scrollY - 60;
+  window.scrollTo({ top:y, behavior:'smooth' });
+}
+
+/* ——— фильтрация ——— */
+const matchPet = p => state.pet === 'all' || p.pet === 'both' || p.pet === state.pet;
+function filtered(){
+  const q = state.q.trim().toLowerCase();
+  return PRODUCTS.filter(p =>
+    (state.brand === 'all' || p.brand === state.brand) && matchPet(p) &&
+    (state.line === 'all' || p.line === state.line) &&
+    (!q || (p.name+' '+p.sub+' '+p.desc+' '+p.tags.join(' ')+' '+p.line+' '+brandOf(p.brand).name+' '+p.cls+' '+p.comp).toLowerCase().includes(q))
+  );
+}
+function activeCount(){
+  return (state.brand!=='all'?1:0) + (state.pet!=='all'?1:0) + (state.line!=='all'?1:0) + (state.q.trim()?1:0);
+}
+function applyFilters(resetLimit=true){
+  if (resetLimit) state.limit = PAGE_SIZE;
+  $$('.petBtn').forEach(el => {
+    const on = el.dataset.pet === state.pet;
+    el.className = 'petBtn chip px-3 py-2 rounded-lg text-[12.5px] font-semibold ' +
+      (on ? (state.pet==='cat' ? 'bg-amber text-ink' : state.pet==='dog' ? 'bg-ice text-snow' : 'bg-ink text-snow') : 'text-steel hover:text-ink');
+  });
+  const n = activeCount(), badge = $('#filterBadge');
+  badge.textContent = n; badge.classList.toggle('hidden', n === 0);
+  $('#filterLabel').textContent = state.brand === 'all' ? 'Фильтры' : brandOf(state.brand).name;
+
+  const chips = [];
+  if (state.brand !== 'all') chips.push(['brand', brandOf(state.brand).name]);
+  if (state.line  !== 'all') chips.push(['line', state.line]);
+  if (state.pet   !== 'all') chips.push(['pet', state.pet === 'cat' ? 'Кошки' : 'Собаки']);
+  if (state.q.trim())        chips.push(['q', '«' + state.q.trim() + '»']);
+  $('#activeChips').innerHTML = chips.length ? chips.map(([k,t]) => `
+    <button data-clear="${k}" class="chip inline-flex items-center gap-1.5 rounded-full border border-hair bg-snow pl-3 pr-2 py-1.5 text-[12.5px] hover:border-ink transition">
+      ${esc(t)}<svg viewBox="0 0 24 24" class="w-3.5 h-3.5 text-steel" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>`).join('') + `
+    <button data-clear="all" class="chip rounded-full bg-paper px-3 py-1.5 text-[12.5px] text-steel hover:text-ink transition">Сбросить всё</button>` : '';
+  $$('#activeChips [data-clear]').forEach(el => el.addEventListener('click', () => {
+    const k = el.dataset.clear;
+    if (k === 'all') return resetFilters();
+    if (k === 'brand') { state.brand = 'all'; state.line = 'all'; }
+    if (k === 'line')  state.line = 'all';
+    if (k === 'pet')   state.pet = 'all';
+    if (k === 'q'){ state.q = ''; const s = $('#searchInput'); if (s) s.value = ''; }
+    applyFilters();
+  }));
+
+  renderGrid();
+}
+function resetFilters(){
+  state.brand='all'; state.pet='all'; state.line='all'; state.q='';
+  const s = $('#searchInput'); if (s) s.value = '';
+  applyFilters();
+}
+
+/* ——— сетка ——— */
+function priceLabel(p){
+  const s = p.sizes[sel[p.id] ?? 0];
+  if (!CONFIG.showPrices || !s || !s.p) return `<span class="mono text-[12.5px] text-steel">цена по запросу</span>`;
+  return `<span class="font-display font-bold text-[17px]">${money(s.p)}</span>`;
+}
+function shortText(text, limit=260){
+  const value = String(text || '');
+  return value.length > limit ? value.slice(0, limit).replace(/\s+\S*$/, '') + '…' : value;
+}
+function renderGrid(){
+  const all = filtered();
+  const list = all.slice(0, state.limit);
+  $('#resultCount').textContent = all.length ? `${all.length} ${plural(all.length,'позиция','позиции','позиций')}` : '';
+  $('#empty').classList.toggle('hidden', all.length > 0);
+  const more = Math.max(0, all.length - list.length);
+  $('#loadMoreWrap').classList.toggle('hidden', more === 0);
+  $('#loadMore').textContent = more ? `Показать ещё ${Math.min(PAGE_SIZE, more)}` : 'Показать ещё';
+
+  $('#grid').innerHTML = list.map((p,i) => {
+    const b = brandOf(p.brand), si = sel[p.id] ?? 0;
+    return `
+    <article class="card rise flex min-w-0 flex-col overflow-hidden rounded-[22px] border border-hair bg-snow" style="transition-delay:${Math.min(i,10)*40}ms">
+      <div class="relative h-[276px] min-[520px]:h-[420px] overflow-hidden bg-paper">
+        <div class="product-carousel h-full" data-track="${p.id}" tabindex="0" role="region" aria-label="Информация о ${esc(p.name)}">
+          <section class="product-slide h-full" aria-label="Товар и фасовка">
+            <div class="product-primary-layout grid h-full">
+              <div class="relative min-h-0 overflow-hidden border-r border-hair min-[520px]:border-r-0 min-[520px]:border-b">
+                <span class="absolute inset-0" style="background:radial-gradient(circle at 50% 44%, ${p.hue}24, transparent 62%),linear-gradient(150deg, #FFFDF8, #F5F3EB)"></span>
+                <span class="absolute left-2 top-2 z-10 rounded-lg bg-snow/90 px-2 py-1 mono text-[8px] uppercase tracking-[.08em]">${esc(petLabel(p))}</span>
+                ${p.draft ? `<span class="absolute bottom-2 left-2 right-2 z-10 rounded-lg bg-ink/90 px-2 py-1 text-center mono text-[8px] uppercase tracking-[.08em] text-amber">уточняется</span>` : ''}
+                <span class="absolute inset-0 grid place-items-center">${productVisual(p)}</span>
+              </div>
+
+              <div class="flex min-w-0 flex-col bg-snow p-3 pb-8 min-[520px]:p-4 min-[520px]:pb-10">
+                <p class="truncate mono text-[8.5px] uppercase tracking-[.1em] text-icedeep min-[520px]:text-[10px]">${esc(b.name)} · ${esc(p.line)}</p>
+                <h3 class="mt-1.5 line-clamp-2 font-sans font-bold text-[15px] leading-tight tracking-[-.01em] min-[520px]:line-clamp-none min-[520px]:text-[17px]">${esc(p.name)}</h3>
+                <p class="mt-1 line-clamp-1 text-[11px] leading-snug text-steel min-[520px]:line-clamp-2 min-[520px]:text-[12.5px]">${esc(p.sub)}</p>
+
+                <div class="sizes-strip mt-auto flex gap-1 overflow-x-auto pb-0.5" role="group" aria-label="Фасовка">
+                  ${p.sizes.map((s,idx) => `<button type="button" data-size="${p.id}" data-si="${idx}" class="chip shrink-0 rounded-lg border px-2 py-1 mono text-[9.5px] min-[520px]:text-[11px] ${idx===si?'border-ink bg-ink text-snow':'border-hair bg-paper text-steel hover:border-steel'}" aria-pressed="${idx===si?'true':'false'}">${esc(s.w)}</button>`).join('')}
+                </div>
+
+                <div class="mt-2 flex items-center justify-between gap-2">
+                  <span data-price="${p.id}">${priceLabel(p)}</span>
+                  <button data-add="${p.id}" class="btn-press grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-ink text-snow hover:bg-icedeep transition" aria-label="Добавить в корзину">
+                    <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="product-slide h-full bg-snow p-4 pb-8 min-[520px]:p-5 min-[520px]:pb-10" aria-label="Описание и норма кормления">
+            <p class="eyebrow text-icedeep">О продукте</p>
+            <p class="card-copy mt-3 text-[12.5px] leading-relaxed min-[520px]:text-[14px]">${esc(p.desc)}</p>
+            <div class="mt-3 flex flex-wrap gap-1.5">
+              ${p.tags.map(t => `<span class="rounded-full border border-hair bg-snow px-2.5 py-1 text-[11.5px] text-steel">${esc(t)}</span>`).join('')}
+            </div>
+            <div class="mt-3 rounded-2xl bg-icesoft p-3 min-[520px]:mt-5 min-[520px]:p-3.5">
+              <p class="mono text-[10px] uppercase tracking-[.12em] text-icedeep">Норма кормления</p>
+              <p class="card-norm mt-1.5 text-[11.5px] leading-relaxed text-ink2 min-[520px]:text-[12.5px]">${esc(p.norm)}</p>
+            </div>
+          </section>
+
+          <section class="product-slide h-full bg-snow p-4 pb-8 min-[520px]:p-5 min-[520px]:pb-10" aria-label="Состав и показатели">
+            <p class="eyebrow text-icedeep">Состав и показатели</p>
+            <p class="mt-2 text-[10.5px] leading-relaxed text-steel min-[520px]:mt-3 min-[520px]:text-[12px]">${esc(shortText(p.comp, 300))}</p>
+            <dl class="mt-3 grid grid-cols-3 gap-1.5 min-[520px]:mt-4 min-[520px]:grid-cols-2">
+              ${Object.entries(p.an).map(([k,v]) => `<div class="rounded-xl border border-hair bg-paper px-2 py-1.5 min-[520px]:px-2.5 min-[520px]:py-2"><dt class="mono text-[7.5px] uppercase tracking-[.06em] text-steel min-[520px]:text-[8.5px]">${esc(k)}</dt><dd class="mt-0.5 font-semibold text-[11px] min-[520px]:text-[13px]">${esc(v)}</dd></div>`).join('')}
+            </dl>
+          </section>
+        </div>
+
+        <div class="pointer-events-none absolute inset-x-0 bottom-1.5 z-10 flex justify-center">
+          <span class="flex items-center gap-0.5 rounded-full border border-hair bg-snow/90 px-1.5 py-1" aria-label="Слайд 1 из 3">
+            ${[0,1,2].map(n => `<button data-goto="${n}" class="carousel-dot pointer-events-auto h-1.5 w-1.5 rounded-full bg-hair" aria-label="Слайд ${n+1}" aria-current="${n===0?'true':'false'}"></button>`).join('')}
+          </span>
+        </div>
+      </div>
+    </article>`;
+  }).join('');
+  observeAll();
+}
+
+$('#loadMore').addEventListener('click', () => {
+  state.limit += PAGE_SIZE;
+  renderGrid();
+});
+
+$('#grid').addEventListener('click', e => {
+  const nav = e.target.closest('[data-goto]');
+  if (nav){
+    const card = nav.closest('article'), track = $('[data-track]', card);
+    const next = +nav.dataset.goto;
+    track.scrollTo({ left: next * track.clientWidth, behavior:'smooth' });
+    return;
+  }
+  const size = e.target.closest('[data-size]');
+  if (size){
+    const id = size.dataset.size;
+    sel[id] = +size.dataset.si;
+    const card = size.closest('article');
+    $$('[data-size="'+id+'"]', card).forEach(button => {
+      const active = +button.dataset.si === sel[id];
+      button.className = `chip shrink-0 rounded-lg border px-2 py-1 mono text-[9.5px] min-[520px]:text-[11px] ${active?'border-ink bg-ink text-snow':'border-hair bg-paper text-steel hover:border-steel'}`;
+      button.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+    const price = $('[data-price="'+id+'"]', card);
+    if (price) price.innerHTML = priceLabel(prodOf(id));
+    return;
+  }
+  const add = e.target.closest('[data-add]');
+  if (add){ addToCart(add.dataset.add, sel[add.dataset.add] ?? 0); add.classList.add('pop'); setTimeout(()=>add.classList.remove('pop'),450); }
+});
+
+function updateCarousel(track){
+  const card = track.closest('article');
+  const current = Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
+  $$('.carousel-dot', card).forEach((dot, i) => dot.setAttribute('aria-current', i === current ? 'true' : 'false'));
+  const status = $('.carousel-dot', card)?.parentElement;
+  if (status) status.setAttribute('aria-label', `Слайд ${current + 1} из 3`);
+}
+
+let carouselFrame;
+$('#grid').addEventListener('scroll', e => {
+  const track = e.target.closest?.('.product-carousel');
+  if (!track) return;
+  cancelAnimationFrame(carouselFrame);
+  carouselFrame = requestAnimationFrame(() => updateCarousel(track));
+}, { passive:true, capture:true });
+
+const carouselHover = new WeakMap();
+$('#grid').addEventListener('mousemove', e => {
+  const track = e.target.closest?.('.product-carousel');
+  if (!track || e.buttons !== 0 || e.target.closest('.sizes-strip,[data-add],[data-goto]')) return;
+  const now = performance.now();
+  const state = carouselHover.get(track);
+  if (!state){
+    carouselHover.set(track, { x:e.clientX, distance:0, changedAt:-Infinity });
+    return;
+  }
+  const step = e.clientX - state.x;
+  state.x = e.clientX;
+  if (Math.abs(step) > 160){
+    state.distance = 0;
+    return;
+  }
+  state.distance += step;
+  if (Math.abs(state.distance) < 48 || now - state.changedAt < 260) return;
+
+  const current = Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
+  const next = Math.max(0, Math.min(2, current + (state.distance > 0 ? 1 : -1)));
+  state.distance = 0;
+  state.changedAt = now;
+  if (next !== current) track.scrollTo({ left:next * track.clientWidth, behavior:'smooth' });
+});
+
+$('#grid').addEventListener('mouseout', e => {
+  const track = e.target.closest?.('.product-carousel');
+  if (track && !track.contains(e.relatedTarget)){
+    carouselHover.delete(track);
+    if (track.scrollLeft !== 0) track.scrollTo({ left:0, behavior:'smooth' });
+  }
+});
+
+$('#grid').addEventListener('keydown', e => {
+  const track = e.target.closest?.('.product-carousel');
+  if (!track || !['ArrowLeft','ArrowRight'].includes(e.key)) return;
+  e.preventDefault();
+  const current = Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
+  const next = e.key === 'ArrowRight' ? Math.min(2,current+1) : Math.max(0,current-1);
+  track.scrollTo({ left: next * track.clientWidth, behavior:'smooth' });
+});
+
+/* ══════════ ПОПАПЫ ══════════ */
+function showSheet(html){
+  $('#sheetBody').innerHTML = html;
+  const s = $('#sheet');
+  s.classList.remove('hidden'); document.body.style.overflow = 'hidden';
+  $('#sheetBox').scrollTop = 0;
+  requestAnimationFrame(() => { $('.veil', s).style.opacity = '1'; $('#sheetBox').style.transform = 'translateY(0)'; });
+}
+function closeSheet(){
+  const s = $('#sheet');
+  $('.veil', s).style.opacity = '0'; $('#sheetBox').style.transform = '';
+  setTimeout(() => { s.classList.add('hidden'); document.body.style.overflow = ''; }, 380);
+}
+const sheetHeader = title => `
+  <div class="sticky top-0 z-20 flex items-center justify-between gap-3 bg-snow/95 backdrop-blur px-5 py-3.5 border-b border-hair">
+    <p class="mono text-[10px] uppercase tracking-[.14em] text-steel">${esc(title)}</p>
+    <button onclick="closeSheet()" aria-label="Закрыть" class="btn-press grid place-items-center w-9 h-9 rounded-xl bg-paper hover:bg-hair transition">
+      <svg viewBox="0 0 24 24" class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>`;
+
+/* ——— попап: о марке ——— */
+function openBrand(id){
+  const b = brandOf(id);
+  const items = PRODUCTS.filter(p => p.brand === id);
+  const lines = [...new Set(items.map(p => p.line))];
+  showSheet(`
+    ${sheetHeader('О марке')}
+    <div class="relative h-[170px] md:h-[210px] ph overflow-hidden">
+      ${imgTag(b.photo, b.name, 'w-full h-full object-cover')}
+      <div class="absolute inset-0" style="background:linear-gradient(180deg, transparent 25%, #FFFFFFF2 95%)"></div>
+      <h2 class="absolute bottom-4 left-5 font-display font-extrabold text-[26px] md:text-[32px] tracking-tight">${esc(b.name)}</h2>
+    </div>
+    <div class="p-5 md:p-6">
+      <p class="mono text-[10px] uppercase tracking-[.14em] text-steel">${esc(b.cls)}</p>
+      ${b.badge ? `<span class="inline-block mt-2 rounded-full bg-ink px-2.5 py-1 mono text-[9px] uppercase tracking-[.1em] text-amber">${esc(b.badge)}</span>` : ''}
+      <p class="mt-4 text-[15px] leading-relaxed">${esc(b.about)}</p>
+
+      <p class="eyebrow text-steel mt-6 mb-2">Линейки в наличии</p>
+      <div class="flex flex-wrap gap-1.5">
+        ${lines.map(l => `<span class="rounded-full border border-hair px-3 py-1.5 text-[12.5px]">${esc(l)}</span>`).join('')}
+      </div>
+
+      <div class="mt-6 grid grid-cols-2 gap-2">
+        <button onclick="pickBrand('${b.id}')" class="btn-press rounded-2xl bg-ink px-4 py-3.5 font-semibold text-snow hover:bg-icedeep transition">Смотреть ${items.length} ${plural(items.length,'корм','корма','кормов')}</button>
+        <button onclick="closeSheet()" class="btn-press rounded-2xl border border-hair px-4 py-3.5 font-medium hover:border-ink transition">Закрыть</button>
+      </div>
+    </div>`);
+}
+function pickBrand(id){ state.brand = id; state.line = 'all'; applyFilters(); closeSheet(); setTimeout(goCatalog, 200); }
+
+/* ——— попап: фильтры ——— */
+function openFilters(focusSearch){
+  renderFilterSheet();
+  if (focusSearch) setTimeout(() => $('#fq')?.focus(), 450);
+}
+function renderFilterSheet(){
+  const n = filtered().length;
+  const lines = state.brand === 'all' ? [] : [...new Set(PRODUCTS.filter(p => p.brand === state.brand && matchPet(p)).map(p => p.line))];
+  const html = `
+    ${sheetHeader('Фильтры')}
+    <div class="p-5 md:p-6 pb-28">
+      <div class="relative">
+        <svg viewBox="0 0 24 24" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-steel" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+        <input id="fq" type="search" value="${esc(state.q)}" placeholder="Поиск: индейка, холистик, стерилизованные…" autocomplete="off"
+          class="w-full rounded-xl border border-hair bg-paper pl-10 pr-4 py-3 text-[14px] placeholder:text-steel focus:bg-snow focus:border-ice outline-none transition">
+      </div>
+
+      <p class="eyebrow text-steel mt-6 mb-2">Питомец</p>
+      <div class="grid grid-cols-3 gap-2">
+        ${[['all','Все'],['cat','Кошки'],['dog','Собаки']].map(([v,t]) => `
+          <button data-fpet="${v}" class="chip rounded-xl border px-3 py-3 text-[13px] font-semibold ${state.pet===v?'bg-ink text-snow border-ink':'bg-snow border-hair hover:border-steel'}">${t}</button>`).join('')}
+      </div>
+
+      <p class="eyebrow text-steel mt-6 mb-2">Марка</p>
+      <div class="grid grid-cols-2 gap-2">
+        <button data-fbrand="all" class="chip rounded-xl border px-3 py-3 text-[13px] font-semibold ${state.brand==='all'?'bg-ink text-snow border-ink':'bg-snow border-hair hover:border-steel'}">Все марки</button>
+        ${BRANDS.map(b => {
+          const c = PRODUCTS.filter(p => p.brand === b.id && matchPet(p)).length;
+          const on = state.brand === b.id;
+          return `<button data-fbrand="${b.id}" class="chip flex items-center justify-between gap-2 rounded-xl border px-3 py-3 text-[13px] font-semibold ${on?'bg-ink text-snow border-ink':'bg-snow border-hair hover:border-steel'}">
+            <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full" style="background:${b.hue}"></span>${esc(b.name)}</span>
+            <span class="mono text-[10px] ${on?'text-snow/70':'text-steel'}">${c}</span></button>`;
+        }).join('')}
+      </div>
+
+      ${lines.length > 1 ? `
+        <p class="eyebrow text-steel mt-6 mb-2">Линейка</p>
+        <div class="flex flex-wrap gap-1.5">
+          ${[['all','Все линейки'], ...lines.map(l => [l,l])].map(([v,t]) => `
+            <button data-fline="${esc(v)}" class="chip rounded-lg border px-3 py-2 mono text-[11.5px] ${state.line===v?'bg-ink text-snow border-ink':'bg-snow text-steel border-hair hover:border-steel'}">${esc(t)}</button>`).join('')}
+        </div>` : ''}
+    </div>
+
+    <div class="sticky bottom-0 border-t border-hair bg-snow/95 backdrop-blur p-4 pb-[max(16px,env(safe-area-inset-bottom))] flex gap-2">
+      <button onclick="resetFilters(); renderFilterSheet();" class="btn-press rounded-xl border border-hair px-4 py-3.5 text-[13px] font-medium text-steel hover:text-ink hover:border-ink transition">Сбросить</button>
+      <button onclick="closeSheet()" class="btn-press flex-1 rounded-xl bg-ink px-4 py-3.5 font-semibold text-snow hover:bg-icedeep transition">Показать ${n} ${plural(n,'корм','корма','кормов')}</button>
+    </div>`;
+
+  if ($('#sheet').classList.contains('hidden')) showSheet(html);
+  else $('#sheetBody').innerHTML = html;
+
+  $$('[data-fpet]').forEach(el => el.addEventListener('click', () => { state.pet = el.dataset.fpet; state.line='all'; applyFilters(); renderFilterSheet(); }));
+  $$('[data-fbrand]').forEach(el => el.addEventListener('click', () => { state.brand = el.dataset.fbrand; state.line='all'; applyFilters(); renderFilterSheet(); }));
+  $$('[data-fline]').forEach(el => el.addEventListener('click', () => { state.line = el.dataset.fline; applyFilters(); renderFilterSheet(); }));
+  const fq = $('#fq');
+  if (fq) fq.addEventListener('input', e => {
+    state.q = e.target.value; const s = $('#searchInput'); if (s) s.value = state.q;
+    applyFilters();
+    const btn = $('#sheetBody .sticky.bottom-0 button:last-child');
+    const n2 = filtered().length;
+    if (btn) btn.textContent = `Показать ${n2} ${plural(n2,'корм','корма','кормов')}`;
+  });
+}
+
+/* ══════════ КОРЗИНА ══════════ */
+function addToCart(pid, si){
+  const line = cart.find(i => i.pid === pid && i.si === si);
+  if (line) line.qty++; else cart.push({ pid, si, qty:1 });
+  saveCart();
+  const p = prodOf(pid);
+  toast(`${p.name} · ${p.sizes[si].w} — в корзине`);
+  const badge = $('#cartCount'); badge.classList.remove('pop'); void badge.offsetWidth; badge.classList.add('pop');
+}
+function setQty(idx,d){ cart[idx].qty += d; if (cart[idx].qty < 1) cart.splice(idx,1); saveCart(); renderCart(); }
+function removeLine(idx){ cart.splice(idx,1); saveCart(); renderCart(); }
+function cartTotal(){
+  let sum = 0, unknown = false;
+  cart.forEach(i => { const s = prodOf(i.pid).sizes[i.si]; if (CONFIG.showPrices && s.p) sum += s.p * i.qty; else unknown = true; });
+  return { sum, unknown };
+}
+const cartQty = () => cart.reduce((a,i) => a + i.qty, 0);
+
+function saveCart(){
+  store.set('xs_cart', cart);
+  const q = cartQty(), { sum } = cartTotal();
+  $('#cartCount').textContent = q; $('#mobCount').textContent = q; $('#mobSum').textContent = money(sum);
+  $('#mobileBar').style.transform = q ? 'translateY(0)' : 'translateY(120%)';
+  if (!$('#cart').classList.contains('hidden')) renderCart();
+}
+
+function renderCart(){
+  const body = $('#cartBody'), foot = $('#cartFoot');
+  if (!cart.length){
+    body.innerHTML = `
+      <div class="text-center py-16">
+        <div class="mx-auto w-16 h-16 rounded-2xl bg-icesoft grid place-items-center mb-4">
+          <svg viewBox="0 0 24 24" class="w-7 h-7 text-ice" fill="currentColor">${PAW}</svg>
+        </div>
+        <p class="font-display font-bold text-[17px]">Корзина пустая</p>
+        <p class="text-steel text-[14px] mt-1.5">Выберите корм — регистрация не нужна.</p>
+        <button onclick="closeCart()" class="btn-press mt-5 rounded-xl bg-ink px-5 py-3 text-snow font-semibold text-[14px]">Перейти к каталогу</button>
+      </div>`;
+    foot.innerHTML = ''; return;
+  }
+
+  body.innerHTML = cart.map((i,idx) => {
+    const p = prodOf(i.pid), s = p.sizes[i.si], b = brandOf(p.brand);
+    const price = CONFIG.showPrices && s.p ? money(s.p * i.qty) : 'по запросу';
+    return `
+    <div class="flex gap-3 rounded-2xl border border-hair bg-snow p-3">
+      <div class="w-16 h-16 shrink-0 rounded-xl bg-paper grid place-items-center overflow-hidden">${p.photo ? imgTag(p.photo, p.name, 'w-full h-full object-contain p-1.5') : sack(p)}</div>
+      <div class="flex-1 min-w-0">
+        <p class="mono text-[9px] uppercase tracking-[.12em] text-steel">${esc(b.name)}</p>
+        <p class="font-semibold text-[14px] leading-tight mt-0.5 truncate">${esc(p.name)}</p>
+        <p class="mono text-[11px] text-steel mt-0.5">${esc(s.w)}</p>
+        <div class="flex items-center justify-between mt-2">
+          <div class="flex items-center gap-1 rounded-lg border border-hair">
+            <button onclick="setQty(${idx},-1)" class="btn-press w-8 h-8 grid place-items-center text-steel hover:text-ink" aria-label="Меньше">−</button>
+            <span class="mono text-[13px] w-6 text-center">${i.qty}</span>
+            <button onclick="setQty(${idx},1)" class="btn-press w-8 h-8 grid place-items-center text-steel hover:text-ink" aria-label="Больше">+</button>
+          </div>
+          <span class="font-display font-bold text-[14px]">${price}</span>
+        </div>
+      </div>
+      <button onclick="removeLine(${idx})" class="btn-press self-start text-steel hover:text-rasp transition" aria-label="Убрать">
+        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>`;
+  }).join('');
+
+  const { sum, unknown } = cartTotal();
+  foot.innerHTML = `
+    <div class="grid grid-cols-2 gap-2">
+      <input id="fName" value="${esc(order.name)}" placeholder="Имя" class="rounded-xl border border-hair bg-paper px-3.5 py-3 text-[14px] outline-none focus:border-ice focus:bg-snow transition">
+      <input id="fPhone" value="${esc(order.phone)}" placeholder="Телефон" inputmode="tel" class="rounded-xl border border-hair bg-paper px-3.5 py-3 text-[14px] outline-none focus:border-ice focus:bg-snow transition">
+    </div>
+    <div class="flex rounded-xl bg-paper p-1">
+      ${['Доставка по городу','Самовывоз'].map(d => `<button data-del="${d}" class="delBtn flex-1 rounded-lg px-3 py-2.5 text-[12.5px] font-semibold ${order.delivery===d?'bg-ink text-snow':'text-steel'}">${d}</button>`).join('')}
+    </div>
+    <input id="fAddr" value="${esc(order.address)}" placeholder="Адрес доставки" class="${order.delivery==='Самовывоз'?'hidden':''} w-full rounded-xl border border-hair bg-paper px-3.5 py-3 text-[14px] outline-none focus:border-ice focus:bg-snow transition">
+    <input id="fNote" value="${esc(order.note)}" placeholder="Комментарий: вкус, гранула, когда удобно" class="w-full rounded-xl border border-hair bg-paper px-3.5 py-3 text-[14px] outline-none focus:border-ice focus:bg-snow transition">
+
+    <div class="flex items-end justify-between pt-1">
+      <div>
+        <p class="mono text-[10px] uppercase tracking-[.12em] text-steel">Итого, ориентир</p>
+        <p class="font-display font-extrabold text-[26px] leading-none mt-1">${money(sum)}</p>
+      </div>
+      <p class="text-[11.5px] text-steel max-w-[46%] text-right leading-snug">${unknown ? 'Часть позиций — цена по запросу.' : 'Точную сумму подтвердит продавец.'}</p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-2 pt-1">
+      <button onclick="send('tg')" class="btn-press rounded-xl bg-ice px-4 py-3.5 font-semibold text-snow hover:bg-icedeep transition">Telegram</button>
+      <button onclick="send('max')" class="btn-press rounded-xl bg-amber px-4 py-3.5 font-semibold text-ink hover:bg-amberdeep hover:text-snow transition">MAX</button>
+    </div>
+    <div class="grid ${CONFIG.waPhone ? 'grid-cols-2' : 'grid-cols-1'} gap-2">
+      ${CONFIG.waPhone ? `<button onclick="send('wa')" class="btn-press rounded-xl border border-hair px-4 py-3 text-[13px] font-medium text-steel hover:text-ink hover:border-ink transition">WhatsApp</button>` : ''}
+      <button onclick="send('copy')" class="btn-press rounded-xl border border-hair px-4 py-3 text-[13px] font-medium text-steel hover:text-ink hover:border-ink transition">Скопировать список</button>
+    </div>
+    <p class="text-[11.5px] text-steel text-center leading-snug">Заказ уйдёт текстом в чат — продавец ответит по наличию и доставке.</p>`;
+
+  const bind = (id,key) => { const el = $(id); if (el) el.addEventListener('input', e => { order[key] = e.target.value; store.set('xs_order', order); }); };
+  bind('#fName','name'); bind('#fPhone','phone'); bind('#fAddr','address'); bind('#fNote','note');
+  $$('.delBtn').forEach(el => el.addEventListener('click', () => { order.delivery = el.dataset.del; store.set('xs_order', order); renderCart(); }));
+}
+
+function openCart(){
+  renderCart();
+  const c = $('#cart'); c.classList.remove('hidden'); document.body.style.overflow = 'hidden';
+  requestAnimationFrame(() => { $('.veil',c).style.opacity='1'; $('aside',c).style.transform='translateX(0)'; });
+}
+function closeCart(){
+  const c = $('#cart');
+  $('.veil',c).style.opacity='0'; $('aside',c).style.transform='';
+  setTimeout(() => { c.classList.add('hidden'); document.body.style.overflow=''; }, 380);
+}
+
+/* ——— отправка заказа ——— */
+function orderText(){
+  const { sum, unknown } = cartTotal();
+  const lines = cart.map((i,n) => {
+    const p = prodOf(i.pid), s = p.sizes[i.si];
+    const price = CONFIG.showPrices && s.p ? ` — ${money(s.p * i.qty)}` : ' — цена по запросу';
+    return `${n+1}. ${brandOf(p.brand).name} · ${p.name} (${p.sub})\n   ${s.w} × ${i.qty}${price}`;
+  }).join('\n');
+  return [
+    `Заказ с сайта ${CONFIG.shop}`, '', lines, '',
+    `Итого (ориентир): ${money(sum)}${unknown ? ' + позиции по запросу' : ''}`, '',
+    `Имя: ${order.name || '—'}`,
+    `Телефон: ${order.phone || '—'}`,
+    `Получение: ${order.delivery}`,
+    order.delivery === 'Доставка по городу' ? `Адрес: ${order.address || '—'}` : null,
+    order.note ? `Комментарий: ${order.note}` : null
+  ].filter(v => v !== null).join('\n');
+}
+async function copyText(t){
+  try { await navigator.clipboard.writeText(t); return true; }
+  catch(e){
+    try{
+      const ta = document.createElement('textarea');
+      ta.value = t; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); return true;
+    }catch(e2){ return false; }
+  }
+}
+async function send(where){
+  if (!cart.length) return toast('Сначала добавьте корм в корзину','!');
+  if (!order.phone.trim() && where !== 'copy'){
+    toast('Оставьте телефон — продавцу будет проще ответить','!');
+    const f = $('#fPhone'); if (f){ f.focus(); f.classList.add('border-rasp'); }
+    return;
+  }
+  const text = orderText(), ok = await copyText(text);
+  if (where === 'copy') return toast(ok ? 'Список скопирован' : 'Скопируйте текст вручную');
+  if (where === 'tg'){
+    toast(ok ? 'Заказ скопирован — вставьте в чат' : 'Открываю Telegram');
+    window.open(`https://t.me/share/url?url=${encodeURIComponent(CONFIG.siteUrl)}&text=${encodeURIComponent(text)}`,'_blank');
+  }
+  if (where === 'max'){
+    toast(ok ? 'Заказ скопирован — вставьте в чат MAX' : 'Открываю MAX');
+    window.open(CONFIG.maxUrl,'_blank');
+  }
+  if (where === 'wa'){
+    toast('Открываю WhatsApp');
+    window.open(`https://wa.me/${CONFIG.waPhone}?text=${encodeURIComponent(text)}`,'_blank');
+  }
+}
+
+let toastTimer;
+function toast(msg, icon='✓'){
+  $('#toastText').textContent = msg; $('#toastIcon').textContent = icon;
+  const t = $('#toast');
+  t.style.opacity = '1'; t.style.transform = 'translate(-50%,-8px)';
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { t.style.opacity='0'; t.style.transform='translate(-50%,0)'; }, 2600);
+}
+
+/* ——— анимации ——— */
+const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } }),
+  { threshold:.1, rootMargin:'0px 0px -60px 0px' });
+function observeAll(){ $$('.reveal:not(.in), .rise:not(.in)').forEach(el => io.observe(el)); }
+
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (ticking) return; ticking = true;
+  requestAnimationFrame(() => {
+    const inner = $('#hdrInner');
+    if (window.scrollY > 20) inner.classList.add('shadow-[0_18px_40px_-30px_rgba(16,24,35,.8)]');
+    else inner.classList.remove('shadow-[0_18px_40px_-30px_rgba(16,24,35,.8)]');
+    ticking = false;
+  });
+}, { passive:true });
+
+/* ——— старт ——— */
+function init(){
+  $('#heroImg').src = PHOTO.hero;
+  $('#howImg').src  = PHOTO.feeding;
+  $('#footImg').src = PHOTO.duo;
+  $('#addrOut').innerHTML  = esc(CONFIG.address).replace(/\n/g,'<br>');
+  $('#hoursOut').innerHTML = esc(CONFIG.hours).replace(/\n/g,'<br>');
+  $('#phoneOut').textContent = CONFIG.phone;
+  $('#tgLink').href  = `https://t.me/${CONFIG.tgUser}`;
+  $('#maxLink').href = CONFIG.maxUrl;
+  $('#telLink').href = 'tel:' + CONFIG.phone.replace(/[^\d+]/g,'');
+  $('#yearOut').textContent = new Date().getFullYear();
+
+  renderPetCards(); renderBrands();
+  $$('.petBtn').forEach(el => el.addEventListener('click', () => { state.pet = el.dataset.pet; state.line='all'; applyFilters(); }));
+  const s = $('#searchInput');
+  if (s) s.addEventListener('input', e => { state.q = e.target.value; applyFilters(); });
+
+  applyFilters(); saveCart(); observeAll();
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+    if (!$('#sheet').classList.contains('hidden')) closeSheet();
+    else if (!$('#cart').classList.contains('hidden')) closeCart();
+  });
+}
+init();
+</script>
+</body>
+</html>
