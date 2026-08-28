@@ -248,6 +248,12 @@
         <button onclick="openFilters(true)" aria-label="Поиск" class="btn-press grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-hair sm:hidden">
           <svg viewBox="0 0 24 24" class="w-4 h-4 text-steel" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
         </button>
+
+        <div class="grid w-full grid-cols-3 gap-1.5 sm:hidden" role="group" aria-label="Быстрый выбор раздела">
+          <button data-quick-pet="cat" class="quickPetBtn chip rounded-xl border border-hair bg-paper px-2 py-2 text-[12px] font-semibold" aria-pressed="false">Кошки</button>
+          <button data-quick-pet="dog" class="quickPetBtn chip rounded-xl border border-hair bg-paper px-2 py-2 text-[12px] font-semibold" aria-pressed="false">Собаки</button>
+          <button data-quick-pet="treat" class="quickPetBtn chip rounded-xl border border-hair bg-paper px-2 py-2 text-[12px] font-semibold" aria-pressed="false">Лакомства</button>
+        </div>
       </div>
     </div>
   </div>
@@ -1067,6 +1073,13 @@ function applyFilters(resetLimit=true){
     el.className = 'petBtn chip px-3 py-2 rounded-lg text-[12.5px] font-semibold ' +
       (on ? (state.pet==='cat' ? 'bg-amber text-ink' : state.pet==='dog' ? 'bg-ice text-snow' : 'bg-ink text-snow') : 'text-steel hover:text-ink');
   });
+  $$('.quickPetBtn').forEach(el => {
+    const key = el.dataset.quickPet;
+    const on = key === 'treat' ? state.brand === 'treats' : state.brand !== 'treats' && state.pet === key;
+    const active = key === 'cat' ? 'border-amber bg-amber text-ink' : key === 'dog' ? 'border-ice bg-ice text-snow' : 'border-ink bg-ink text-snow';
+    el.className = `quickPetBtn chip rounded-xl border px-2 py-2 text-[12px] font-semibold ${on ? active : 'border-hair bg-paper text-steel'}`;
+    el.setAttribute('aria-pressed', on ? 'true' : 'false');
+  });
   const n = activeCount(), badge = $('#filterBadge');
   badge.textContent = n; badge.classList.toggle('hidden', n === 0);
   $('#filterLabel').textContent = state.brand === 'all' ? 'Фильтры' : brandOf(state.brand).name;
@@ -1592,6 +1605,14 @@ function init(){
 
   renderPetCards(); renderBrands();
   $$('.petBtn').forEach(el => el.addEventListener('click', () => { state.pet = el.dataset.pet; state.line='all'; applyFilters(); }));
+  $$('.quickPetBtn').forEach(el => el.addEventListener('click', () => {
+    const key = el.dataset.quickPet;
+    const active = key === 'treat' ? state.brand === 'treats' : state.brand !== 'treats' && state.pet === key;
+    state.brand = key === 'treat' && !active ? 'treats' : 'all';
+    state.pet = key !== 'treat' && !active ? key : 'all';
+    state.line = 'all';
+    applyFilters();
+  }));
   const s = $('#searchInput');
   if (s) s.addEventListener('input', e => { state.q = e.target.value; applyFilters(); });
 
