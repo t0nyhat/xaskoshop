@@ -44,7 +44,11 @@
   .noscroll::-webkit-scrollbar{display:none}
   .noscroll{scrollbar-width:none}
   input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  @media (max-width:767px){input,textarea,select{font-size:16px!important}}
   :focus-visible{outline:3px solid #4C9B82;outline-offset:2px;border-radius:8px}
+
+  .filter-sticky{top:78px;padding-top:8px}
+  .filter-bar{background:#FFFDF8;border-color:#C6D9D1;box-shadow:0 14px 34px -24px rgba(35,68,61,.55)}
 
   /* мягкая заглушка, если фото не загрузилось */
   .ph{background:linear-gradient(135deg,#E5F1EC,#FBF0D8)}
@@ -220,9 +224,9 @@
   </div>
 
   <!-- компактная панель: одна строка -->
-  <div class="sticky top-[70px] z-30">
+  <div class="filter-sticky sticky z-30">
     <div class="mx-auto max-w-[1180px] px-4">
-      <div class="flex min-w-0 items-center gap-2 rounded-2xl border border-hair bg-snow/92 backdrop-blur-xl p-2 shadow-[0_14px_34px_-30px_rgba(16,24,35,.7)]">
+      <div class="filter-bar flex min-w-0 items-center gap-2 rounded-2xl border p-2 backdrop-blur-xl">
         <button onclick="openFilters()" class="btn-press flex min-w-0 flex-1 items-center gap-2 rounded-xl bg-ink px-3.5 py-2.5 text-snow text-[13px] font-semibold sm:flex-none">
           <svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
           <span id="filterLabel" class="truncate">Фильтры</span>
@@ -393,10 +397,10 @@ const CONFIG = {
   shop:     'ХаскоШоп',
   city:     'Хабаровск',
   siteUrl:  'https://t0nyhat.github.io/xaskoshop/',
-  phone:    '+7 (000) 000-00-00',        // ← ваш телефон
-  tgUser:   'xaskoshop',                 // ← username в Telegram, без @
-  maxUrl:   'https://max.ru/xaskoshop',  // ← ссылка на чат в MAX
-  waPhone:  '70000000000',               // ← WhatsApp, только цифры ('' — скрыть кнопку)
+  phone:    '+7 (914) 541-00-02',        // ← телефон магазина
+  messengerPhone:'79145410002',          // ← Telegram и MAX, только цифры
+  maxUrl:   'https://max.ru/xaskoshop',  // ← прямая ссылка на профиль MAX, если назначен username
+  waPhone:  '',                          // ← WhatsApp, только цифры ('' — скрыть кнопку)
   address:  'Хабаровск, ул. Складская, 1\nсамовывоз по договорённости',
   hours:    'Пн–Сб 10:00–18:00\nВс — по договорённости',
   showPrices: true                       // ← false: вместо цен «уточняйте у продавца»
@@ -1453,9 +1457,9 @@ function renderCart(){
 
   const { sum, unknown } = cartTotal();
   foot.innerHTML = `
-    <div class="grid grid-cols-2 gap-2">
+    <div class="grid grid-cols-1 gap-2 min-[420px]:grid-cols-2">
       <input id="fName" value="${esc(order.name)}" placeholder="Имя" class="rounded-xl border border-hair bg-paper px-3.5 py-3 text-[14px] outline-none focus:border-ice focus:bg-snow transition">
-      <input id="fPhone" value="${esc(order.phone)}" placeholder="Телефон" inputmode="tel" class="rounded-xl border border-hair bg-paper px-3.5 py-3 text-[14px] outline-none focus:border-ice focus:bg-snow transition">
+      <input id="fPhone" value="${esc(order.phone)}" placeholder="Телефон (необязательно)" inputmode="tel" class="rounded-xl border border-hair bg-paper px-3.5 py-3 text-[14px] outline-none focus:border-ice focus:bg-snow transition">
     </div>
     <div class="flex rounded-xl bg-paper p-1">
       ${['Доставка по городу','Самовывоз'].map(d => `<button data-del="${d}" class="delBtn flex-1 rounded-lg px-3 py-2.5 text-[12.5px] font-semibold ${order.delivery===d?'bg-ink text-snow':'text-steel'}">${d}</button>`).join('')}
@@ -1508,8 +1512,8 @@ function orderText(){
   return [
     `Заказ с сайта ${CONFIG.shop}`, '', lines, '',
     `Итого (ориентир): ${money(sum)}${unknown ? ' + позиции по запросу' : ''}`, '',
-    `Имя: ${order.name || '—'}`,
-    `Телефон: ${order.phone || '—'}`,
+    order.name ? `Имя: ${order.name}` : null,
+    order.phone ? `Телефон: ${order.phone}` : null,
     `Получение: ${order.delivery}`,
     order.delivery === 'Доставка по городу' ? `Адрес: ${order.address || '—'}` : null,
     order.note ? `Комментарий: ${order.note}` : null
@@ -1527,20 +1531,20 @@ async function copyText(t){
 }
 async function send(where){
   if (!cart.length) return toast('Сначала добавьте корм в корзину','!');
-  if (!order.phone.trim() && where !== 'copy'){
-    toast('Оставьте телефон — продавцу будет проще ответить','!');
-    const f = $('#fPhone'); if (f){ f.focus(); f.classList.add('border-rasp'); }
-    return;
+  const text = orderText();
+  if (where === 'copy'){
+    const ok = await copyText(text);
+    return toast(ok ? 'Список скопирован' : 'Скопируйте текст вручную');
   }
-  const text = orderText(), ok = await copyText(text);
-  if (where === 'copy') return toast(ok ? 'Список скопирован' : 'Скопируйте текст вручную');
   if (where === 'tg'){
-    toast(ok ? 'Заказ скопирован — вставьте в чат' : 'Открываю Telegram');
-    window.open(`https://t.me/share/url?url=${encodeURIComponent(CONFIG.siteUrl)}&text=${encodeURIComponent(text)}`,'_blank');
+    window.open(`https://t.me/+${CONFIG.messengerPhone}?text=${encodeURIComponent(text)}`,'_blank','noopener');
+    await copyText(text);
+    toast('Открываю Telegram с готовым заказом');
   }
   if (where === 'max'){
-    toast(ok ? 'Заказ скопирован — вставьте в чат MAX' : 'Открываю MAX');
-    window.open(CONFIG.maxUrl,'_blank');
+    window.open(`https://max.ru/:share?text=${encodeURIComponent(text)}`,'_blank','noopener');
+    await copyText(text);
+    toast('Выберите чат ХаскоШоп в MAX — заказ уже вставлен');
   }
   if (where === 'wa'){
     toast('Открываю WhatsApp');
@@ -1581,7 +1585,7 @@ function init(){
   $('#addrOut').innerHTML  = esc(CONFIG.address).replace(/\n/g,'<br>');
   $('#hoursOut').innerHTML = esc(CONFIG.hours).replace(/\n/g,'<br>');
   $('#phoneOut').textContent = CONFIG.phone;
-  $('#tgLink').href  = `https://t.me/${CONFIG.tgUser}`;
+  $('#tgLink').href  = `https://t.me/+${CONFIG.messengerPhone}`;
   $('#maxLink').href = CONFIG.maxUrl;
   $('#telLink').href = 'tel:' + CONFIG.phone.replace(/[^\d+]/g,'');
   $('#yearOut').textContent = new Date().getFullYear();
