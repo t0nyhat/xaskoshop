@@ -6,12 +6,14 @@
 <meta name="theme-color" content="#F1F7FA">
 <title>ХаскоШоп — зоомагазин кормов в Хабаровске</title>
 <meta name="description" content="Корма для собак и кошек, натуральные лакомства, доставка по Хабаровску и самовывоз. Acari Ciar, Doctrine, Award и другие марки.">
-<link rel="icon" type="image/jpeg" href="assets/images/brand/logo-mark.jpg">
-<link rel="apple-touch-icon" href="assets/images/brand/logo-mark.jpg">
+<link rel="icon" type="image/jpeg" href="assets/images/brand/logo-mark.jpg?v=20260829-2">
+<link rel="apple-touch-icon" href="assets/images/brand/logo-mark.jpg?v=20260829-2">
+<link rel="preload" as="image" href="assets/images/brand/logo-mark.jpg?v=20260829-2">
+<link rel="preload" as="image" href="assets/images/lifestyle/hero.jpg?v=20260829-2">
 <meta property="og:type" content="website">
 <meta property="og:title" content="ХаскоШоп — зоомагазин кормов в Хабаровске">
 <meta property="og:description" content="Корма для собак и кошек, натуральные лакомства, доставка по Хабаровску и самовывоз.">
-<meta property="og:image" content="https://t0nyhat.github.io/xaskoshop/assets/images/brand/logo-full.jpg">
+<meta property="og:image" content="https://t0nyhat.github.io/xaskoshop/assets/images/brand/logo-full.jpg?v=20260829-2">
 <meta property="og:url" content="https://t0nyhat.github.io/xaskoshop/">
 <link rel="stylesheet" href="assets/css/styles.css">
 <style>
@@ -122,7 +124,7 @@
     <div id="hdrInner" class="site-header-inner flex items-center gap-3 rounded-2xl border border-hair bg-snow/85 backdrop-blur-xl px-3 py-2.5 transition-all duration-300 shadow-[0_16px_40px_-32px_rgba(16,24,35,.6)]">
       <a href="#top" class="flex items-center gap-2.5 shrink-0">
         <span class="grid place-items-center w-10 h-10 overflow-hidden rounded-full border border-hair bg-snow shadow-sm">
-          <img src="assets/images/brand/logo-mark.jpg" alt="" class="w-full h-full object-cover" width="80" height="80">
+          <img src="assets/images/brand/logo-mark.jpg?v=20260829-2" alt="" class="w-full h-full object-cover" width="80" height="80" fetchpriority="high">
         </span>
         <span class="leading-none">
           <span class="block font-display font-extrabold text-[15px] tracking-tight">ХаскоШоп</span>
@@ -173,7 +175,7 @@
 
     <div class="relative mt-9 opacity-0 lg:mt-0" style="animation:flyin .8s .35s forwards">
       <div class="relative rounded-[28px] overflow-hidden ph aspect-[4/3.4] shadow-[0_40px_80px_-50px_rgba(16,24,35,.6)]">
-        <img id="heroImg" alt="Собака и кошка" class="w-full h-full object-cover" loading="eager" onerror="this.style.display='none'">
+        <img id="heroImg" alt="Собака и кошка" class="w-full h-full object-cover" width="1000" height="588" loading="eager" fetchpriority="high" onerror="this.style.display='none'">
       </div>
       <div class="absolute -bottom-5 -left-3 sm:left-6 w-[190px] rounded-2xl border border-hair bg-snow/95 backdrop-blur p-3 shadow-[0_20px_40px_-28px_rgba(16,24,35,.6)]">
         <div class="flex items-center gap-2.5">
@@ -358,7 +360,7 @@
           </dl>
         </div>
         <div class="relative min-h-[260px] overflow-hidden bg-[#D9DDDF]">
-          <img src="assets/images/brand/logo-full.jpg" alt="Фирменный логотип ХаскоШоп" class="absolute inset-0 w-full h-full object-contain p-2" loading="lazy" width="640" height="631">
+          <img src="assets/images/brand/logo-full.jpg?v=20260829-2" alt="Фирменный логотип ХаскоШоп" class="absolute inset-0 w-full h-full object-contain p-2" loading="lazy" width="900" height="887">
         </div>
       </div>
     </div>
@@ -429,21 +431,24 @@ const CONFIG = {
   showPrices: true                       // ← false: вместо цен «уточняйте у продавца»
 };
 
+const ASSET_VERSION = '20260829-2';
+const asset = path => `${path}?v=${ASSET_VERSION}`;
+
 /* ══════════════════════════════════════════════════════════════
    2) ЛОКАЛЬНЫЕ ФОТО — сайт работает без загрузки ресурсов из сети
    ══════════════════════════════════════════════════════════════ */
 const PHOTO = {
-  hero:    'assets/images/lifestyle/hero.jpg',
-  dog:     'assets/images/lifestyle/dog.jpg',
-  cat:     'assets/images/lifestyle/cat.jpg',
-  treats:  'assets/images/lifestyle/treats.jpg',
-  bowl:    'assets/images/lifestyle/bowl.jpg',
-  feeding: 'assets/images/lifestyle/feeding.jpg',
-  duo:     'assets/images/lifestyle/duo.jpg',
-  kitten:  'assets/images/lifestyle/kitten.jpg',
-  corgi:   'assets/images/lifestyle/corgi.jpg',
-  bernese: 'assets/images/lifestyle/bernese.jpg',
-  catTable:'assets/images/lifestyle/cat-table.jpg'
+  hero:    asset('assets/images/lifestyle/hero.jpg'),
+  dog:     asset('assets/images/lifestyle/dog.jpg'),
+  cat:     asset('assets/images/lifestyle/cat.jpg'),
+  treats:  asset('assets/images/lifestyle/treats.jpg'),
+  bowl:    asset('assets/images/lifestyle/bowl.jpg'),
+  feeding: asset('assets/images/lifestyle/feeding.jpg'),
+  duo:     asset('assets/images/lifestyle/duo.jpg'),
+  kitten:  asset('assets/images/lifestyle/kitten.jpg'),
+  corgi:   asset('assets/images/lifestyle/corgi.jpg'),
+  bernese: asset('assets/images/lifestyle/bernese.jpg'),
+  catTable:asset('assets/images/lifestyle/cat-table.jpg')
 };
 
 /* ══════════════════════════════════════════════════════════════
@@ -883,9 +888,9 @@ const PRODUCT_PHOTOS = {
   'ac-flagman':'assets/images/products/acari/ac-flagman-pack.jpg',
   'ac-fegato':'assets/images/products/acari/ac-fegato-pack.jpg',
   'ac-pf-lamb':'assets/images/products/acari/ac-pf-lamb-pack.jpg',
-  'ac-pf-duck':'assets/images/products/acari/ac-pf-duck-pack.png',
+  'ac-pf-duck':'assets/images/products/acari/ac-pf-duck-pack.jpg',
   'ac-superba':'assets/images/products/acari/ac-superba-pack.jpg',
-  'ac-vit-lamb':'assets/images/products/acari/ac-vit-lamb-pack.png',
+  'ac-vit-lamb':'assets/images/products/acari/ac-vit-lamb-pack.jpg',
   'ac-optima':'assets/images/products/acari/ac-optima-pack.jpg',
   'ac-aurora':'assets/images/products/acari/ac-aurora-pack.jpg',
   'ac-aurora-light':'assets/images/products/acari/ac-aurora-light-pack.jpg',
@@ -917,7 +922,7 @@ const PRODUCT_PHOTOS = {
   'ml-dog-beef':'assets/images/products/meatline/ml-dog-beef-pack.jpg'
 };
 
-PRODUCTS.forEach(p => { if (PRODUCT_PHOTOS[p.id]) p.photo = PRODUCT_PHOTOS[p.id]; });
+PRODUCTS.forEach(p => { if (PRODUCT_PHOTOS[p.id]) p.photo = asset(PRODUCT_PHOTOS[p.id]); });
 </script>
 
 <script>
