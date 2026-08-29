@@ -3,20 +3,20 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        ink: '#23443D',
-        ink2: '#3B5B55',
-        steel: '#6F7E78',
-        paper: '#F5F3EB',
-        snow: '#FFFDF8',
-        hair: '#DFE5DC',
-        ice: '#4C9B82',
-        icesoft: '#E5F1EC',
-        icedeep: '#2F705E',
-        amber: '#E6B25A',
-        ambersoft: '#FBF0D8',
-        amberdeep: '#A96B12',
-        leaf: '#5FAE7C',
-        rasp: '#C95C68'
+        ink: '#0B3557',
+        ink2: '#244E68',
+        steel: '#647B88',
+        paper: '#F1F7FA',
+        snow: '#FFFFFF',
+        hair: '#D6E5EC',
+        ice: '#2A94C8',
+        icesoft: '#E1F3FA',
+        icedeep: '#126B99',
+        amber: '#E7C982',
+        ambersoft: '#FAF1D8',
+        amberdeep: '#9B6B18',
+        leaf: '#4AA4B8',
+        rasp: '#C85A6C'
       },
       fontFamily: {
         display: ['Unbounded', 'system-ui', 'sans-serif'],
