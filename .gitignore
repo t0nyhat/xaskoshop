@@ -1,0 +1,6 @@
+# Local credentials and private API exports
+.env
+.env.*
+!.env.example
+.local/
+.DS_Store

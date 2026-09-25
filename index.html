@@ -138,10 +138,10 @@
         <a href="#how" class="px-3 py-2 rounded-lg hover:text-ink hover:bg-paper transition">Доставка</a>
         <a href="#contacts" class="px-3 py-2 rounded-lg hover:text-ink hover:bg-paper transition">Контакты</a>
       </nav>
-      <button onclick="openCart()" aria-label="Открыть корзину"
+      <button onclick="openCart()" aria-label="Уточнить наличие"
         class="btn-press ml-auto relative flex items-center gap-2 rounded-xl bg-ink px-3.5 py-2.5 text-snow font-semibold text-[13px] hover:bg-icedeep transition">
         <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h2.2l2.4 12.1a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L21 7H5.5"/></svg>
-        <span class="hidden sm:inline">Корзина</span>
+        <span class="hidden sm:inline">Уточнить наличие</span>
         <span id="cartCount" class="grid place-items-center min-w-[20px] h-5 px-1 rounded-full bg-amber text-ink mono text-[11px]">0</span>
       </button>
     </div>
@@ -184,7 +184,7 @@
           </span>
           <div>
             <p class="font-display font-bold text-[13px] leading-tight">В наличии и под заказ</p>
-            <p class="text-steel text-[11px] mt-0.5">уточним перед оплатой</p>
+            <p class="text-steel text-[11px] mt-0.5">наличие уточнит продавец</p>
           </div>
         </div>
       </div>
@@ -295,7 +295,7 @@
 <section id="how" class="py-14 md:py-20 bg-snow border-y border-hair">
   <div class="mx-auto max-w-[1180px] px-4 grid lg:grid-cols-[1fr_.85fr] gap-10 items-center">
     <div>
-      <p class="eyebrow text-icedeep mb-3 reveal">Как заказать</p>
+      <p class="eyebrow text-icedeep mb-3 reveal">Как уточнить наличие</p>
       <h2 class="font-display font-extrabold text-[28px] md:text-[40px] leading-[1.02] tracking-[-.02em] max-w-[18ch] reveal">Три шага, ни одной анкеты</h2>
 
       <ol class="mt-8 space-y-4">
@@ -309,15 +309,15 @@
         <li class="rise flex gap-4">
           <span class="mono text-[12px] text-steel pt-1.5 w-6 shrink-0">02</span>
           <div class="flex-1 rounded-2xl border border-hair bg-paper p-4">
-            <h3 class="font-display font-bold text-[16px]">Соберите корзину</h3>
-            <p class="text-steel text-[14px] mt-1.5 leading-relaxed">Выберите фасовку и количество. Регистрация не нужна — корзина хранится в вашем браузере.</p>
+            <h3 class="font-display font-bold text-[16px]">Соберите список</h3>
+            <p class="text-steel text-[14px] mt-1.5 leading-relaxed">Выберите фасовку и нужное количество для уточнения наличия. Список сохранится в вашем браузере.</p>
           </div>
         </li>
         <li class="rise flex gap-4">
           <span class="mono text-[12px] text-steel pt-1.5 w-6 shrink-0">03</span>
           <div class="flex-1 rounded-2xl border border-hair bg-paper p-4">
             <h3 class="font-display font-bold text-[16px]">Отправьте продавцу</h3>
-            <p class="text-steel text-[14px] mt-1.5 leading-relaxed">Кнопка Telegram или MAX — заказ уже собран в сообщение. Продавец подтвердит сумму и время доставки.</p>
+            <p class="text-steel text-[14px] mt-1.5 leading-relaxed">Отправьте список в Telegram или MAX. Продавец уточнит наличие и актуальные цены. Отправка запроса не оформляет заказ и не резервирует товары.</p>
           </div>
         </li>
       </ol>
@@ -345,7 +345,7 @@
         <div class="p-6 md:p-10">
           <p class="eyebrow text-icedeep mb-3">Контакты</p>
           <h2 class="font-display font-extrabold text-[24px] md:text-[34px] leading-[1.05] tracking-[-.02em] max-w-[16ch]">Напишите — ответим быстро</h2>
-          <p class="text-steel mt-4 text-[15px] leading-relaxed max-w-[42ch]">Работаем на доставку по Хабаровску и самовывоз. Заказ, наличие и подбор рациона — в мессенджере.</p>
+          <p class="text-steel mt-4 text-[15px] leading-relaxed max-w-[42ch]">Работаем на доставку по Хабаровску и самовывоз. Наличие, актуальные цены и подбор рациона — в мессенджере.</p>
 
           <div class="mt-6 flex flex-wrap gap-2">
             <a id="tgLink" target="_blank" rel="noopener" class="btn-press inline-flex items-center gap-2 rounded-xl bg-ice px-5 py-3 font-semibold text-snow hover:bg-icedeep transition">Telegram</a>
@@ -377,7 +377,7 @@
   <button onclick="openCart()" class="btn-press w-full flex items-center justify-between rounded-2xl bg-ink px-5 py-4 text-snow shadow-[0_18px_40px_-18px_rgba(16,24,35,.7)]">
     <span class="flex items-center gap-2 font-semibold text-[15px]">
       <span id="mobCount" class="grid place-items-center w-6 h-6 rounded-full bg-amber text-ink mono text-[12px]">0</span>
-      В корзине
+      Уточнить наличие
     </span>
     <span id="mobSum" class="mono text-[15px] text-amber">0 ₽</span>
   </button>
@@ -392,18 +392,18 @@
   </div>
 </div>
 
-<!-- ═════════ КОРЗИНА ═════════ -->
+<!-- ═════════ СПИСОК ДЛЯ УТОЧНЕНИЯ НАЛИЧИЯ ═════════ -->
 <div id="cart" class="fixed inset-0 z-50 hidden">
   <div class="veil absolute inset-0 bg-ink/50 backdrop-blur-sm opacity-0" onclick="closeCart()"></div>
-  <aside class="sheet absolute right-0 top-0 h-full w-full sm:max-w-[440px] translate-x-full bg-paper flex flex-col shadow-2xl" role="dialog" aria-modal="true" aria-label="Корзина">
+  <aside class="sheet absolute right-0 top-0 h-full w-full sm:max-w-[440px] translate-x-full bg-paper flex flex-col shadow-2xl" role="dialog" aria-modal="true" aria-label="Уточнить наличие">
     <div class="flex items-center justify-between px-5 py-4 bg-snow border-b border-hair">
-      <h2 class="font-display font-extrabold text-[20px]">Ваш заказ</h2>
-      <button onclick="closeCart()" aria-label="Закрыть корзину" class="btn-press grid place-items-center w-10 h-10 rounded-xl bg-paper hover:bg-hair transition">
+      <h2 class="font-display font-extrabold text-[20px]">Уточнить наличие</h2>
+      <button onclick="closeCart()" aria-label="Закрыть список" class="btn-press grid place-items-center w-10 h-10 rounded-xl bg-paper hover:bg-hair transition">
         <svg viewBox="0 0 24 24" class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
       </button>
     </div>
     <div id="cartBody" class="flex-1 overflow-y-auto p-4 space-y-3"></div>
-    <div id="cartFoot" class="border-t border-hair bg-snow p-4 pb-[max(16px,env(safe-area-inset-bottom))] space-y-3"></div>
+    <div id="cartFoot" style="max-height:65vh;overflow-y:auto" class="border-t border-hair bg-snow p-4 pb-[max(16px,env(safe-area-inset-bottom))] space-y-3"></div>
   </aside>
 </div>
 
@@ -414,6 +414,7 @@
   </div>
 </div>
 
+<script src="assets/data/acari-products.js"></script>
 <script>
 /* ══════════════════════════════════════════════════════════════
    1) НАСТРОЙКИ МАГАЗИНА — правится здесь, больше нигде
@@ -481,7 +482,7 @@ const BRANDS = [
    photo: своё фото товара (необязательно) — если пусто, рисуется упаковка
    draft:true → метка «уточняется»
    ══════════════════════════════════════════════════════════════ */
-const PRODUCTS = [
+const LEGACY_PRODUCTS = [
 /* ───── ACARI CIAR · СОБАКИ ───── */
 {id:'ac-flagman', brand:'acari', pet:'dog', line:'Flagman', name:'Flagman Holistic', sub:'телятина и филе рыбы', cls:'холистик', grain:'низкозерновой',
  tags:['все породы','взрослые','mini / medium'], hue:'#5CC8F2',
@@ -882,6 +883,11 @@ const PRODUCTS = [
  sizes:[{w:'50 г',p:200},{w:'100 г',p:370}]}
 ];
 
+const PRODUCTS = [
+  ...(window.ACARI_PRODUCTS || []),
+  ...LEGACY_PRODUCTS.filter(product => product.brand !== 'acari')
+];
+
 /* Фото упаковок из карточек производителей и продавцов.
    Если точный packshot не найден, остаётся нейтральная SVG-упаковка. */
 const PRODUCT_PHOTOS = {
@@ -1155,6 +1161,7 @@ function renderGrid(){
 
   $('#grid').innerHTML = list.map((p,i) => {
     const b = brandOf(p.brand), si = sel[p.id] ?? 0;
+    const slideCount = p.normPhoto ? 4 : 3;
     return `
     <article class="card rise flex min-w-0 flex-col overflow-hidden rounded-[22px] border border-hair bg-snow" style="transition-delay:${Math.min(i,10)*40}ms">
       <div class="relative h-[276px] min-[520px]:h-[420px] overflow-hidden bg-paper">
@@ -1179,7 +1186,7 @@ function renderGrid(){
 
                 <div class="mt-2 flex items-center justify-between gap-2">
                   <span data-price="${p.id}">${priceLabel(p)}</span>
-                  <button data-add="${p.id}" class="btn-press grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-ink text-snow hover:bg-icedeep transition" aria-label="Добавить в корзину">
+                  <button data-add="${p.id}" class="btn-press grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-ink text-snow hover:bg-icedeep transition" aria-label="Добавить в список для уточнения наличия">
                     <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
                   </button>
                 </div>
@@ -1197,6 +1204,7 @@ function renderGrid(){
               <p class="mono text-[10px] uppercase tracking-[.12em] text-icedeep">Норма кормления</p>
               <p class="card-norm mt-1.5 text-[11.5px] leading-relaxed text-ink2 min-[520px]:text-[12.5px]">${esc(p.norm)}</p>
             </div>
+            ${p.source ? `<a href="${esc(p.source)}" target="_blank" rel="noopener" class="mt-3 inline-flex text-[11px] font-semibold text-icedeep hover:underline">Официальная карточка ACARI CIAR ↗</a>` : ''}
           </section>
 
           <section class="product-slide h-full bg-snow p-4 pb-8 min-[520px]:p-5 min-[520px]:pb-10" aria-label="Состав и показатели">
@@ -1206,11 +1214,18 @@ function renderGrid(){
               ${Object.entries(p.an).map(([k,v]) => `<div class="rounded-xl border border-hair bg-paper px-2 py-1.5 min-[520px]:px-2.5 min-[520px]:py-2"><dt class="mono text-[7.5px] uppercase tracking-[.06em] text-steel min-[520px]:text-[8.5px]">${esc(k)}</dt><dd class="mt-0.5 font-semibold text-[11px] min-[520px]:text-[13px]">${esc(v)}</dd></div>`).join('')}
             </dl>
           </section>
+
+          ${p.normPhoto ? `<section class="product-slide h-full bg-snow p-4 pb-8 min-[520px]:p-5 min-[520px]:pb-10" aria-label="Таблица кормления">
+            <p class="eyebrow text-icedeep">Таблица кормления</p>
+            <div class="mt-3 grid place-items-center overflow-hidden rounded-2xl border border-hair bg-paper p-2" style="height:calc(100% - 34px)">
+              ${imgTag(p.normPhoto, `Таблица кормления ${p.name}`, 'h-full w-full object-contain')}
+            </div>
+          </section>` : ''}
         </div>
 
         <div class="pointer-events-none absolute inset-x-0 bottom-1.5 z-10 flex justify-center">
           <span class="flex items-center gap-0.5 rounded-full border border-hair bg-snow/90 px-1.5 py-1" aria-label="Слайд 1 из 3">
-            ${[0,1,2].map(n => `<button data-goto="${n}" class="carousel-dot pointer-events-auto h-1.5 w-1.5 rounded-full bg-hair" aria-label="Слайд ${n+1}" aria-current="${n===0?'true':'false'}"></button>`).join('')}
+            ${Array.from({length:slideCount}, (_,n) => `<button data-goto="${n}" class="carousel-dot pointer-events-auto h-1.5 w-1.5 rounded-full bg-hair" aria-label="Слайд ${n+1}" aria-current="${n===0?'true':'false'}"></button>`).join('')}
           </span>
         </div>
       </div>
@@ -1253,9 +1268,10 @@ $('#grid').addEventListener('click', e => {
 function updateCarousel(track){
   const card = track.closest('article');
   const current = Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
-  $$('.carousel-dot', card).forEach((dot, i) => dot.setAttribute('aria-current', i === current ? 'true' : 'false'));
+  const dots = $$('.carousel-dot', card);
+  dots.forEach((dot, i) => dot.setAttribute('aria-current', i === current ? 'true' : 'false'));
   const status = $('.carousel-dot', card)?.parentElement;
-  if (status) status.setAttribute('aria-label', `Слайд ${current + 1} из 3`);
+  if (status) status.setAttribute('aria-label', `Слайд ${current + 1} из ${dots.length}`);
 }
 
 let carouselFrame;
@@ -1286,7 +1302,8 @@ $('#grid').addEventListener('mousemove', e => {
   if (Math.abs(state.distance) < 48 || now - state.changedAt < 260) return;
 
   const current = Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
-  const next = Math.max(0, Math.min(2, current + (state.distance > 0 ? 1 : -1)));
+  const last = Math.max(0, $$('.carousel-dot', track.closest('article')).length - 1);
+  const next = Math.max(0, Math.min(last, current + (state.distance > 0 ? 1 : -1)));
   state.distance = 0;
   state.changedAt = now;
   if (next !== current) track.scrollTo({ left:next * track.clientWidth, behavior:'smooth' });
@@ -1430,7 +1447,7 @@ function addToCart(pid, si){
   if (line) line.qty++; else cart.push({ pid, si, qty:1 });
   saveCart();
   const p = prodOf(pid);
-  toast(`${p.name} · ${p.sizes[si].w} — в корзине`);
+  toast(`${p.name} · ${p.sizes[si].w} — в списке`);
   const badge = $('#cartCount'); badge.classList.remove('pop'); void badge.offsetWidth; badge.classList.add('pop');
 }
 function setQty(idx,d){ cart[idx].qty += d; if (cart[idx].qty < 1) cart.splice(idx,1); saveCart(); renderCart(); }
@@ -1444,8 +1461,8 @@ const cartQty = () => cart.reduce((a,i) => a + i.qty, 0);
 
 function saveCart(){
   store.set('xs_cart', cart);
-  const q = cartQty(), { sum } = cartTotal();
-  $('#cartCount').textContent = q; $('#mobCount').textContent = q; $('#mobSum').textContent = money(sum);
+  const q = cartQty(), { sum, unknown } = cartTotal();
+  $('#cartCount').textContent = q; $('#mobCount').textContent = q; $('#mobSum').textContent = unknown && !sum ? 'цена по запросу' : money(sum);
   $('#mobileBar').style.transform = q ? 'translateY(0)' : 'translateY(120%)';
   if (!$('#cart').classList.contains('hidden')) renderCart();
 }
@@ -1458,7 +1475,7 @@ function renderCart(){
         <div class="mx-auto w-16 h-16 rounded-2xl bg-icesoft grid place-items-center mb-4">
           <svg viewBox="0 0 24 24" class="w-7 h-7 text-ice" fill="currentColor">${PAW}</svg>
         </div>
-        <p class="font-display font-bold text-[17px]">Корзина пустая</p>
+        <p class="font-display font-bold text-[17px]">Список пока пуст</p>
         <p class="text-steel text-[14px] mt-1.5">Выберите корм — регистрация не нужна.</p>
         <button onclick="closeCart()" class="btn-press mt-5 rounded-xl bg-ink px-5 py-3 text-snow font-semibold text-[14px]">Перейти к каталогу</button>
       </div>`;
@@ -1496,16 +1513,12 @@ function renderCart(){
       <input id="fName" value="${esc(order.name)}" placeholder="Имя" class="rounded-xl border border-hair bg-paper px-3.5 py-3 text-[14px] outline-none focus:border-ice focus:bg-snow transition">
       <input id="fPhone" value="${esc(order.phone)}" placeholder="Телефон (необязательно)" inputmode="tel" class="rounded-xl border border-hair bg-paper px-3.5 py-3 text-[14px] outline-none focus:border-ice focus:bg-snow transition">
     </div>
-    <div class="flex rounded-xl bg-paper p-1">
-      ${['Доставка по городу','Самовывоз'].map(d => `<button data-del="${d}" class="delBtn flex-1 rounded-lg px-3 py-2.5 text-[12.5px] font-semibold ${order.delivery===d?'bg-ink text-snow':'text-steel'}">${d}</button>`).join('')}
-    </div>
-    <input id="fAddr" value="${esc(order.address)}" placeholder="Адрес доставки" class="${order.delivery==='Самовывоз'?'hidden':''} w-full rounded-xl border border-hair bg-paper px-3.5 py-3 text-[14px] outline-none focus:border-ice focus:bg-snow transition">
     <input id="fNote" value="${esc(order.note)}" placeholder="Комментарий: вкус, гранула, когда удобно" class="w-full rounded-xl border border-hair bg-paper px-3.5 py-3 text-[14px] outline-none focus:border-ice focus:bg-snow transition">
 
     <div class="flex items-end justify-between pt-1">
       <div>
-        <p class="mono text-[10px] uppercase tracking-[.12em] text-steel">Итого, ориентир</p>
-        <p class="font-display font-extrabold text-[26px] leading-none mt-1">${money(sum)}</p>
+        <p class="mono text-[10px] uppercase tracking-[.12em] text-steel">Стоимость, ориентир</p>
+        <p class="font-display font-extrabold text-[26px] leading-none mt-1">${unknown && !sum ? 'по запросу' : money(sum)}</p>
       </div>
       <p class="text-[11.5px] text-steel max-w-[46%] text-right leading-snug">${unknown ? 'Часть позиций — цена по запросу.' : 'Точную сумму подтвердит продавец.'}</p>
     </div>
@@ -1518,11 +1531,11 @@ function renderCart(){
       ${CONFIG.waPhone ? `<button onclick="send('wa')" class="btn-press rounded-xl border border-hair px-4 py-3 text-[13px] font-medium text-steel hover:text-ink hover:border-ink transition">WhatsApp</button>` : ''}
       <button onclick="send('copy')" class="btn-press rounded-xl border border-hair px-4 py-3 text-[13px] font-medium text-steel hover:text-ink hover:border-ink transition">Скопировать список</button>
     </div>
-    <p class="text-[11.5px] text-steel text-center leading-snug">Заказ уйдёт текстом в чат — продавец ответит по наличию и доставке.</p>`;
+    <div id="maxTransfer" hidden aria-live="polite"></div>
+    <p class="text-[11.5px] text-steel text-center leading-snug">Это запрос наличия и цен. Он не оформляет заказ и не резервирует товары. Сообщение нужно отправить самостоятельно в мессенджере.</p>`;
 
   const bind = (id,key) => { const el = $(id); if (el) el.addEventListener('input', e => { order[key] = e.target.value; store.set('xs_order', order); }); };
-  bind('#fName','name'); bind('#fPhone','phone'); bind('#fAddr','address'); bind('#fNote','note');
-  $$('.delBtn').forEach(el => el.addEventListener('click', () => { order.delivery = el.dataset.del; store.set('xs_order', order); renderCart(); }));
+  bind('#fName','name'); bind('#fPhone','phone'); bind('#fNote','note');
 }
 
 function openCart(){
@@ -1536,7 +1549,7 @@ function closeCart(){
   setTimeout(() => { c.classList.add('hidden'); document.body.style.overflow=''; }, 380);
 }
 
-/* ——— отправка заказа ——— */
+/* ——— запрос наличия ——— */
 function orderText(){
   const { sum, unknown } = cartTotal();
   const lines = cart.map((i,n) => {
@@ -1545,12 +1558,10 @@ function orderText(){
     return `${n+1}. ${brandOf(p.brand).name} · ${p.name} (${p.sub})\n   ${s.w} × ${i.qty}${price}`;
   }).join('\n');
   return [
-    `Заказ с сайта ${CONFIG.shop}`, '', lines, '',
-    `Итого (ориентир): ${money(sum)}${unknown ? ' + позиции по запросу' : ''}`, '',
+    `Здравствуйте! Подскажите, пожалуйста, наличие и актуальные цены на товары из витрины ${CONFIG.shop}:`, '', lines, '',
+    `Стоимость по витрине (ориентир): ${money(sum)}${unknown ? ' + позиции по запросу' : ''}`, '',
     order.name ? `Имя: ${order.name}` : null,
     order.phone ? `Телефон: ${order.phone}` : null,
-    `Получение: ${order.delivery}`,
-    order.delivery === 'Доставка по городу' ? `Адрес: ${order.address || '—'}` : null,
     order.note ? `Комментарий: ${order.note}` : null
   ].filter(v => v !== null).join('\n');
 }
@@ -1560,12 +1571,14 @@ async function copyText(t){
     try{
       const ta = document.createElement('textarea');
       ta.value = t; ta.style.position='fixed'; ta.style.opacity='0';
-      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); return true;
+      document.body.appendChild(ta);
+      try { ta.select(); return document.execCommand('copy'); }
+      finally { ta.remove(); }
     }catch(e2){ return false; }
   }
 }
 async function send(where){
-  if (!cart.length) return toast('Сначала добавьте корм в корзину','!');
+  if (!cart.length) return toast('Сначала добавьте корм в список','!');
   const text = orderText();
   if (where === 'copy'){
     const ok = await copyText(text);
@@ -1574,17 +1587,36 @@ async function send(where){
   if (where === 'tg'){
     window.open(`https://t.me/+${CONFIG.messengerPhone}?text=${encodeURIComponent(text)}`,'_blank','noopener');
     await copyText(text);
-    toast('Открываю Telegram с готовым заказом');
+    toast('Открываю Telegram с запросом наличия');
   }
   if (where === 'max'){
-    window.open(`https://max.ru/:share?text=${encodeURIComponent(text)}`,'_blank','noopener');
-    await copyText(text);
-    toast('Выберите чат ХаскоШоп в MAX — заказ уже вставлен');
+    const panel = $('#maxTransfer');
+    panel.hidden = false;
+    panel.innerHTML = `
+      <p class="text-[13px] font-semibold">Запрос для MAX</p>
+      <p id="maxCopyStatus" class="text-[12px] text-steel mt-2">Подготавливаем текст…</p>
+      <textarea id="maxMessage" readonly aria-label="Текст запроса для MAX" rows="5" class="w-full rounded-xl border border-hair bg-paper p-3 text-[12px] mt-2">${esc(text)}</textarea>
+      <button type="button" onclick="copyMaxRequest()" class="btn-press rounded-xl border border-hair px-4 py-3 text-[13px] mt-2">Скопировать текст</button>
+      <a href="${esc(CONFIG.maxUrl)}" target="_blank" rel="noopener noreferrer" class="btn-press rounded-xl bg-amber px-4 py-3 text-[13px] mt-2 inline-block">Открыть чат в MAX</a>
+      <p class="text-[12px] text-steel mt-2">Откройте чат, вставьте текст в поле сообщения и отправьте его. Если чат не открывается, найдите ХаскоШоп в MAX.</p>`;
+    await copyMaxRequest();
   }
   if (where === 'wa'){
     toast('Открываю WhatsApp');
     window.open(`https://wa.me/${CONFIG.waPhone}?text=${encodeURIComponent(text)}`,'_blank');
   }
+}
+
+async function copyMaxRequest(){
+  const field = $('#maxMessage');
+  if (!field) return;
+  const ok = await copyText(field.value);
+  const status = $('#maxCopyStatus');
+  if (!status) return;
+  status.textContent = ok
+    ? 'Текст скопирован. Теперь откройте чат в MAX и вставьте его.'
+    : 'Не удалось скопировать автоматически. Выделите текст ниже и скопируйте его вручную.';
+  if (!ok) { field.focus(); field.select(); }
 }
 
 let toastTimer;
