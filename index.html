@@ -63,26 +63,6 @@
   /* мягкая заглушка, если фото не загрузилось */
   .ph{background:linear-gradient(135deg,#E1F3FA,#FAF1D8)}
 
-  .product-carousel{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;overscroll-behavior-x:contain}
-  .product-carousel::-webkit-scrollbar{display:none}
-  .product-carousel{scrollbar-width:none}
-  .product-carousel img{user-select:none;-webkit-user-drag:none}
-  @media (hover:hover) and (pointer:fine){
-    .product-carousel{cursor:default}
-  }
-  .sizes-strip{scrollbar-width:none;overscroll-behavior-x:contain;touch-action:pan-x}
-  .sizes-strip::-webkit-scrollbar{display:none}
-  .product-primary-layout{grid-template-columns:clamp(128px,40vw,148px) minmax(0,1fr)}
-  .product-slide{flex:0 0 100%;width:100%;scroll-snap-align:start;scroll-snap-stop:always}
-  .product-pack{filter:drop-shadow(0 14px 16px rgba(11,53,87,.14));transition:transform .45s cubic-bezier(.22,.8,.3,1)}
-  .card:hover .product-pack{transform:translateY(-3px) scale(1.025)}
-  .card-copy,.card-norm{display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden}
-  .card-copy{-webkit-line-clamp:5}
-  .card-norm{-webkit-line-clamp:3}
-  .carousel-dot{position:relative;width:1.125rem;height:1.125rem;background:transparent;transition:transform .2s ease}
-  .carousel-dot::after{content:"";position:absolute;left:50%;top:50%;width:.3rem;height:.3rem;border-radius:999px;background:#D6E5EC;transform:translate(-50%,-50%);transition:width .2s ease,background-color .2s ease}
-  .carousel-dot[aria-current="true"]::after{width:.85rem;background:#2A94C8}
-
   @media (max-width:639px){
     .pet-switch{display:none}
     .site-header-inner{margin-top:max(6px,env(safe-area-inset-top))}
@@ -92,17 +72,6 @@
     .mobile-filter-badge{position:absolute;right:-4px;top:-4px;min-width:16px;height:16px;padding:0;font-size:8px}
     .mobile-quick{display:contents}
     .mobile-quick .chip{min-width:0;min-height:44px;padding:.25rem .1rem;border-radius:10px;font-size:clamp(9.5px,2.8vw,11px);white-space:nowrap}
-  }
-
-  @media (max-width:519px){
-    .sizes-strip{display:flex!important;flex:none;flex-wrap:wrap!important;overflow:visible!important;gap:4px}
-    .sizes-strip .chip{flex:0 0 calc(50% - 2px)!important;width:calc(50% - 2px)!important;min-width:0;min-height:30px;padding:.25rem .35rem}
-  }
-
-  @media (min-width:520px){
-    .product-primary-layout{grid-template-columns:1fr;grid-template-rows:190px 1fr}
-    .card-copy{-webkit-line-clamp:8}
-    .card-norm{-webkit-line-clamp:6}
   }
 
   @media (hover:none){
@@ -115,6 +84,7 @@
     html{scroll-behavior:auto}
   }
 </style>
+<link rel="stylesheet" href="assets/css/catalog.css">
 </head>
 <body class="font-sans antialiased">
 
@@ -161,7 +131,7 @@
         Корма для собак<br>и <span class="text-ice">кошек</span>
       </h1>
       <p class="mt-6 max-w-[50ch] text-steel text-[16px] md:text-[18px] leading-relaxed opacity-0" style="animation:flyin .7s .3s forwards">
-        Сухие корма и натуральные лакомства. Подберём подходящий рацион, подтвердим наличие и организуем доставку или самовывоз.
+        Сухие и влажные корма, натуральные лакомства. Подберём подходящий рацион, подтвердим наличие и организуем доставку или самовывоз.
       </p>
       <div class="mt-8 flex flex-wrap items-center gap-3 opacity-0" style="animation:flyin .7s .45s forwards">
         <a href="#catalog" class="btn-press group inline-flex items-center gap-2 rounded-2xl bg-ink px-6 py-4 font-semibold text-snow hover:bg-icedeep transition">
@@ -225,7 +195,7 @@
     <div class="flex flex-wrap items-end justify-between gap-4 mb-7 reveal">
       <div>
         <p class="eyebrow text-icedeep mb-3">Марки</p>
-        <h2 class="font-display font-extrabold text-[28px] md:text-[40px] leading-[1.02] tracking-[-.02em] max-w-[16ch]">Что есть в наличии</h2>
+        <h2 class="font-display font-extrabold text-[28px] md:text-[40px] leading-[1.02] tracking-[-.02em] max-w-[16ch]">Марки в каталоге</h2>
       </div>
       <p class="text-steel max-w-[34ch] text-[15px]">Нажмите на марку — увидите её корма. Кнопка «О марке» откроет подробности.</p>
     </div>
@@ -238,7 +208,7 @@
   <div class="mx-auto max-w-[1180px] px-4">
     <div class="flex flex-wrap items-end justify-between gap-4 mb-5 reveal">
       <h2 class="font-display font-extrabold text-[28px] md:text-[40px] leading-[1.02] tracking-[-.02em]">Каталог</h2>
-      <p id="resultCount" class="mono text-[12px] text-steel"></p>
+      <p aria-live="polite" aria-atomic="true" id="resultCount" class="mono text-[12px] text-steel"></p>
     </div>
   </div>
 
@@ -258,13 +228,13 @@
           <button data-pet="dog" class="petBtn chip px-3 py-2 rounded-lg text-[12.5px] font-semibold">Собаки</button>
         </div>
 
-        <div class="relative flex-1 min-w-0 hidden sm:block">
+        <div class="catalog-search relative flex-1 min-w-0">
           <svg viewBox="0 0 24 24" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-steel" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
-          <input id="searchInput" type="search" placeholder="Поиск по названию или составу" autocomplete="off"
+          <input id="searchInput" aria-label="Поиск товаров по названию или составу" type="search" placeholder="Поиск по названию или составу" autocomplete="off"
             class="w-full rounded-xl border border-hair bg-paper pl-9 pr-3 py-2.5 text-[13.5px] placeholder:text-steel focus:bg-snow focus:border-ice outline-none transition">
         </div>
 
-        <button onclick="openFilters(true)" aria-label="Поиск" class="btn-press grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-hair sm:hidden">
+        <button onclick="openFilters(true)" aria-label="Поиск" class="catalog-search-trigger btn-press grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-hair sm:hidden">
           <svg viewBox="0 0 24 24" class="w-4 h-4 text-steel" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
         </button>
 
@@ -279,7 +249,8 @@
 
   <div class="mx-auto max-w-[1180px] px-4 mt-5">
     <div id="activeChips" class="flex flex-wrap gap-2 mb-4"></div>
-    <div id="grid" class="grid grid-cols-1 min-[520px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5"></div>
+    <p class="catalog-help">Выберите фасовку и добавьте товар в список. Наличие и цену подтвердит продавец.</p>
+    <div id="grid" class="catalog-grid"></div>
     <div id="loadMoreWrap" class="hidden mt-7 text-center">
       <button id="loadMore" type="button" class="btn-press rounded-2xl border border-hair bg-snow px-6 py-3 font-semibold text-[14px] hover:border-ice transition">Показать ещё</button>
     </div>
@@ -407,8 +378,12 @@
   </aside>
 </div>
 
+<dialog id="productDialog" class="product-dialog" aria-labelledby="productTitle">
+  <div id="productDetail"></div>
+</dialog>
+
 <!-- ═════════ ТОСТ ═════════ -->
-<div id="toast" class="fixed left-1/2 -translate-x-1/2 bottom-24 md:bottom-6 z-[60] w-[min(92vw,420px)] flex justify-center pointer-events-none opacity-0 transition-all duration-300">
+<div id="toast" role="status" aria-live="polite" class="fixed left-1/2 -translate-x-1/2 bottom-24 md:bottom-6 z-[60] w-[min(92vw,420px)] flex justify-center pointer-events-none opacity-0 transition-all duration-300">
   <div class="rounded-2xl bg-ink text-snow px-5 py-3.5 text-[14px] font-medium shadow-2xl flex items-center gap-2.5 text-center">
     <span id="toastIcon" class="text-amber">✓</span><span id="toastText">Добавлено</span>
   </div>
@@ -952,7 +927,8 @@ const store = {
   set(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
 };
 
-let cart  = store.get('xs_cart', []);
+let cart = store.get('xs_cart', []);
+cart = Array.isArray(cart) ? cart.filter(i => prodOf(i.pid)?.sizes[i.si] && Number.isInteger(i.qty) && i.qty > 0) : [];
 let order = store.get('xs_order', { name:'', phone:'', delivery:'Доставка по городу', address:'', note:'' });
 const sel = {};
 const PAGE_SIZE = window.innerWidth < 640 ? 8 : 12;
@@ -1098,6 +1074,7 @@ function applyFilters(resetLimit=true){
   if (resetLimit) state.limit = PAGE_SIZE;
   $$('.petBtn').forEach(el => {
     const on = el.dataset.pet === state.pet;
+    el.setAttribute('aria-pressed', String(on));
     el.className = 'petBtn chip px-3 py-2 rounded-lg text-[12.5px] font-semibold ' +
       (on ? (state.pet==='cat' ? 'bg-amber text-ink' : state.pet==='dog' ? 'bg-ice text-snow' : 'bg-ink text-snow') : 'text-steel hover:text-ink');
   });
@@ -1159,79 +1136,34 @@ function renderGrid(){
   $('#loadMoreWrap').classList.toggle('hidden', more === 0);
   $('#loadMore').textContent = more ? `Показать ещё ${Math.min(PAGE_SIZE, more)}` : 'Показать ещё';
 
-  $('#grid').innerHTML = list.map((p,i) => {
-    const b = brandOf(p.brand), si = sel[p.id] ?? 0;
-    const slideCount = p.normPhoto ? 4 : 3;
+  $('#grid').innerHTML = list.map(p => {
+    const b = brandOf(p.brand);
     return `
-    <article class="card rise flex min-w-0 flex-col overflow-hidden rounded-[22px] border border-hair bg-snow" style="transition-delay:${Math.min(i,10)*40}ms">
-      <div class="relative h-[276px] min-[520px]:h-[420px] overflow-hidden bg-paper">
-        <div class="product-carousel h-full" data-track="${p.id}" tabindex="0" role="region" aria-label="Информация о ${esc(p.name)}">
-          <section class="product-slide h-full" aria-label="Товар и фасовка">
-            <div class="product-primary-layout grid h-full">
-              <div class="relative min-h-0 overflow-hidden border-r border-hair min-[520px]:border-r-0 min-[520px]:border-b">
-                <span class="absolute inset-0" style="background:radial-gradient(circle at 50% 44%, ${p.hue}24, transparent 62%),linear-gradient(150deg, #FFFFFF, #F1F7FA)"></span>
-                <span class="absolute left-2 top-2 z-10 rounded-lg bg-snow/90 px-2 py-1 mono text-[8px] uppercase tracking-[.08em]">${esc(petLabel(p))}</span>
-                ${p.draft ? `<span class="absolute bottom-2 left-2 right-2 z-10 rounded-lg bg-ink/90 px-2 py-1 text-center mono text-[8px] uppercase tracking-[.08em] text-amber">уточняется</span>` : ''}
-                <span class="absolute inset-0 grid place-items-center">${productVisual(p)}</span>
-              </div>
-
-              <div class="flex min-w-0 flex-col bg-snow p-3 pb-8 min-[520px]:p-4 min-[520px]:pb-10">
-                <p class="truncate mono text-[8.5px] uppercase tracking-[.1em] text-icedeep min-[520px]:text-[10px]">${esc(b.name)} · ${esc(p.line)}</p>
-                <h3 class="mt-1.5 line-clamp-2 font-sans font-bold text-[15px] leading-tight tracking-[-.01em] min-[520px]:line-clamp-none min-[520px]:text-[17px]">${esc(p.name)}</h3>
-                <p class="mt-1 line-clamp-1 text-[11px] leading-snug text-steel min-[520px]:line-clamp-2 min-[520px]:text-[12.5px]">${esc(p.sub)}</p>
-
-                <div class="sizes-strip mt-auto flex gap-1 overflow-x-auto pb-0.5" role="group" aria-label="Фасовка">
-                  ${p.sizes.map((s,idx) => `<button type="button" data-size="${p.id}" data-si="${idx}" class="chip shrink-0 rounded-lg border px-2 py-1 mono text-[9.5px] min-[520px]:text-[11px] ${idx===si?'border-ink bg-ink text-snow':'border-hair bg-paper text-steel hover:border-steel'}" aria-pressed="${idx===si?'true':'false'}">${esc(s.w)}</button>`).join('')}
-                </div>
-
-                <div class="mt-2 flex items-center justify-between gap-2">
-                  <span data-price="${p.id}">${priceLabel(p)}</span>
-                  <button data-add="${p.id}" class="btn-press grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-ink text-snow hover:bg-icedeep transition" aria-label="Добавить в список для уточнения наличия">
-                    <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section class="product-slide h-full bg-snow p-4 pb-8 min-[520px]:p-5 min-[520px]:pb-10" aria-label="Описание и норма кормления">
-            <p class="eyebrow text-icedeep">О продукте</p>
-            <p class="card-copy mt-3 text-[12.5px] leading-relaxed min-[520px]:text-[14px]">${esc(p.desc)}</p>
-            <div class="mt-3 flex flex-wrap gap-1.5">
-              ${p.tags.map(t => `<span class="rounded-full border border-hair bg-snow px-2.5 py-1 text-[11.5px] text-steel">${esc(t)}</span>`).join('')}
-            </div>
-            <div class="mt-3 rounded-2xl bg-icesoft p-3 min-[520px]:mt-5 min-[520px]:p-3.5">
-              <p class="mono text-[10px] uppercase tracking-[.12em] text-icedeep">Норма кормления</p>
-              <p class="card-norm mt-1.5 text-[11.5px] leading-relaxed text-ink2 min-[520px]:text-[12.5px]">${esc(p.norm)}</p>
-            </div>
-            ${p.source ? `<a href="${esc(p.source)}" target="_blank" rel="noopener" class="mt-3 inline-flex text-[11px] font-semibold text-icedeep hover:underline">Официальная карточка ACARI CIAR ↗</a>` : ''}
-          </section>
-
-          <section class="product-slide h-full bg-snow p-4 pb-8 min-[520px]:p-5 min-[520px]:pb-10" aria-label="Состав и показатели">
-            <p class="eyebrow text-icedeep">Состав и показатели</p>
-            <p class="mt-2 text-[10.5px] leading-relaxed text-steel min-[520px]:mt-3 min-[520px]:text-[12px]">${esc(shortText(p.comp, 300))}</p>
-            <dl class="mt-3 grid grid-cols-3 gap-1.5 min-[520px]:mt-4 min-[520px]:grid-cols-2">
-              ${Object.entries(p.an).map(([k,v]) => `<div class="rounded-xl border border-hair bg-paper px-2 py-1.5 min-[520px]:px-2.5 min-[520px]:py-2"><dt class="mono text-[7.5px] uppercase tracking-[.06em] text-steel min-[520px]:text-[8.5px]">${esc(k)}</dt><dd class="mt-0.5 font-semibold text-[11px] min-[520px]:text-[13px]">${esc(v)}</dd></div>`).join('')}
-            </dl>
-          </section>
-
-          ${p.normPhoto ? `<section class="product-slide h-full bg-snow p-4 pb-8 min-[520px]:p-5 min-[520px]:pb-10" aria-label="Таблица кормления">
-            <p class="eyebrow text-icedeep">Таблица кормления</p>
-            <div class="mt-3 grid place-items-center overflow-hidden rounded-2xl border border-hair bg-paper p-2" style="height:calc(100% - 34px)">
-              ${imgTag(p.normPhoto, `Таблица кормления ${p.name}`, 'h-full w-full object-contain')}
-            </div>
-          </section>` : ''}
-        </div>
-
-        <div class="pointer-events-none absolute inset-x-0 bottom-1.5 z-10 flex justify-center">
-          <span class="flex items-center gap-0.5 rounded-full border border-hair bg-snow/90 px-1.5 py-1" aria-label="Слайд 1 из 3">
-            ${Array.from({length:slideCount}, (_,n) => `<button data-goto="${n}" class="carousel-dot pointer-events-auto h-1.5 w-1.5 rounded-full bg-hair" aria-label="Слайд ${n+1}" aria-current="${n===0?'true':'false'}"></button>`).join('')}
-          </span>
+    <article class="catalog-card" data-product="${esc(p.id)}">
+      <button type="button" class="catalog-photo" data-detail="${esc(p.id)}" aria-label="Подробнее: ${esc(p.name)}">
+        <span class="catalog-pet">${esc(petLabel(p))}</span>
+        ${productVisual(p)}
+        <span class="catalog-photo-hint">Подробнее ↗</span>
+      </button>
+      <div class="catalog-card-body">
+        <p class="catalog-brand">${esc(b.name)} <span>· ${esc(p.line)}</span></p>
+        <h3><button type="button" data-detail="${esc(p.id)}">${esc(p.name)}</button></h3>
+        <p class="catalog-sub">${esc(p.feedType || p.grain || p.sub)}</p>
+        <div class="catalog-tags">${p.tags.slice(0,2).map(t => `<span>${esc(t)}</span>`).join('')}</div>
+        <dl class="catalog-facts">${Object.entries(p.an).filter(([k]) => ['Белок','Жир'].includes(k)).map(([k,v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>
+        <div class="catalog-buy">
+          <fieldset class="product-sizes"><legend>Фасовка</legend>${sizeButtons(p)}</fieldset>
+          <div class="catalog-price" data-price="${esc(p.id)}">${priceLabel(p)}</div>
+          <button type="button" class="product-primary" data-add="${esc(p.id)}">В список <span aria-hidden="true">＋</span></button>
+          <button type="button" class="product-link" data-detail="${esc(p.id)}">Состав и подробности <span aria-hidden="true">↗</span></button>
         </div>
       </div>
     </article>`;
   }).join('');
-  observeAll();
+}
+
+function sizeButtons(p){
+  return p.sizes.map((size, index) => `<button type="button" class="product-size" data-size="${esc(p.id)}" data-si="${index}" aria-pressed="${index === (sel[p.id] ?? 0)}">${esc(size.w)}</button>`).join('');
 }
 
 $('#loadMore').addEventListener('click', () => {
@@ -1239,91 +1171,95 @@ $('#loadMore').addEventListener('click', () => {
   renderGrid();
 });
 
-$('#grid').addEventListener('click', e => {
-  const nav = e.target.closest('[data-goto]');
-  if (nav){
-    const card = nav.closest('article'), track = $('[data-track]', card);
-    const next = +nav.dataset.goto;
-    track.scrollTo({ left: next * track.clientWidth, behavior:'smooth' });
-    return;
-  }
+function productAction(e){
   const size = e.target.closest('[data-size]');
   if (size){
     const id = size.dataset.size;
-    sel[id] = +size.dataset.si;
-    const card = size.closest('article');
-    $$('[data-size="'+id+'"]', card).forEach(button => {
-      const active = +button.dataset.si === sel[id];
-      button.className = `chip shrink-0 rounded-lg border px-2 py-1 mono text-[9.5px] min-[520px]:text-[11px] ${active?'border-ink bg-ink text-snow':'border-hair bg-paper text-steel hover:border-steel'}`;
-      button.setAttribute('aria-pressed', active ? 'true' : 'false');
+    sel[id] = Number(size.dataset.si);
+    $$('[data-size]').filter(el => el.dataset.size === id).forEach(el => {
+      el.setAttribute('aria-pressed', String(Number(el.dataset.si) === sel[id]));
     });
-    const price = $('[data-price="'+id+'"]', card);
-    if (price) price.innerHTML = priceLabel(prodOf(id));
+    $$('[data-price]').filter(el => el.dataset.price === id).forEach(el => {
+      el.innerHTML = priceLabel(prodOf(id));
+    });
     return;
   }
   const add = e.target.closest('[data-add]');
-  if (add){ addToCart(add.dataset.add, sel[add.dataset.add] ?? 0); add.classList.add('pop'); setTimeout(()=>add.classList.remove('pop'),450); }
-});
-
-function updateCarousel(track){
-  const card = track.closest('article');
-  const current = Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
-  const dots = $$('.carousel-dot', card);
-  dots.forEach((dot, i) => dot.setAttribute('aria-current', i === current ? 'true' : 'false'));
-  const status = $('.carousel-dot', card)?.parentElement;
-  if (status) status.setAttribute('aria-label', `Слайд ${current + 1} из ${dots.length}`);
+  if (add){
+    const p = prodOf(add.dataset.add);
+    addToCart(p.id, sel[p.id] ?? 0);
+    const status = $('#detailStatus');
+    if ($('#productDialog').open && status) status.textContent = `${p.sizes[sel[p.id] ?? 0].w} — добавлено в список`;
+    return;
+  }
+  const detail = e.target.closest('[data-detail]');
+  if (detail) openProduct(detail.dataset.detail, detail);
 }
+$('#grid').addEventListener('click', productAction);
+$('#productDetail').addEventListener('click', productAction);
 
-let carouselFrame;
-$('#grid').addEventListener('scroll', e => {
-  const track = e.target.closest?.('.product-carousel');
-  if (!track) return;
-  cancelAnimationFrame(carouselFrame);
-  carouselFrame = requestAnimationFrame(() => updateCarousel(track));
-}, { passive:true, capture:true });
-
-const carouselHover = new WeakMap();
-$('#grid').addEventListener('mousemove', e => {
-  const track = e.target.closest?.('.product-carousel');
-  if (!track || e.buttons !== 0 || e.target.closest('.sizes-strip,[data-add],[data-goto]')) return;
-  const now = performance.now();
-  const state = carouselHover.get(track);
-  if (!state){
-    carouselHover.set(track, { x:e.clientX, distance:0, changedAt:-Infinity });
-    return;
-  }
-  const step = e.clientX - state.x;
-  state.x = e.clientX;
-  if (Math.abs(step) > 160){
-    state.distance = 0;
-    return;
-  }
-  state.distance += step;
-  if (Math.abs(state.distance) < 48 || now - state.changedAt < 260) return;
-
-  const current = Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
-  const last = Math.max(0, $$('.carousel-dot', track.closest('article')).length - 1);
-  const next = Math.max(0, Math.min(last, current + (state.distance > 0 ? 1 : -1)));
-  state.distance = 0;
-  state.changedAt = now;
-  if (next !== current) track.scrollTo({ left:next * track.clientWidth, behavior:'smooth' });
+let productOpener = null;
+let previousOverflow = '';
+function openProduct(id, opener){
+  const p = prodOf(id);
+  if (!p) return;
+  productOpener = opener || document.activeElement;
+  $('#productDetail').innerHTML = `
+    <header class="product-dialog-header">
+      <span>О продукте · ${esc(brandOf(p.brand).name)}</span>
+      <button type="button" class="product-close" data-close-product aria-label="Закрыть карточку товара" autofocus>✕</button>
+    </header>
+    <div class="product-detail-layout">
+      <div class="product-detail-photo">${productVisual(p)}</div>
+      <div class="product-detail-summary">
+        <p class="catalog-brand">${esc(p.line)} · ${esc(petLabel(p))}</p>
+        <h2 id="productTitle">${esc(p.name)}</h2>
+        <p class="product-description">${esc(p.desc)}</p>
+        <div class="catalog-tags">${p.tags.map(t => `<span>${esc(t)}</span>`).join('')}</div>
+        <fieldset class="product-sizes"><legend>Выберите фасовку</legend>${sizeButtons(p)}</fieldset>
+        <div class="product-detail-purchase">
+          <div data-price="${esc(p.id)}">${priceLabel(p)}</div>
+          <button type="button" class="product-primary" data-add="${esc(p.id)}">Добавить в список <span aria-hidden="true">＋</span></button>
+        </div>
+        <p class="product-note">Продавец подтвердит наличие и актуальную цену.</p>
+        <p id="detailStatus" class="detail-status" role="status" aria-live="polite"></p>
+      </div>
+      <section class="product-composition">
+        <p class="catalog-brand">Что внутри</p>
+        <h3>Состав</h3>
+        <p>${esc(p.comp)}</p>
+      </section>
+      <section class="product-analysis">
+        <p class="catalog-brand">Пищевая ценность</p>
+        <h3>Показатели</h3>
+        <dl>${Object.entries(p.an).map(([k,v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>
+      </section>
+      <section class="product-feeding">
+        <p class="catalog-brand">Каждый день</p>
+        <h3>Кормление и хранение</h3>
+        <p>${esc(p.norm)}</p>
+        ${p.normPhoto ? `<a class="feeding-image" href="${esc(p.normPhoto)}" target="_blank" rel="noopener" aria-label="Открыть таблицу кормления в полном размере">${imgTag(p.normPhoto, 'Таблица кормления ' + p.name, '')}<span>Открыть таблицу в полном размере ↗</span></a>` : ''}
+        ${p.storage ? `<p class="product-storage"><strong>Хранение:</strong> ${esc(p.storage)}</p>` : ''}
+        ${p.source ? `<a class="product-link" href="${esc(p.source)}" target="_blank" rel="noopener">Карточка производителя ↗</a>` : ''}
+      </section>
+    </div>`;
+  const dialog = $('#productDialog');
+  previousOverflow = document.body.style.overflow;
+  document.body.style.overflow = 'hidden';
+  dialog.showModal();
+  dialog.scrollTop = 0;
+}
+function closeProduct(){ $('#productDialog').close(); }
+$('#productDialog').addEventListener('close', () => {
+  document.body.style.overflow = previousOverflow;
+  if (productOpener?.isConnected) productOpener.focus({preventScroll:true});
 });
-
-$('#grid').addEventListener('mouseout', e => {
-  const track = e.target.closest?.('.product-carousel');
-  if (track && !track.contains(e.relatedTarget)){
-    carouselHover.delete(track);
-    if (track.scrollLeft !== 0) track.scrollTo({ left:0, behavior:'smooth' });
+$('#productDialog').addEventListener('click', e => {
+  if (e.target.closest('[data-close-product]')) closeProduct();
+  if (e.target === e.currentTarget){
+    const rect = e.currentTarget.getBoundingClientRect();
+    if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) closeProduct();
   }
-});
-
-$('#grid').addEventListener('keydown', e => {
-  const track = e.target.closest?.('.product-carousel');
-  if (!track || !['ArrowLeft','ArrowRight'].includes(e.key)) return;
-  e.preventDefault();
-  const current = Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
-  const next = e.key === 'ArrowRight' ? Math.min(2,current+1) : Math.max(0,current-1);
-  track.scrollTo({ left: next * track.clientWidth, behavior:'smooth' });
 });
 
 /* ══════════ ПОПАПЫ ══════════ */
@@ -1364,7 +1300,7 @@ function openBrand(id){
       ${b.badge ? `<span class="inline-block mt-2 rounded-full bg-ink px-2.5 py-1 mono text-[9px] uppercase tracking-[.1em] text-amber">${esc(b.badge)}</span>` : ''}
       <p class="mt-4 text-[15px] leading-relaxed">${esc(b.about)}</p>
 
-      <p class="eyebrow text-steel mt-6 mb-2">Линейки в наличии</p>
+      <p class="eyebrow text-steel mt-6 mb-2">Линейки в каталоге</p>
       <div class="flex flex-wrap gap-1.5">
         ${lines.map(l => `<span class="rounded-full border border-hair px-3 py-1.5 text-[12.5px]">${esc(l)}</span>`).join('')}
       </div>
@@ -1671,7 +1607,7 @@ function init(){
 
   applyFilters(); saveCart(); observeAll();
   document.addEventListener('keydown', e => {
-    if (e.key !== 'Escape') return;
+    if (e.key !== 'Escape' || $('#productDialog').open) return;
     if (!$('#sheet').classList.contains('hidden')) closeSheet();
     else if (!$('#cart').classList.contains('hidden')) closeCart();
   });
