@@ -6,3 +6,4 @@
 .DS_Store
 opt_price
 __pycache__/
+.~lock.*#

@@ -402,7 +402,7 @@
   </div>
 </div>
 
-<script src="assets/data/catalog.js"></script>
+<script src="assets/data/catalog.js?v=9fec8e9d13"></script>
 <script>
 /* ══════════════════════════════════════════════════════════════
    1) НАСТРОЙКИ МАГАЗИНА — правится здесь, больше нигде
@@ -413,12 +413,11 @@ const CONFIG = {
   siteUrl:  'https://t0nyhat.github.io/xaskoshop/',
   phone:    '+7 (914) 541-00-02',        // ← телефон магазина
   messengerPhone:'79145410002',          // ← Telegram и MAX, только цифры
-  maxUrl:   'https://max.ru/xaskoshop',  // ← прямая ссылка на профиль MAX, если назначен username
+  maxUrl:   'https://max.ru/u/f9LHodD0cOLszVUnxBB1vej6cZq6xagPGRVInxac-NswaviHXO_ZcAl-XuI',  // ← ссылка на диалог с магазином в MAX (Профиль → Поделиться)
   waPhone:  '',                          // ← WhatsApp, только цифры ('' — скрыть кнопку)
   address:  'Хабаровск, ул. Складская, 1\nсамовывоз по договорённости',
   hours:    'Пн–Сб 10:00–18:00\nВс — по договорённости',
-  showPrices: true,                      // ← false: вместо цен «уточняйте у продавца»
-  demoStock: true                        // ← тестовое наличие для фасовок без «Остатка» в таблице; false — выключить
+  showPrices: true                       // ← false: вместо цен «уточняйте у продавца»
 };
 
 const ASSET_VERSION = '20260829-2';
@@ -471,18 +470,9 @@ const prodOf  = id => PRODUCTS.find(p => p.id === id);
 const GRANULES = { XS:'декоративных', S:'мелких', M:'средних', L:'крупных' };
 const sizeKey = s => `${s.g || ''}|${s.w}`;
 const sizeLabel = s => s.g ? `${s.w}, гранула для ${GRANULES[s.g]} пород` : s.w;
-/* Наличие берётся из колонки «Остаток» в таблице каталога: 0 — предзаказ, число — в наличии.
-   Если остаток не заполнен: при CONFIG.demoStock — тестовое значение (стабильное для фасовки),
-   иначе null — остаток не ведётся, товар продаётся как обычно, без подписи о наличии. */
-const stockOf = (p, s) => {
-  if (typeof s.stock === 'number') return s.stock;
-  if (!CONFIG.demoStock) return null;
-  const key = `${p.id}|${sizeKey(s)}`;
-  let h = 2166136261;
-  for (const ch of key) h = Math.imul(h ^ ch.charCodeAt(0), 16777619);
-  const n = (h >>> 0) % 10;
-  return n < 3 ? 0 : n - 2;  // примерно треть фасовок — под заказ
-};
+/* Наличие — из колонки «Остаток» в таблице каталога: 0 — предзаказ, число — в наличии.
+   Пусто — остаток не ведётся (null): товар продаётся как обычно, без подписи о наличии. */
+const stockOf = (p, s) => typeof s.stock === 'number' ? s.stock : null;
 const isPreorder = (p, s) => stockOf(p, s) === 0;
 const selectedSize = p => p.sizes[sel[p.id] ?? 0];
 const plural = (n,a,b,c) => { const m=n%100,k=n%10; return m>10&&m<20?c : k===1?a : k>1&&k<5?b : c; };

@@ -14,6 +14,7 @@ Usage:  python3 -m pip install openpyxl && python3 scripts/import_catalog.py
 
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 import sys
@@ -26,6 +27,7 @@ ROOT = Path(__file__).resolve().parents[1]
 WORKBOOK = ROOT / "catalog" / "Каталог ХаскоШоп.xlsx"
 MAKER = ROOT / "assets/data/acari-catalog.json"
 OUTPUT = ROOT / "assets/data/catalog.js"
+PAGE = ROOT / "index.html"   # ссылка на catalog.js получает ?v=<хэш данных>, чтобы браузеры не держали старую копию
 
 PRODUCT_COLUMNS = ["ID", "Показывать", "Марка", "Линейка", "Название", "Питомец", "Раздел", "Коротко", "Описание",
                    "Состав", "Белок, %", "Жир, %", "Класс", "Особенности", "Фото", "Карточка производителя",
@@ -102,6 +104,23 @@ def number(value: str, where: str, column: str, integer: bool = True):
         errors.append(f"{where}: «{column}» не может быть отрицательным")
         return None
     return int(round(n)) if integer else n
+
+
+UNITS = {"г": 1, "кг": 1000, "мл": 1, "л": 1000}
+GRANULE_ORDER = ["S", "M", "L", "XS"]
+
+
+def weight_key(label: str):
+    """«400 г» → 400, «3,5 кг» → 3500; None, если вес не распознан («1 шт», «1 шт, ~40 г»)."""
+    m = re.fullmatch(r"(\d+(?:[.,]\d+)?)\s*(г|кг|мл|л)", label.strip())
+    return float(m.group(1).replace(",", ".")) * UNITS[m.group(2)] if m else None
+
+
+def sort_sizes(items: list[dict]) -> list[dict]:
+    """Фасовки по грануле, внутри — по весу. Если вес не везде распознан, порядок из таблицы сохраняется."""
+    if any(weight_key(s["w"]) is None for s in items):
+        return items
+    return sorted(items, key=lambda s: (GRANULE_ORDER.index(s["g"]) if s.get("g") else -1, weight_key(s["w"])))
 
 
 def percent(value: str) -> str:
@@ -205,7 +224,7 @@ def main() -> None:
             "grain": m.get("grain", ""), "tags": tags, "hue": hue.get(brand, "#5CC8F2"),
             "desc": r.get("Описание") or m.get("desc", ""), "comp": r.get("Состав") or m.get("comp", ""), "an": an,
             "norm": m.get("norm", "") or ("Норма кормления указана на упаковке." if is_food else ""),
-            "sizes": sizes[pid], "photo": r.get("Фото") or m.get("photo", ""), "normPhoto": m.get("normPhoto", ""),
+            "sizes": sort_sizes(sizes[pid]), "photo": r.get("Фото") or m.get("photo", ""), "normPhoto": m.get("normPhoto", ""),
             "source": m.get("source", ""), "storage": m.get("storage", ""),
             "feedType": m.get("feedType") or FEED_TYPE[section], "section": section,
             **({"type": "treat"} if section == "Лакомства" else {}),
@@ -233,9 +252,14 @@ def main() -> None:
     brands.sort(key=lambda b: b["order"])
     for b in brands:
         del b["order"]
-    payload = {"generatedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"), "brands": brands, "products": products}
+    version = hashlib.sha1(json.dumps([brands, products], ensure_ascii=False, sort_keys=True).encode()).hexdigest()[:10]
+    payload = {"generatedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"), "version": version, "brands": brands, "products": products}
     OUTPUT.write_text("/* Каталог витрины — собирается scripts/import_catalog.py из catalog/Каталог ХаскоШоп.xlsx. Не править вручную. */\n"
                       f"window.XS_CATALOG = {json.dumps(payload, ensure_ascii=False, indent=1)};\n", encoding="utf-8")
+    page = PAGE.read_text(encoding="utf-8")
+    page_new = re.sub(r'src="assets/data/catalog\.js(\?v=[^"]*)?"', f'src="assets/data/catalog.js?v={version}"', page)
+    if page_new != page:
+        PAGE.write_text(page_new, encoding="utf-8")
     print(f"готово: товаров — {len(products)}, фасовок — {sum(len(p['sizes']) for p in products)}, марок — {len(brands)} → {OUTPUT.relative_to(ROOT)}")
 
 
