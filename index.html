@@ -105,13 +105,17 @@
         <a href="#pets" class="px-3 py-2 rounded-lg hover:text-ink hover:bg-paper transition">Кому</a>
         <a href="#brands" class="px-3 py-2 rounded-lg hover:text-ink hover:bg-paper transition">Марки</a>
         <a href="#catalog" class="px-3 py-2 rounded-lg hover:text-ink hover:bg-paper transition">Каталог</a>
-        <a href="#how" class="px-3 py-2 rounded-lg hover:text-ink hover:bg-paper transition">Доставка</a>
+        <a href="#how" class="px-3 py-2 rounded-lg hover:text-ink hover:bg-paper transition">Как заказать</a>
         <a href="#contacts" class="px-3 py-2 rounded-lg hover:text-ink hover:bg-paper transition">Контакты</a>
       </nav>
-      <button onclick="openCart()" aria-label="Уточнить наличие"
+      <button id="headerFilter" type="button" onclick="openFilters()" aria-label="Фильтры и поиск" class="header-filter btn-press sm:hidden">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16l-6.5 7.2v5.3l-3 1.5v-6.8L4 5Z"/></svg>
+        <span id="headerFilterBadge" class="header-filter-badge" hidden>0</span>
+      </button>
+      <button onclick="openCart()" aria-label="Корзина"
         class="btn-press ml-auto relative flex items-center gap-2 rounded-xl bg-ink px-3.5 py-2.5 text-snow font-semibold text-[13px] hover:bg-icedeep transition">
         <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h2.2l2.4 12.1a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L21 7H5.5"/></svg>
-        <span class="hidden sm:inline">Уточнить наличие</span>
+        <span class="hidden sm:inline">Корзина</span>
         <span id="cartCount" class="grid place-items-center min-w-[20px] h-5 px-1 rounded-full bg-amber text-ink mono text-[11px]">0</span>
       </button>
     </div>
@@ -131,14 +135,14 @@
         Корма для собак<br>и <span class="text-ice">кошек</span>
       </h1>
       <p class="mt-6 max-w-[50ch] text-steel text-[16px] md:text-[18px] leading-relaxed opacity-0" style="animation:flyin .7s .3s forwards">
-        Сухие и влажные корма, натуральные лакомства. Подберём подходящий рацион, подтвердим наличие и организуем доставку или самовывоз.
+        Сухие и влажные корма, натуральные лакомства. Поможем подобрать рацион, а то, чего нет на складе, привезём под заказ. Доставка по Хабаровску или самовывоз.
       </p>
       <div class="mt-8 flex flex-wrap items-center gap-3 opacity-0" style="animation:flyin .7s .45s forwards">
         <a href="#catalog" class="btn-press group inline-flex items-center gap-2 rounded-2xl bg-ink px-6 py-4 font-semibold text-snow hover:bg-icedeep transition">
           Перейти в каталог
           <svg viewBox="0 0 24 24" class="w-4 h-4 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
-        <a href="#how" class="btn-press inline-flex items-center gap-2 rounded-2xl border border-hair bg-snow px-6 py-4 font-medium hover:border-ice transition">Доставка и самовывоз</a>
+        <a href="#how" class="btn-press inline-flex items-center gap-2 rounded-2xl border border-hair bg-snow px-6 py-4 font-medium hover:border-ice transition">Как заказать</a>
       </div>
 
     </div>
@@ -153,8 +157,8 @@
             <svg viewBox="0 0 24 24" class="w-5 h-5 text-icedeep" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/></svg>
           </span>
           <div>
-            <p class="font-display font-bold text-[13px] leading-tight">В наличии и под заказ</p>
-            <p class="text-steel text-[11px] mt-0.5">наличие уточнит продавец</p>
+            <p class="font-display font-bold text-[13px] leading-tight">Привезём под заказ</p>
+            <p class="text-steel text-[11px] mt-0.5">если корма нет на складе</p>
           </div>
         </div>
       </div>
@@ -182,8 +186,8 @@
 <section id="pets" class="py-14 md:py-20">
   <div class="mx-auto max-w-[1180px] px-4">
     <div class="flex flex-wrap items-end justify-between gap-4 mb-7 reveal">
-      <h2 class="font-display font-extrabold text-[28px] md:text-[40px] leading-[1.02] tracking-[-.02em]">Кого кормим?</h2>
-      <p class="text-steel text-[15px] max-w-[36ch]">Нажмите — каталог сразу отфильтруется.</p>
+      <h2 class="font-display font-extrabold text-[28px] md:text-[40px] leading-[1.02] tracking-[-.02em]">Для кого выбираете?</h2>
+      <p class="text-steel text-[15px] max-w-[36ch]">Выберите питомца — покажем только подходящие корма.</p>
     </div>
     <div id="petCards" class="grid sm:grid-cols-3 gap-3 md:gap-4"></div>
   </div>
@@ -197,7 +201,7 @@
         <p class="eyebrow text-icedeep mb-3">Марки</p>
         <h2 class="font-display font-extrabold text-[28px] md:text-[40px] leading-[1.02] tracking-[-.02em] max-w-[16ch]">Марки в каталоге</h2>
       </div>
-      <p class="text-steel max-w-[34ch] text-[15px]">Нажмите на марку — увидите её корма. Кнопка «О марке» откроет подробности.</p>
+      <p class="text-steel max-w-[34ch] text-[15px]">Выберите марку — каталог покажет только её корма.</p>
     </div>
     <div id="brandGrid" class="grid grid-cols-1 min-[520px]:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4"></div>
   </div>
@@ -249,7 +253,7 @@
 
   <div class="mx-auto max-w-[1180px] px-4 mt-5">
     <div id="activeChips" class="flex flex-wrap gap-2 mb-4"></div>
-    <p class="catalog-help">Выберите фасовку и добавьте товар в список. Наличие и цену подтвердит продавец.</p>
+    <p class="catalog-help">Выберите фасовку и добавьте товар в корзину. Если товара нет на складе, оформите предзаказ — привезём.</p>
     <div id="grid" class="catalog-grid"></div>
     <div id="loadMoreWrap" class="hidden mt-7 text-center">
       <button id="loadMore" type="button" class="btn-press rounded-2xl border border-hair bg-snow px-6 py-3 font-semibold text-[14px] hover:border-ice transition">Показать ещё</button>
@@ -266,7 +270,7 @@
 <section id="how" class="py-14 md:py-20 bg-snow border-y border-hair">
   <div class="mx-auto max-w-[1180px] px-4 grid lg:grid-cols-[1fr_.85fr] gap-10 items-center">
     <div>
-      <p class="eyebrow text-icedeep mb-3 reveal">Как уточнить наличие</p>
+      <p class="eyebrow text-icedeep mb-3 reveal">Как заказать</p>
       <h2 class="font-display font-extrabold text-[28px] md:text-[40px] leading-[1.02] tracking-[-.02em] max-w-[18ch] reveal">Три шага, ни одной анкеты</h2>
 
       <ol class="mt-8 space-y-4">
@@ -274,21 +278,21 @@
           <span class="mono text-[12px] text-steel pt-1.5 w-6 shrink-0">01</span>
           <div class="flex-1 rounded-2xl border border-hair bg-paper p-4">
             <h3 class="font-display font-bold text-[16px]">Выберите корм</h3>
-            <p class="text-steel text-[14px] mt-1.5 leading-relaxed">Фильтр по марке и по тому, кошка у вас или собака. В карточке — состав, анализ и норма кормления.</p>
+            <p class="text-steel text-[14px] mt-1.5 leading-relaxed">Отфильтруйте каталог по марке и питомцу. В карточке — состав, пищевая ценность и норма кормления.</p>
           </div>
         </li>
         <li class="rise flex gap-4">
           <span class="mono text-[12px] text-steel pt-1.5 w-6 shrink-0">02</span>
           <div class="flex-1 rounded-2xl border border-hair bg-paper p-4">
-            <h3 class="font-display font-bold text-[16px]">Соберите список</h3>
-            <p class="text-steel text-[14px] mt-1.5 leading-relaxed">Выберите фасовку и нужное количество для уточнения наличия. Список сохранится в вашем браузере.</p>
+            <h3 class="font-display font-bold text-[16px]">Соберите корзину</h3>
+            <p class="text-steel text-[14px] mt-1.5 leading-relaxed">Выберите фасовку и количество. Нет на складе — оформите предзаказ. Регистрация не нужна: корзина хранится в вашем браузере.</p>
           </div>
         </li>
         <li class="rise flex gap-4">
           <span class="mono text-[12px] text-steel pt-1.5 w-6 shrink-0">03</span>
           <div class="flex-1 rounded-2xl border border-hair bg-paper p-4">
-            <h3 class="font-display font-bold text-[16px]">Отправьте продавцу</h3>
-            <p class="text-steel text-[14px] mt-1.5 leading-relaxed">Отправьте список в Telegram или MAX. Продавец уточнит наличие и актуальные цены. Отправка запроса не оформляет заказ и не резервирует товары.</p>
+            <h3 class="font-display font-bold text-[16px]">Отправьте заказ</h3>
+            <p class="text-steel text-[14px] mt-1.5 leading-relaxed">Кнопка Telegram или MAX — заказ уже собран в сообщение. Продавец подтвердит сумму, сроки предзаказа и время доставки.</p>
           </div>
         </li>
       </ol>
@@ -302,7 +306,7 @@
         <span class="grid place-items-center w-9 h-9 rounded-lg bg-ambersoft shrink-0">
           <svg viewBox="0 0 24 24" class="w-4.5 h-[18px] text-amberdeep" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
         </span>
-        <p class="text-[13px] text-steel leading-snug">Не уверены с рационом — напишите, подберём вместе.</p>
+        <p class="text-[13px] text-steel leading-snug">Сомневаетесь с выбором корма? Напишите — подберём вместе.</p>
       </div>
     </div>
   </div>
@@ -316,7 +320,7 @@
         <div class="p-6 md:p-10">
           <p class="eyebrow text-icedeep mb-3">Контакты</p>
           <h2 class="font-display font-extrabold text-[24px] md:text-[34px] leading-[1.05] tracking-[-.02em] max-w-[16ch]">Напишите — ответим быстро</h2>
-          <p class="text-steel mt-4 text-[15px] leading-relaxed max-w-[42ch]">Работаем на доставку по Хабаровску и самовывоз. Наличие, актуальные цены и подбор рациона — в мессенджере.</p>
+          <p class="text-steel mt-4 text-[15px] leading-relaxed max-w-[42ch]">Доставляем по Хабаровску, есть самовывоз. Заказ, предзаказ и подбор рациона — в Telegram или MAX.</p>
 
           <div class="mt-6 flex flex-wrap gap-2">
             <a id="tgLink" target="_blank" rel="noopener" class="btn-press inline-flex items-center gap-2 rounded-xl bg-ice px-5 py-3 font-semibold text-snow hover:bg-icedeep transition">Telegram</a>
@@ -338,7 +342,7 @@
 
     <div class="mt-8 flex flex-wrap items-center justify-between gap-3 mono text-[11px] text-steel">
       <span>ХаскоШоп · Хабаровск · <span id="yearOut"></span></span>
-      <span>Цены на сайте — ориентир, итог подтверждает продавец.</span>
+      <span>Наличие и итоговую сумму подтверждает продавец.</span>
     </div>
   </div>
 </footer>
@@ -348,7 +352,7 @@
   <button onclick="openCart()" class="btn-press w-full flex items-center justify-between rounded-2xl bg-ink px-5 py-4 text-snow shadow-[0_18px_40px_-18px_rgba(16,24,35,.7)]">
     <span class="flex items-center gap-2 font-semibold text-[15px]">
       <span id="mobCount" class="grid place-items-center w-6 h-6 rounded-full bg-amber text-ink mono text-[12px]">0</span>
-      Уточнить наличие
+      Корзина
     </span>
     <span id="mobSum" class="mono text-[15px] text-amber">0 ₽</span>
   </button>
@@ -363,23 +367,32 @@
   </div>
 </div>
 
-<!-- ═════════ СПИСОК ДЛЯ УТОЧНЕНИЯ НАЛИЧИЯ ═════════ -->
+<!-- ═════════ КОРЗИНА ═════════ -->
 <div id="cart" class="fixed inset-0 z-50 hidden">
   <div class="veil absolute inset-0 bg-ink/50 backdrop-blur-sm opacity-0" onclick="closeCart()"></div>
-  <aside class="sheet absolute right-0 top-0 h-full w-full sm:max-w-[440px] translate-x-full bg-paper flex flex-col shadow-2xl" role="dialog" aria-modal="true" aria-label="Уточнить наличие">
-    <div class="flex items-center justify-between px-5 py-4 bg-snow border-b border-hair">
-      <h2 class="font-display font-extrabold text-[20px]">Уточнить наличие</h2>
-      <button onclick="closeCart()" aria-label="Закрыть список" class="btn-press grid place-items-center w-10 h-10 rounded-xl bg-paper hover:bg-hair transition">
-        <svg viewBox="0 0 24 24" class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+  <aside class="sheet cart-panel absolute right-0 top-0 h-full w-full sm:max-w-[440px] translate-x-full flex flex-col shadow-2xl" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+    <header class="cart-head">
+      <button id="cartBack" type="button" class="cart-icon-btn" onclick="cartGo('items')" aria-label="Назад к корзине" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
       </button>
-    </div>
-    <div id="cartBody" class="flex-1 overflow-y-auto p-4 space-y-3"></div>
-    <div id="cartFoot" style="max-height:65vh;overflow-y:auto" class="border-t border-hair bg-snow p-4 pb-[max(16px,env(safe-area-inset-bottom))] space-y-3"></div>
+      <h2 id="cartTitle">Корзина</h2>
+      <span id="cartHeadCount" class="cart-head-count"></span>
+      <button type="button" class="cart-icon-btn ml-auto" onclick="closeCart()" aria-label="Закрыть корзину">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </header>
+    <div id="cartBody" class="cart-body"></div>
+    <div id="cartFoot" class="cart-foot"></div>
   </aside>
 </div>
 
 <dialog id="productDialog" class="product-dialog" aria-labelledby="productTitle">
   <div id="productDetail"></div>
+</dialog>
+
+<dialog id="photoZoom" class="photo-zoom" aria-label="Фото товара">
+  <button type="button" class="photo-zoom-close" aria-label="Закрыть фото">✕</button>
+  <img id="photoZoomImg" alt="">
 </dialog>
 
 <!-- ═════════ ТОСТ ═════════ -->
@@ -390,6 +403,7 @@
 </div>
 
 <script src="assets/data/acari-products.js"></script>
+<script src="assets/data/acari-prices.js"></script>
 <script>
 /* ══════════════════════════════════════════════════════════════
    1) НАСТРОЙКИ МАГАЗИНА — правится здесь, больше нигде
@@ -858,8 +872,29 @@ const LEGACY_PRODUCTS = [
  sizes:[{w:'50 г',p:200},{w:'100 г',p:370}]}
 ];
 
+/* Фасовки и розничные цены из оптовых прайсов (scripts/apply_prices.py) заменяют данные с сайта производителя. */
+const ACARI_PRICES = window.ACARI_PRICES || { products:{}, extra:[] };
+/* Названия с сайта производителя написаны вразнобой («А `КЭТ», «ВЕТ/ А`ДОГ», «Acari Ciar. …»),
+   приводим их к одному виду. Марка и так подписана над названием. */
+function tidyAcari(p){
+  const name = p.name
+    .replace(/^Acari Ciar\.?\s+/i, '')
+    .replace(/(?<!\p{L})ВЕТ(?!\.?\s*Диет)[./]?\s*/giu, 'Вет ')
+    .replace(/(?<!\p{L})А\s*[`'’]?\s*(КЭТ|Кэт|ДОГ|Дог)(?!\p{L})/gu, (_, w) => `А’${w[0]}${w.slice(1).toLowerCase()}`)
+    .replace(/De`Lux/g, 'De Lux')
+    .replace(/«([А-ЯЁ ]+)»/g, (_, w) => `«${w[0]}${w.slice(1).toLowerCase()}»`)
+    .replace(/\.?\s+\d+\s*г$/, '')
+    .replace(/^Запеченный Кэт/, 'Запеченный. Кэт')
+    .replace(/^Волчья\. /, 'Волчья Стая. ')
+    .replace(/(\S)- (\S)/g, '$1-$2')
+    .replace(/\.(?=[А-ЯЁA-Z])/g, '. ')
+    .replace(/\s{2,}/g, ' ').trim();
+  const line = p.line !== 'Acari Ciar' ? p.line : /тести/i.test(name) ? 'Tasty' : /дог/i.test(name) ? "Vet A'Dog" : p.line;
+  return { ...p, name, line };
+}
 const PRODUCTS = [
-  ...(window.ACARI_PRODUCTS || []),
+  ...(window.ACARI_PRODUCTS || []).map(p => tidyAcari(ACARI_PRICES.products[p.id] ? { ...p, sizes: ACARI_PRICES.products[p.id].sizes } : p)),
+  ...ACARI_PRICES.extra.map(tidyAcari),
   ...LEGACY_PRODUCTS.filter(product => product.brand !== 'acari')
 ];
 
@@ -916,6 +951,21 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':
 const money = n => n.toLocaleString('ru-RU') + ' ₽';
 const brandOf = id => BRANDS.find(b => b.id === id) || BRANDS[0];
 const prodOf  = id => PRODUCTS.find(p => p.id === id);
+/* Размер гранулы: код в фасовке → подпись. Порядок — от самой мелкой. */
+const GRANULES = { XS:'декоративных', S:'мелких', M:'средних', L:'крупных' };
+const sizeKey = s => `${s.g || ''}|${s.w}`;
+const sizeLabel = s => s.g ? `${s.w}, гранула для ${GRANULES[s.g]} пород` : s.w;
+/* Наличие. Пока тестовое: остаток получается из id товара и фасовки и не меняется между заходами.
+   Настоящие остатки (например, из Saby) можно передать как window.XS_STOCK = { 'id|гранула|вес': штук }. */
+const stockOf = (p, s) => {
+  const key = `${p.id}|${sizeKey(s)}`;
+  if (window.XS_STOCK) return window.XS_STOCK[key] ?? 0;
+  let h = 2166136261;
+  for (const ch of key) h = Math.imul(h ^ ch.charCodeAt(0), 16777619);
+  const n = (h >>> 0) % 10;
+  return n < 3 ? 0 : n - 2;  // примерно треть фасовок — под заказ
+};
+const selectedSize = p => p.sizes[sel[p.id] ?? 0];
 const plural = (n,a,b,c) => { const m=n%100,k=n%10; return m>10&&m<20?c : k===1?a : k>1&&k<5?b : c; };
 
 function shade(hex, amt){
@@ -929,6 +979,10 @@ const store = {
 
 let cart = store.get('xs_cart', []);
 cart = Array.isArray(cart) ? cart.filter(i => prodOf(i.pid)?.sizes[i.si] && Number.isInteger(i.qty) && i.qty > 0) : [];
+cart.forEach(i => {  // фасовки могли поменяться местами — находим строку по ключу
+  const sizes = prodOf(i.pid).sizes, si = i.sk ? sizes.findIndex(s => sizeKey(s) === i.sk) : -1;
+  if (si >= 0) i.si = si; else i.sk = sizeKey(sizes[i.si]);
+});
 let order = store.get('xs_order', { name:'', phone:'', delivery:'Доставка по городу', address:'', note:'' });
 const sel = {};
 const PAGE_SIZE = window.innerWidth < 640 ? 8 : 12;
@@ -1052,6 +1106,18 @@ function renderBrands(){
   $$('#brandGrid [data-about]').forEach(el => el.addEventListener('click', () => openBrand(el.dataset.about)));
 }
 
+/* После смены фильтров — к началу результатов, если оно ушло выше экрана
+   (фильтровали из середины списка) или ещё ниже экрана. Учитываем закреплённую шапку и панель фильтров. */
+function toResults(){
+  const target = $('#activeChips');
+  let offset = $('header').getBoundingClientRect().bottom;
+  const bar = $('.filter-sticky');
+  if (getComputedStyle(bar).position === 'sticky') offset = Math.max(offset, parseFloat(getComputedStyle(bar).top) + bar.offsetHeight);
+  const top = target.getBoundingClientRect().top, want = offset + 12;
+  if (top < want - 4 || top > innerHeight * .6) window.scrollTo({ top: window.scrollY + top - want, behavior:'smooth' });
+}
+function showResults(){ setTimeout(toResults, 250); }
+let searchScrollTimer;
 function goCatalog(){
   const y = $('#catalog').getBoundingClientRect().top + window.scrollY - 60;
   window.scrollTo({ top:y, behavior:'smooth' });
@@ -1087,6 +1153,9 @@ function applyFilters(resetLimit=true){
   });
   const n = activeCount(), badge = $('#filterBadge');
   badge.textContent = n; badge.classList.toggle('hidden', n === 0);
+  const headerBadge = $('#headerFilterBadge');
+  headerBadge.textContent = n; headerBadge.hidden = n === 0;
+  $('#headerFilter').setAttribute('aria-label', n ? `Фильтры и поиск, выбрано: ${n}` : 'Фильтры и поиск');
   $('#filterLabel').textContent = state.brand === 'all' ? 'Фильтры' : brandOf(state.brand).name;
 
   const chips = [];
@@ -1101,12 +1170,12 @@ function applyFilters(resetLimit=true){
     <button data-clear="all" class="chip rounded-full bg-paper px-3 py-1.5 text-[12.5px] text-steel hover:text-ink transition">Сбросить всё</button>` : '';
   $$('#activeChips [data-clear]').forEach(el => el.addEventListener('click', () => {
     const k = el.dataset.clear;
-    if (k === 'all') return resetFilters();
+    if (k === 'all'){ resetFilters(); return toResults(); }
     if (k === 'brand') { state.brand = 'all'; state.line = 'all'; }
     if (k === 'line')  state.line = 'all';
     if (k === 'pet')   state.pet = 'all';
     if (k === 'q'){ state.q = ''; const s = $('#searchInput'); if (s) s.value = ''; }
-    applyFilters();
+    applyFilters(); toResults();
   }));
 
   renderGrid();
@@ -1118,6 +1187,17 @@ function resetFilters(){
 }
 
 /* ——— сетка ——— */
+function stockLabel(p){
+  const n = stockOf(p, selectedSize(p));
+  if (!n) return '<span class="stock is-out"><span class="stock-long">Нет в наличии · предзаказ</span><span class="stock-short">Под заказ</span></span>';
+  return `<span class="stock is-in">${n <= 3 ? `Осталось ${n} шт` : 'В наличии'}</span>`;
+}
+const CLOCK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>';
+function addButton(p, mode='card'){
+  const pre = !stockOf(p, selectedSize(p));
+  const text = pre ? 'Предзаказ' : mode === 'detail' ? 'Добавить в корзину' : 'В корзину';
+  return `<button type="button" class="product-primary${pre ? ' is-preorder' : ''}" data-add="${esc(p.id)}" data-mode="${mode}" aria-label="${pre ? 'Оформить предзаказ' : 'Добавить в корзину'}: ${esc(p.name)}"><span class="product-primary-icon" aria-hidden="true">${pre ? CLOCK : '＋'}</span><span class="product-primary-text">${text}</span></button>`;
+}
 function priceLabel(p){
   const s = p.sizes[sel[p.id] ?? 0];
   if (!CONFIG.showPrices || !s || !s.p) return `<span class="mono text-[12.5px] text-steel">цена по запросу</span>`;
@@ -1138,32 +1218,52 @@ function renderGrid(){
 
   $('#grid').innerHTML = list.map(p => {
     const b = brandOf(p.brand);
+    const meta = [p.feedType || p.grain || p.sub, ...p.tags.slice(0,2)].filter(Boolean);
+    const facts = Object.entries(p.an || {}).filter(([k]) => ['Белок','Жир'].includes(k));
     return `
     <article class="catalog-card" data-product="${esc(p.id)}">
       <button type="button" class="catalog-photo" data-detail="${esc(p.id)}" aria-label="Подробнее: ${esc(p.name)}">
         <span class="catalog-pet">${esc(petLabel(p))}</span>
         ${productVisual(p)}
-        <span class="catalog-photo-hint">Подробнее ↗</span>
       </button>
       <div class="catalog-card-body">
         <p class="catalog-brand">${esc(b.name)} <span>· ${esc(p.line)}</span></p>
         <h3><button type="button" data-detail="${esc(p.id)}">${esc(p.name)}</button></h3>
-        <p class="catalog-sub">${esc(p.feedType || p.grain || p.sub)}</p>
-        <div class="catalog-tags">${p.tags.slice(0,2).map(t => `<span>${esc(t)}</span>`).join('')}</div>
-        <dl class="catalog-facts">${Object.entries(p.an).filter(([k]) => ['Белок','Жир'].includes(k)).map(([k,v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>
-        <div class="catalog-buy">
-          <fieldset class="product-sizes"><legend>Фасовка</legend>${sizeButtons(p)}</fieldset>
-          <div class="catalog-price" data-price="${esc(p.id)}">${priceLabel(p)}</div>
-          <button type="button" class="product-primary" data-add="${esc(p.id)}">В список <span aria-hidden="true">＋</span></button>
-          <button type="button" class="product-link" data-detail="${esc(p.id)}">Состав и подробности <span aria-hidden="true">↗</span></button>
+        ${meta.length ? `<p class="catalog-sub">${meta.map(esc).join(' · ')}</p>` : ''}
+        <div class="catalog-facts-row">
+          ${facts.length ? `<dl class="catalog-facts">${facts.map(([k,v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>` : ''}
+          <button type="button" class="catalog-more" data-detail="${esc(p.id)}">Состав <span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+      <div class="catalog-buy">
+        <div class="product-options" data-options-for="${esc(p.id)}">${optionControls(p)}</div>
+        <div class="catalog-order">
+          <div class="catalog-price-box">
+            <div data-stock="${esc(p.id)}">${stockLabel(p)}</div>
+            <div class="catalog-price" data-price="${esc(p.id)}">${priceLabel(p)}</div>
+          </div>
+          ${addButton(p)}
         </div>
       </div>
     </article>`;
   }).join('');
 }
 
+function optionControls(p, mode='card'){
+  const legend = mode === 'detail' ? '<legend>Выберите фасовку</legend>' : '<legend class="sr-only">Фасовка</legend>';
+  return granuleButtons(p) + `<fieldset class="product-sizes">${legend}${sizeButtons(p)}</fieldset>`;
+}
+function granuleButtons(p){
+  const codes = Object.keys(GRANULES).filter(g => p.sizes.some(s => s.g === g));
+  if (!codes.length) return '';
+  const current = p.sizes[sel[p.id] ?? 0].g;
+  return `<div class="product-granules" role="group" aria-label="Размер гранулы"><span class="product-granules-label" aria-hidden="true">Гранула для</span><div class="product-granules-list">${codes.map(g =>
+    `<button type="button" class="product-granule" data-granule="${esc(p.id)}" data-g="${g}" aria-pressed="${g === current}" aria-label="Гранула для ${GRANULES[g]} пород">${GRANULES[g]}</button>`).join('')}</div></div>`;
+}
 function sizeButtons(p){
-  return p.sizes.map((size, index) => `<button type="button" class="product-size" data-size="${esc(p.id)}" data-si="${index}" aria-pressed="${index === (sel[p.id] ?? 0)}">${esc(size.w)}</button>`).join('');
+  const current = p.sizes[sel[p.id] ?? 0];
+  return p.sizes.map((size, index) => (size.g || '') !== (current.g || '') ? '' :
+    `<button type="button" class="product-size${stockOf(p, size) ? '' : ' is-preorder'}" data-size="${esc(p.id)}" data-si="${index}" aria-pressed="${index === (sel[p.id] ?? 0)}"${stockOf(p, size) ? '' : ' title="Под заказ"'}>${esc(size.w)}${stockOf(p, size) ? '' : '<span class="sr-only">, под заказ</span>'}</button>`).join('');
 }
 
 $('#loadMore').addEventListener('click', () => {
@@ -1172,16 +1272,16 @@ $('#loadMore').addEventListener('click', () => {
 });
 
 function productAction(e){
+  const gran = e.target.closest('[data-granule]');
+  if (gran){
+    const p = prodOf(gran.dataset.granule), current = p.sizes[sel[p.id] ?? 0];
+    const same = p.sizes.findIndex(s => s.g === gran.dataset.g && s.w === current.w);
+    setProductSize(p.id, same >= 0 ? same : p.sizes.findIndex(s => s.g === gran.dataset.g));
+    return;
+  }
   const size = e.target.closest('[data-size]');
   if (size){
-    const id = size.dataset.size;
-    sel[id] = Number(size.dataset.si);
-    $$('[data-size]').filter(el => el.dataset.size === id).forEach(el => {
-      el.setAttribute('aria-pressed', String(Number(el.dataset.si) === sel[id]));
-    });
-    $$('[data-price]').filter(el => el.dataset.price === id).forEach(el => {
-      el.innerHTML = priceLabel(prodOf(id));
-    });
+    setProductSize(size.dataset.size, Number(size.dataset.si));
     return;
   }
   const add = e.target.closest('[data-add]');
@@ -1189,11 +1289,41 @@ function productAction(e){
     const p = prodOf(add.dataset.add);
     addToCart(p.id, sel[p.id] ?? 0);
     const status = $('#detailStatus');
-    if ($('#productDialog').open && status) status.textContent = `${p.sizes[sel[p.id] ?? 0].w} — добавлено в список`;
+    if ($('#productDialog').open && status) status.textContent = `${sizeLabel(selectedSize(p))} — ${stockOf(p, selectedSize(p)) ? 'добавлено в корзину' : 'предзаказ добавлен в корзину'}`;
+    flashAdded(add);
     return;
   }
+  const zoom = e.target.closest('[data-zoom]');
+  if (zoom){ openZoom(zoom.dataset.zoom, zoom); return; }
   const detail = e.target.closest('[data-detail]');
   if (detail) openProduct(detail.dataset.detail, detail);
+}
+function flashAdded(button){
+  const text = button.querySelector('.product-primary-text');
+  if (!text) return;
+  clearTimeout(button._addedTimer);
+  button.dataset.label ??= text.textContent;
+  button.classList.add('is-added');
+  text.textContent = 'Добавлено';
+  button._addedTimer = setTimeout(() => {
+    button.classList.remove('is-added');
+    text.textContent = button.dataset.label;
+  }, 1600);
+}
+function setProductSize(id, index){
+  const product = prodOf(id);
+  if (!product?.sizes[index]) return;
+  sel[id] = index;
+  // Кнопки перерисовываются — возвращаем фокус на ту же кнопку в том же блоке.
+  const focused = document.activeElement, box = focused?.closest('[data-options-for]');
+  const attr = focused?.dataset.g ? `[data-g="${focused.dataset.g}"]` : focused?.dataset.si ? `[data-si="${focused.dataset.si}"]` : '';
+  $$('[data-options-for]').filter(el => el.dataset.optionsFor === id).forEach(el => {
+    el.innerHTML = optionControls(product, el.dataset.optionsMode);
+    if (el === box && attr) el.querySelector(attr)?.focus({preventScroll:true});
+  });
+  $$('[data-price]').filter(el => el.dataset.price === id).forEach(el => { el.innerHTML = priceLabel(product); });
+  $$('[data-stock]').filter(el => el.dataset.stock === id).forEach(el => { el.innerHTML = stockLabel(product); });
+  $$('[data-add]').filter(el => el.dataset.add === id).forEach(el => { el.outerHTML = addButton(product, el.dataset.mode); });
 }
 $('#grid').addEventListener('click', productAction);
 $('#productDetail').addEventListener('click', productAction);
@@ -1204,44 +1334,53 @@ function openProduct(id, opener){
   const p = prodOf(id);
   if (!p) return;
   productOpener = opener || document.activeElement;
+  const facts = Object.entries(p.an).filter(([k]) => ['Белок','Жир','Клетчатка','Ккал/100 г','Ккал/кг'].includes(k)).slice(0,4);
   $('#productDetail').innerHTML = `
     <header class="product-dialog-header">
-      <span>О продукте · ${esc(brandOf(p.brand).name)}</span>
+      <span>${esc(brandOf(p.brand).name)} · ${esc(p.line)}</span>
       <button type="button" class="product-close" data-close-product aria-label="Закрыть карточку товара" autofocus>✕</button>
     </header>
     <div class="product-detail-layout">
-      <div class="product-detail-photo">${productVisual(p)}</div>
-      <div class="product-detail-summary">
-        <p class="catalog-brand">${esc(p.line)} · ${esc(petLabel(p))}</p>
-        <h2 id="productTitle">${esc(p.name)}</h2>
-        <p class="product-description">${esc(p.desc)}</p>
-        <div class="catalog-tags">${p.tags.map(t => `<span>${esc(t)}</span>`).join('')}</div>
-        <fieldset class="product-sizes"><legend>Выберите фасовку</legend>${sizeButtons(p)}</fieldset>
-        <div class="product-detail-purchase">
-          <div data-price="${esc(p.id)}">${priceLabel(p)}</div>
-          <button type="button" class="product-primary" data-add="${esc(p.id)}">Добавить в список <span aria-hidden="true">＋</span></button>
-        </div>
-        <p class="product-note">Продавец подтвердит наличие и актуальную цену.</p>
-        <p id="detailStatus" class="detail-status" role="status" aria-live="polite"></p>
+      <div class="product-detail-media">
+        ${p.photo
+          ? `<button type="button" class="product-detail-photo is-zoomable" data-zoom="${esc(p.id)}" aria-label="Открыть фото крупнее">${productVisual(p)}<span class="photo-zoom-hint" aria-hidden="true">⤢ Увеличить</span></button>`
+          : `<div class="product-detail-photo">${productVisual(p)}</div>`}
       </div>
-      <section class="product-composition">
-        <p class="catalog-brand">Что внутри</p>
-        <h3>Состав</h3>
-        <p>${esc(p.comp)}</p>
-      </section>
-      <section class="product-analysis">
-        <p class="catalog-brand">Пищевая ценность</p>
-        <h3>Показатели</h3>
-        <dl>${Object.entries(p.an).map(([k,v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>
-      </section>
-      <section class="product-feeding">
-        <p class="catalog-brand">Каждый день</p>
-        <h3>Кормление и хранение</h3>
-        <p>${esc(p.norm)}</p>
-        ${p.normPhoto ? `<a class="feeding-image" href="${esc(p.normPhoto)}" target="_blank" rel="noopener" aria-label="Открыть таблицу кормления в полном размере">${imgTag(p.normPhoto, 'Таблица кормления ' + p.name, '')}<span>Открыть таблицу в полном размере ↗</span></a>` : ''}
-        ${p.storage ? `<p class="product-storage"><strong>Хранение:</strong> ${esc(p.storage)}</p>` : ''}
-        ${p.source ? `<a class="product-link" href="${esc(p.source)}" target="_blank" rel="noopener">Карточка производителя ↗</a>` : ''}
-      </section>
+      <div class="product-detail-info">
+        <div class="product-detail-summary">
+          <p class="catalog-brand">${esc(p.line)} · ${esc(petLabel(p))}</p>
+          <h2 id="productTitle">${esc(p.name)}</h2>
+          ${facts.length ? `<dl class="catalog-facts">${facts.map(([k,v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>` : ''}
+          ${p.desc && p.desc !== p.name ? `<p class="product-description">${esc(p.desc)}</p>` : ''}
+          <div class="catalog-tags">${p.tags.map(t => `<span>${esc(t)}</span>`).join('')}</div>
+        </div>
+        <div class="product-buybox">
+          <div class="product-options" data-options-for="${esc(p.id)}" data-options-mode="detail">${optionControls(p, 'detail')}</div>
+          <div class="product-buybox-row">
+            <div class="catalog-price-box">
+              <div data-stock="${esc(p.id)}">${stockLabel(p)}</div>
+              <div class="catalog-price" data-price="${esc(p.id)}">${priceLabel(p)}</div>
+            </div>
+            ${addButton(p, 'detail')}
+          </div>
+          <p id="detailStatus" class="detail-status" role="status" aria-live="polite"></p>
+        </div>
+        <section class="product-composition">
+          <h3>Состав</h3>
+          <p>${esc(p.comp)}</p>
+        </section>
+        ${Object.keys(p.an).length ? `<section class="product-analysis">
+          <h3>Пищевая ценность</h3>
+          <dl>${Object.entries(p.an).map(([k,v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>
+        </section>` : ''}
+        <section class="product-feeding">
+          <h3>Кормление и хранение</h3>
+          <p>${esc(p.norm)}</p>
+          ${p.normPhoto ? `<a class="feeding-image" href="${esc(p.normPhoto)}" target="_blank" rel="noopener" aria-label="Открыть таблицу кормления в полном размере">${imgTag(p.normPhoto, 'Таблица кормления ' + p.name, '')}<span>Открыть таблицу в полном размере ↗</span></a>` : ''}
+          ${p.storage ? `<p class="product-storage"><strong>Хранение:</strong> ${esc(p.storage)}</p>` : ''}
+          ${p.source ? `<a class="product-link" href="${esc(p.source)}" target="_blank" rel="noopener">Карточка производителя ↗</a>` : ''}
+        </section>
+      </div>
     </div>`;
   const dialog = $('#productDialog');
   previousOverflow = document.body.style.overflow;
@@ -1260,6 +1399,21 @@ $('#productDialog').addEventListener('click', e => {
     const rect = e.currentTarget.getBoundingClientRect();
     if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) closeProduct();
   }
+});
+
+let zoomOpener = null;
+function openZoom(id, opener){
+  const p = prodOf(id);
+  if (!p?.photo) return;
+  zoomOpener = opener;
+  const img = $('#photoZoomImg');
+  img.src = p.photo;
+  img.alt = `${brandOf(p.brand).name} ${p.name}`;
+  $('#photoZoom').showModal();
+}
+$('#photoZoom').addEventListener('click', () => $('#photoZoom').close());
+$('#photoZoom').addEventListener('close', () => {
+  if (zoomOpener?.isConnected) zoomOpener.focus({preventScroll:true});
 });
 
 /* ══════════ ПОПАПЫ ══════════ */
@@ -1326,7 +1480,7 @@ function renderFilterSheet(){
     <div class="p-5 md:p-6 pb-28">
       <div class="relative">
         <svg viewBox="0 0 24 24" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-steel" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
-        <input id="fq" type="search" value="${esc(state.q)}" placeholder="Поиск: индейка, холистик, стерилизованные…" autocomplete="off"
+        <input id="fq" type="search" value="${esc(state.q)}" placeholder="Индейка, холистик, для котят…" aria-label="Поиск по названию или составу" autocomplete="off"
           class="w-full rounded-xl border border-hair bg-paper pl-10 pr-4 py-3 text-[14px] placeholder:text-steel focus:bg-snow focus:border-ice outline-none transition">
       </div>
 
@@ -1358,7 +1512,7 @@ function renderFilterSheet(){
 
     <div class="sticky bottom-0 border-t border-hair bg-snow/95 backdrop-blur p-4 pb-[max(16px,env(safe-area-inset-bottom))] flex gap-2">
       <button onclick="resetFilters(); renderFilterSheet();" class="btn-press rounded-xl border border-hair px-4 py-3.5 text-[13px] font-medium text-steel hover:text-ink hover:border-ink transition">Сбросить</button>
-      <button onclick="closeSheet()" class="btn-press flex-1 rounded-xl bg-ink px-4 py-3.5 font-semibold text-snow hover:bg-icedeep transition">Показать ${n} ${plural(n,'корм','корма','кормов')}</button>
+      <button onclick="closeSheet(); showResults()" class="btn-press flex-1 rounded-xl bg-ink px-4 py-3.5 font-semibold text-snow hover:bg-icedeep transition">Показать ${n} ${plural(n,'корм','корма','кормов')}</button>
     </div>`;
 
   if ($('#sheet').classList.contains('hidden')) showSheet(html);
@@ -1379,14 +1533,21 @@ function renderFilterSheet(){
 
 /* ══════════ КОРЗИНА ══════════ */
 function addToCart(pid, si){
-  const line = cart.find(i => i.pid === pid && i.si === si);
-  if (line) line.qty++; else cart.push({ pid, si, qty:1 });
+  const p = prodOf(pid), sk = sizeKey(p.sizes[si]);
+  const line = cart.find(i => i.pid === pid && i.sk === sk);
+  if (line) line.qty++; else cart.push({ pid, si, sk, qty:1 });
   saveCart();
-  const p = prodOf(pid);
-  toast(`${p.name} · ${p.sizes[si].w} — в списке`);
+  toast(`${p.name} · ${sizeLabel(p.sizes[si])} — ${stockOf(p, p.sizes[si]) ? 'в корзине' : 'предзаказ в корзине'}`);
   const badge = $('#cartCount'); badge.classList.remove('pop'); void badge.offsetWidth; badge.classList.add('pop');
 }
-function setQty(idx,d){ cart[idx].qty += d; if (cart[idx].qty < 1) cart.splice(idx,1); saveCart(); renderCart(); }
+function setQty(idx,d){
+  cart[idx].qty += d;
+  const removed = cart[idx].qty < 1;
+  if (removed) cart.splice(idx,1);
+  saveCart(); renderCart();
+  // после перерисовки фокус остаётся на той же кнопке количества
+  if (!removed) $$('#cartBody .cart-line')[idx]?.querySelectorAll('.qty button')[d > 0 ? 1 : 0]?.focus({preventScroll:true});
+}
 function removeLine(idx){ cart.splice(idx,1); saveCart(); renderCart(); }
 function cartTotal(){
   let sum = 0, unknown = false;
@@ -1403,78 +1564,126 @@ function saveCart(){
   if (!$('#cart').classList.contains('hidden')) renderCart();
 }
 
-function renderCart(){
-  const body = $('#cartBody'), foot = $('#cartFoot');
-  if (!cart.length){
-    body.innerHTML = `
-      <div class="text-center py-16">
-        <div class="mx-auto w-16 h-16 rounded-2xl bg-icesoft grid place-items-center mb-4">
-          <svg viewBox="0 0 24 24" class="w-7 h-7 text-ice" fill="currentColor">${PAW}</svg>
-        </div>
-        <p class="font-display font-bold text-[17px]">Список пока пуст</p>
-        <p class="text-steel text-[14px] mt-1.5">Выберите корм — регистрация не нужна.</p>
-        <button onclick="closeCart()" class="btn-press mt-5 rounded-xl bg-ink px-5 py-3 text-snow font-semibold text-[14px]">Перейти к каталогу</button>
-      </div>`;
-    foot.innerHTML = ''; return;
-  }
-
-  body.innerHTML = cart.map((i,idx) => {
-    const p = prodOf(i.pid), s = p.sizes[i.si], b = brandOf(p.brand);
-    const price = CONFIG.showPrices && s.p ? money(s.p * i.qty) : 'по запросу';
-    return `
-    <div class="flex gap-3 rounded-2xl border border-hair bg-snow p-3">
-      <div class="w-16 h-16 shrink-0 rounded-xl bg-paper grid place-items-center overflow-hidden">${p.photo ? imgTag(p.photo, p.name, 'w-full h-full object-contain p-1.5') : sack(p)}</div>
-      <div class="flex-1 min-w-0">
-        <p class="mono text-[9px] uppercase tracking-[.12em] text-steel">${esc(b.name)}</p>
-        <p class="font-semibold text-[14px] leading-tight mt-0.5 truncate">${esc(p.name)}</p>
-        <p class="mono text-[11px] text-steel mt-0.5">${esc(s.w)}</p>
-        <div class="flex items-center justify-between mt-2">
-          <div class="flex items-center gap-1 rounded-lg border border-hair">
-            <button onclick="setQty(${idx},-1)" class="btn-press w-8 h-8 grid place-items-center text-steel hover:text-ink" aria-label="Меньше">−</button>
-            <span class="mono text-[13px] w-6 text-center">${i.qty}</span>
-            <button onclick="setQty(${idx},1)" class="btn-press w-8 h-8 grid place-items-center text-steel hover:text-ink" aria-label="Больше">+</button>
-          </div>
-          <span class="font-display font-bold text-[14px]">${price}</span>
-        </div>
-      </div>
-      <button onclick="removeLine(${idx})" class="btn-press self-start text-steel hover:text-rasp transition" aria-label="Убрать">
-        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
-      </button>
-    </div>`;
-  }).join('');
-
-  const { sum, unknown } = cartTotal();
-  foot.innerHTML = `
-    <div class="grid grid-cols-1 gap-2 min-[420px]:grid-cols-2">
-      <input id="fName" value="${esc(order.name)}" placeholder="Имя" class="rounded-xl border border-hair bg-paper px-3.5 py-3 text-[14px] outline-none focus:border-ice focus:bg-snow transition">
-      <input id="fPhone" value="${esc(order.phone)}" placeholder="Телефон (необязательно)" inputmode="tel" class="rounded-xl border border-hair bg-paper px-3.5 py-3 text-[14px] outline-none focus:border-ice focus:bg-snow transition">
-    </div>
-    <input id="fNote" value="${esc(order.note)}" placeholder="Комментарий: вкус, гранула, когда удобно" class="w-full rounded-xl border border-hair bg-paper px-3.5 py-3 text-[14px] outline-none focus:border-ice focus:bg-snow transition">
-
-    <div class="flex items-end justify-between pt-1">
-      <div>
-        <p class="mono text-[10px] uppercase tracking-[.12em] text-steel">Стоимость, ориентир</p>
-        <p class="font-display font-extrabold text-[26px] leading-none mt-1">${unknown && !sum ? 'по запросу' : money(sum)}</p>
-      </div>
-      <p class="text-[11.5px] text-steel max-w-[46%] text-right leading-snug">${unknown ? 'Часть позиций — цена по запросу.' : 'Точную сумму подтвердит продавец.'}</p>
-    </div>
-
-    <div class="grid grid-cols-2 gap-2 pt-1">
-      <button onclick="send('tg')" class="btn-press rounded-xl bg-ice px-4 py-3.5 font-semibold text-snow hover:bg-icedeep transition">Telegram</button>
-      <button onclick="send('max')" class="btn-press rounded-xl bg-amber px-4 py-3.5 font-semibold text-ink hover:bg-amberdeep hover:text-snow transition">MAX</button>
-    </div>
-    <div class="grid ${CONFIG.waPhone ? 'grid-cols-2' : 'grid-cols-1'} gap-2">
-      ${CONFIG.waPhone ? `<button onclick="send('wa')" class="btn-press rounded-xl border border-hair px-4 py-3 text-[13px] font-medium text-steel hover:text-ink hover:border-ink transition">WhatsApp</button>` : ''}
-      <button onclick="send('copy')" class="btn-press rounded-xl border border-hair px-4 py-3 text-[13px] font-medium text-steel hover:text-ink hover:border-ink transition">Скопировать список</button>
-    </div>
-    <div id="maxTransfer" hidden aria-live="polite"></div>
-    <p class="text-[11.5px] text-steel text-center leading-snug">Это запрос наличия и цен. Он не оформляет заказ и не резервирует товары. Сообщение нужно отправить самостоятельно в мессенджере.</p>`;
-
-  const bind = (id,key) => { const el = $(id); if (el) el.addEventListener('input', e => { order[key] = e.target.value; store.set('xs_order', order); }); };
-  bind('#fName','name'); bind('#fPhone','phone'); bind('#fNote','note');
+let cartStep = 'items';
+function cartGo(step){
+  cartStep = step;
+  renderCart();
+  $('#cartBody').scrollTop = 0;
+  (step === 'checkout' ? $('#fName') : $('#cartTitle'))?.focus({preventScroll:true});
+}
+function stockBadge(i){
+  const { n, pre, partial } = lineStock(i);
+  if (pre) return '<span class="stock is-out">Предзаказ</span>';
+  if (partial) return `<span class="stock is-warn">В наличии ${n} шт, ещё ${i.qty - n} — предзаказ</span>`;
+  return '<span class="stock is-in">В наличии</span>';
 }
 
+function renderCart(){
+  const body = $('#cartBody'), foot = $('#cartFoot');
+  const q = cartQty(), { sum, unknown } = cartTotal();
+  if (!cart.length) cartStep = 'items';
+  $('#cartTitle').textContent = cartStep === 'checkout' ? 'Оформление' : 'Корзина';
+  $('#cartBack').hidden = cartStep !== 'checkout';
+  $('#cartHeadCount').textContent = q && cartStep === 'items' ? `${q} ${plural(q,'товар','товара','товаров')}` : '';
+
+  if (!cart.length){
+    body.innerHTML = `
+      <div class="cart-empty">
+        <div class="cart-empty-icon"><svg viewBox="0 0 24 24" fill="currentColor">${PAW}</svg></div>
+        <p class="cart-empty-title">В корзине пока пусто</p>
+        <p>Выберите корм в каталоге — регистрация не нужна.</p>
+        <button type="button" onclick="closeCart(); goCatalog()" class="product-primary">Перейти в каталог</button>
+      </div>`;
+    foot.innerHTML = ''; foot.hidden = true; return;
+  }
+  foot.hidden = false;
+  const total = unknown && !sum ? 'по запросу' : money(sum);
+  const preorders = cart.filter(i => lineStock(i).pre || lineStock(i).partial).length;
+
+  if (cartStep === 'items'){
+    body.innerHTML = `
+      <ul class="cart-lines">${cart.map((i,idx) => {
+        const p = prodOf(i.pid), s = p.sizes[i.si];
+        const price = CONFIG.showPrices && s.p ? money(s.p * i.qty) : 'по запросу';
+        const each = CONFIG.showPrices && s.p && i.qty > 1 ? `<span class="cart-line-each">${money(s.p)} × ${i.qty}</span>` : '';
+        return `
+        <li class="cart-line">
+          <button type="button" class="cart-line-photo" data-cart-detail="${esc(p.id)}" aria-label="Подробнее: ${esc(p.name)}">${p.photo ? imgTag(p.photo, '', '') : sack(p)}</button>
+          <div class="cart-line-info">
+            <p class="cart-line-name">${esc(p.name)}</p>
+            <p class="cart-line-size">${esc(sizeLabel(s))}</p>
+            ${stockBadge(i)}
+            <div class="cart-line-row">
+              <div class="qty" role="group" aria-label="Количество">
+                <button type="button" onclick="setQty(${idx},-1)" aria-label="${i.qty > 1 ? 'Меньше' : 'Убрать из корзины'}">${i.qty > 1 ? '−' : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 7h14M10 11v6M14 11v6M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 7V4h6v3"/></svg>'}</button>
+                <span aria-live="polite">${i.qty}</span>
+                <button type="button" onclick="setQty(${idx},1)" aria-label="Больше">+</button>
+              </div>
+              <div class="cart-line-price"><b>${price}</b>${each}</div>
+            </div>
+          </div>
+          <button type="button" class="cart-line-remove" onclick="removeLine(${idx})" aria-label="Удалить ${esc(p.name)}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+          </button>
+        </li>`;
+      }).join('')}</ul>
+      <div class="cart-summary">
+        <div><span>Товары, ${q} шт</span><span>${total}</span></div>
+        ${preorders ? `<div class="cart-summary-note"><span class="stock is-out">Предзаказ</span><span>${preorders} ${plural(preorders,'позиция','позиции','позиций')} — срок подтвердит продавец</span></div>` : ''}
+        ${unknown ? '<div class="cart-summary-note"><span>Часть позиций — цена по запросу</span></div>' : ''}
+        <button type="button" class="cart-clear" onclick="clearCart(this)">Очистить корзину</button>
+      </div>`;
+    foot.innerHTML = `
+      <div class="cart-total"><span>Итого</span><b>${total}</b></div>
+      <button type="button" class="product-primary cart-next" onclick="cartGo('checkout')">Оформить заказ <span aria-hidden="true">→</span></button>`;
+  } else {
+    body.innerHTML = `
+      <section class="cart-block">
+        <h3>Контакты</h3>
+        <label class="field"><span>Имя</span><input id="fName" value="${esc(order.name)}" autocomplete="name" placeholder="Как к вам обращаться"></label>
+        <label class="field"><span>Телефон <em>необязательно</em></span><input id="fPhone" value="${esc(order.phone)}" inputmode="tel" autocomplete="tel" placeholder="+7"></label>
+        <label class="field"><span>Комментарий <em>необязательно</em></span><textarea id="fNote" rows="2" placeholder="Адрес доставки, удобное время">${esc(order.note)}</textarea></label>
+      </section>
+      <section class="cart-block">
+        <h3>Ваш заказ</h3>
+        <ul class="cart-mini">${cart.map(i => {
+          const p = prodOf(i.pid), s = p.sizes[i.si], note = lineStockText(i);
+          return `<li><span>${esc(p.name)}<small>${esc(sizeLabel(s))} × ${i.qty}${note ? ` · ${esc(note)}` : ''}</small></span><b>${CONFIG.showPrices && s.p ? money(s.p * i.qty) : '—'}</b></li>`;
+        }).join('')}</ul>
+        <div class="cart-total"><span>Итого</span><b>${total}</b></div>
+      </section>
+      <p class="cart-hint">Заказ уйдёт сообщением в мессенджер. Продавец подтвердит сумму${preorders ? ', сроки предзаказа' : ''} и время доставки.</p>
+      <div id="maxTransfer" class="cart-block" hidden aria-live="polite"></div>`;
+    foot.innerHTML = `
+      <p class="cart-foot-label">Отправить заказ</p>
+      <div class="cart-send">
+        <button type="button" onclick="send('tg')" class="send-tg">Telegram</button>
+        <button type="button" onclick="send('max')" class="send-max">MAX</button>
+      </div>
+      <div class="cart-send-extra">
+        ${CONFIG.waPhone ? `<button type="button" onclick="send('wa')">WhatsApp</button>` : ''}
+        <button type="button" onclick="send('copy')">Скопировать текст заказа</button>
+      </div>`;
+    const bind = (id,key) => $(id).addEventListener('input', e => { order[key] = e.target.value; store.set('xs_order', order); });
+    bind('#fName','name'); bind('#fPhone','phone'); bind('#fNote','note');
+  }
+}
+function clearCart(button){
+  if (button.dataset.confirm !== '1'){
+    button.dataset.confirm = '1';
+    button.textContent = 'Нажмите ещё раз, чтобы очистить';
+    setTimeout(() => { if (button.isConnected){ button.dataset.confirm = ''; button.textContent = 'Очистить корзину'; } }, 3000);
+    return;
+  }
+  cart.length = 0; saveCart(); renderCart(); toast('Корзина очищена');
+}
+$('#cart').addEventListener('click', e => {
+  const detail = e.target.closest('[data-cart-detail]');
+  if (detail) openProduct(detail.dataset.cartDetail, detail);
+});
+
 function openCart(){
+  cartStep = 'items';
   renderCart();
   const c = $('#cart'); c.classList.remove('hidden'); document.body.style.overflow = 'hidden';
   requestAnimationFrame(() => { $('.veil',c).style.opacity='1'; $('aside',c).style.transform='translateX(0)'; });
@@ -1485,17 +1694,25 @@ function closeCart(){
   setTimeout(() => { c.classList.add('hidden'); document.body.style.overflow=''; }, 380);
 }
 
-/* ——— запрос наличия ——— */
+/* ——— отправка заказа ——— */
+function lineStock(i){
+  const p = prodOf(i.pid), n = stockOf(p, p.sizes[i.si]);
+  return { n, pre: n === 0, partial: n > 0 && i.qty > n };
+}
+function lineStockText(i){
+  const { n, pre, partial } = lineStock(i);
+  return pre ? 'предзаказ' : partial ? `в наличии ${n} шт, ещё ${i.qty - n} — предзаказ` : '';
+}
 function orderText(){
   const { sum, unknown } = cartTotal();
   const lines = cart.map((i,n) => {
-    const p = prodOf(i.pid), s = p.sizes[i.si];
+    const p = prodOf(i.pid), s = p.sizes[i.si], note = lineStockText(i);
     const price = CONFIG.showPrices && s.p ? ` — ${money(s.p * i.qty)}` : ' — цена по запросу';
-    return `${n+1}. ${brandOf(p.brand).name} · ${p.name} (${p.sub})\n   ${s.w} × ${i.qty}${price}`;
+    return `${n+1}. ${brandOf(p.brand).name} · ${p.name}\n   ${sizeLabel(s)} × ${i.qty}${price}${note ? ` (${note})` : ''}`;
   }).join('\n');
   return [
-    `Здравствуйте! Подскажите, пожалуйста, наличие и актуальные цены на товары из витрины ${CONFIG.shop}:`, '', lines, '',
-    `Стоимость по витрине (ориентир): ${money(sum)}${unknown ? ' + позиции по запросу' : ''}`, '',
+    `Заказ с сайта ${CONFIG.shop}`, '', lines, '',
+    `Итого: ${money(sum)}${unknown ? ' + позиции с ценой по запросу' : ''}`, '',
     order.name ? `Имя: ${order.name}` : null,
     order.phone ? `Телефон: ${order.phone}` : null,
     order.note ? `Комментарий: ${order.note}` : null
@@ -1514,16 +1731,16 @@ async function copyText(t){
   }
 }
 async function send(where){
-  if (!cart.length) return toast('Сначала добавьте корм в список','!');
+  if (!cart.length) return toast('Сначала добавьте корм в корзину','!');
   const text = orderText();
   if (where === 'copy'){
     const ok = await copyText(text);
-    return toast(ok ? 'Список скопирован' : 'Скопируйте текст вручную');
+    return toast(ok ? 'Заказ скопирован' : 'Скопируйте текст вручную');
   }
   if (where === 'tg'){
     window.open(`https://t.me/+${CONFIG.messengerPhone}?text=${encodeURIComponent(text)}`,'_blank','noopener');
     await copyText(text);
-    toast('Открываю Telegram с запросом наличия');
+    toast('Открываю Telegram с готовым заказом');
   }
   if (where === 'max'){
     const panel = $('#maxTransfer');
@@ -1535,6 +1752,7 @@ async function send(where){
       <button type="button" onclick="copyMaxRequest()" class="btn-press rounded-xl border border-hair px-4 py-3 text-[13px] mt-2">Скопировать текст</button>
       <a href="${esc(CONFIG.maxUrl)}" target="_blank" rel="noopener noreferrer" class="btn-press rounded-xl bg-amber px-4 py-3 text-[13px] mt-2 inline-block">Открыть чат в MAX</a>
       <p class="text-[12px] text-steel mt-2">Откройте чат, вставьте текст в поле сообщения и отправьте его. Если чат не открывается, найдите ХаскоШоп в MAX.</p>`;
+    panel.scrollIntoView({ behavior:'smooth', block:'nearest' });
     await copyMaxRequest();
   }
   if (where === 'wa'){
@@ -1593,17 +1811,20 @@ function init(){
   $('#yearOut').textContent = new Date().getFullYear();
 
   renderPetCards(); renderBrands();
-  $$('.petBtn').forEach(el => el.addEventListener('click', () => { state.pet = el.dataset.pet; state.line='all'; applyFilters(); }));
+  $$('.petBtn').forEach(el => el.addEventListener('click', () => { state.pet = el.dataset.pet; state.line='all'; applyFilters(); toResults(); }));
   $$('.quickPetBtn').forEach(el => el.addEventListener('click', () => {
     const key = el.dataset.quickPet;
     const active = key === 'treat' ? state.brand === 'treats' : state.brand !== 'treats' && state.pet === key;
     state.brand = key === 'treat' && !active ? 'treats' : 'all';
     state.pet = key !== 'treat' && !active ? key : 'all';
     state.line = 'all';
-    applyFilters();
+    applyFilters(); toResults();
   }));
   const s = $('#searchInput');
-  if (s) s.addEventListener('input', e => { state.q = e.target.value; applyFilters(); });
+  if (s) s.addEventListener('input', e => {
+    state.q = e.target.value; applyFilters();
+    clearTimeout(searchScrollTimer); searchScrollTimer = setTimeout(toResults, 500);
+  });
 
   applyFilters(); saveCart(); observeAll();
   document.addEventListener('keydown', e => {

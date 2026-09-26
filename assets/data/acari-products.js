@@ -48,7 +48,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/a-baked-cat-holistic-rabbit.png",
+    "photo": "assets/images/products/acari/a-baked-cat-holistic-rabbit.webp",
     "normPhoto": "assets/images/products/acari/a-baked-cat-holistic-rabbit-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-koshek/a-baked-cat-holistic-rabbit.html",
     "storage": "2 мес. в закрытой упаковке, после вскрытия заводской упаковки срок хранения 15 дней при t от 0 до + 15 °C",
@@ -99,7 +99,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/a-baked-cat-holistic-fish.png",
+    "photo": "assets/images/products/acari/a-baked-cat-holistic-fish.webp",
     "normPhoto": "assets/images/products/acari/a-baked-cat-holistic-fish-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-koshek/a-baked-cat-holistic-fish.html",
     "storage": "2 мес. в закрытой упаковке, после вскрытия заводской упаковки срок хранения 15 дней при t от 0 до + 15 °C",
@@ -150,7 +150,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/kopiya-a-baked-cat-holistic-duck.png",
+    "photo": "assets/images/products/acari/kopiya-a-baked-cat-holistic-duck.webp",
     "normPhoto": "assets/images/products/acari/kopiya-a-baked-cat-holistic-duck-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-koshek/kopiya-a-baked-cat-holistic-duck.html",
     "storage": "2 мес. в закрытой упаковке, после вскрытия заводской упаковки срок хранения 15 дней при t от 0 до + 15 °C",
@@ -201,7 +201,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/a-baked-cat-holistic-duck.png",
+    "photo": "assets/images/products/acari/a-baked-cat-holistic-duck.webp",
     "normPhoto": "assets/images/products/acari/a-baked-cat-holistic-duck-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-koshek/a-baked-cat-holistic-duck.html",
     "storage": "2 мес. в закрытой упаковке, после вскрытия заводской упаковки срок хранения 15 дней при t от 0 до + 15 °C",
@@ -252,7 +252,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/a-baked-cat-holistic-lamb.png",
+    "photo": "assets/images/products/acari/a-baked-cat-holistic-lamb.webp",
     "normPhoto": "assets/images/products/acari/a-baked-cat-holistic-lamb-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-koshek/a-baked-cat-holistic-lamb.html",
     "storage": "2 мес. в закрытой упаковке, после вскрытия заводской упаковки срок хранения 15 дней при t от 0 до + 15 °C",
@@ -306,7 +306,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/suhoj-korm-dlya-koshek-acat-govyadina.png",
+    "photo": "assets/images/products/acari/suhoj-korm-dlya-koshek-acat-govyadina.webp",
     "normPhoto": "assets/images/products/acari/suhoj-korm-dlya-koshek-acat-govyadina-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-koshek/suhoj-korm-dlya-koshek-acat-govyadina.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -360,7 +360,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/suhoj-korm-dlya-koshek-acat-turkey.png",
+    "photo": "assets/images/products/acari/suhoj-korm-dlya-koshek-acat-turkey.webp",
     "normPhoto": "assets/images/products/acari/suhoj-korm-dlya-koshek-acat-turkey-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-koshek/suhoj-korm-dlya-koshek-acat-turkey.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -414,7 +414,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/acat-fish-corm-dla-koschek.png",
+    "photo": "assets/images/products/acari/acat-fish-corm-dla-koschek.webp",
     "normPhoto": "assets/images/products/acari/acat-fish-corm-dla-koschek-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-koshek/acat-fish-corm-dla-koschek.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -468,7 +468,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/acat-starter.png",
+    "photo": "assets/images/products/acari/acat-starter.webp",
     "normPhoto": "assets/images/products/acari/acat-starter-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-koshek/acat-starter.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -523,7 +523,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/maine-coon-turkey-holistic.png",
+    "photo": "assets/images/products/acari/maine-coon-turkey-holistic.webp",
     "normPhoto": "",
     "source": "https://acariciarecocorm.ru/korm-dlya-koshek/maine-coon-turkey-holistic.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -578,7 +578,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vet-a-cat-sterilized-maine-coon-beef-holistic.png",
+    "photo": "assets/images/products/acari/vet-a-cat-sterilized-maine-coon-beef-holistic.webp",
     "normPhoto": "assets/images/products/acari/vet-a-cat-sterilized-maine-coon-beef-holistic-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-koshek/vet-a-cat-sterilized-maine-coon-beef-holistic.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -633,7 +633,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/maine-coon-fish-holistic.png",
+    "photo": "assets/images/products/acari/maine-coon-fish-holistic.webp",
     "normPhoto": "assets/images/products/acari/maine-coon-fish-holistic-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-koshek/maine-coon-fish-holistic.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -688,7 +688,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/maine-coon-starter-holistic.png",
+    "photo": "assets/images/products/acari/maine-coon-starter-holistic.webp",
     "normPhoto": "assets/images/products/acari/maine-coon-starter-holistic-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-koshek/maine-coon-starter-holistic.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -743,7 +743,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vet-a-cat-sterilized-maine-coon-turkey-holistic.png",
+    "photo": "assets/images/products/acari/vet-a-cat-sterilized-maine-coon-turkey-holistic.webp",
     "normPhoto": "assets/images/products/acari/vet-a-cat-sterilized-maine-coon-turkey-holistic-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-koshek/vet-a-cat-sterilized-maine-coon-turkey-holistic.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -798,7 +798,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/maine-coon-beef-holistic.png",
+    "photo": "assets/images/products/acari/maine-coon-beef-holistic.webp",
     "normPhoto": "assets/images/products/acari/maine-coon-beef-holistic-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-koshek/maine-coon-beef-holistic.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -852,7 +852,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vet-a-cat-urinary-lamb-holistic.png",
+    "photo": "assets/images/products/acari/vet-a-cat-urinary-lamb-holistic.webp",
     "normPhoto": "assets/images/products/acari/vet-a-cat-urinary-lamb-holistic-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-koshek/vet-a-cat-urinary-lamb-holistic.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -908,7 +908,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vet-a-cat-turkey-holistic-sterilized.png",
+    "photo": "assets/images/products/acari/vet-a-cat-turkey-holistic-sterilized.webp",
     "normPhoto": "assets/images/products/acari/vet-a-cat-turkey-holistic-sterilized-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-koshek/vet-a-cat-turkey-holistic-sterilized.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -964,7 +964,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vet-a-cat-beef-holistic-sterilized.png",
+    "photo": "assets/images/products/acari/vet-a-cat-beef-holistic-sterilized.webp",
     "normPhoto": "assets/images/products/acari/vet-a-cat-beef-holistic-sterilized-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-koshek/vet-a-cat-beef-holistic-sterilized.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -1019,7 +1019,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/kopiya-vet-a-cat-holistic-gastro-fish.png",
+    "photo": "assets/images/products/acari/kopiya-vet-a-cat-holistic-gastro-fish.webp",
     "normPhoto": "",
     "source": "https://acariciarecocorm.ru/korm-dlya-koshek/kopiya-vet-a-cat-holistic-gastro-fish.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -1075,7 +1075,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/kopiya-vet-a-cat-holistic-gastro-duck.png",
+    "photo": "assets/images/products/acari/kopiya-vet-a-cat-holistic-gastro-duck.webp",
     "normPhoto": "",
     "source": "https://acariciarecocorm.ru/korm-dlya-koshek/kopiya-vet-a-cat-holistic-gastro-duck.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -1129,7 +1129,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vet-a-cat-verde-holistic-vegan.png",
+    "photo": "assets/images/products/acari/vet-a-cat-verde-holistic-vegan.webp",
     "normPhoto": "assets/images/products/acari/vet-a-cat-verde-holistic-vegan-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-koshek/vet-a-cat-verde-holistic-vegan.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -1185,7 +1185,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vet-a-cat-gastro-fish.png",
+    "photo": "assets/images/products/acari/vet-a-cat-gastro-fish.webp",
     "normPhoto": "",
     "source": "https://acariciarecocorm.ru/korm-dlya-koshek/vet-a-cat-gastro-fish.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -1224,7 +1224,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vet-dieta-gastro-indeyka-holistik.jpg",
+    "photo": "assets/images/products/acari/vet-dieta-gastro-indeyka-holistik.webp",
     "normPhoto": "assets/images/products/acari/vet-dieta-gastro-indeyka-holistik-norm.jpg",
     "source": "https://acariciarecocorm.ru/korm-i-konservy-delux-dog/vet-dieta-gastro-indeyka-holistik.html",
     "storage": "24 мес",
@@ -1264,7 +1264,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vet-dieta-gipoallergennyy-indeyka-holistik-100-cat.jpg",
+    "photo": "assets/images/products/acari/vet-dieta-gipoallergennyy-indeyka-holistik-100-cat.webp",
     "normPhoto": "assets/images/products/acari/vet-dieta-gipoallergennyy-indeyka-holistik-100-cat-norm.jpg",
     "source": "https://acariciarecocorm.ru/korm-i-konservy-delux-dog/vet-dieta-gipoallergennyy-indeyka-holistik-100-cat.html",
     "storage": "24 мес",
@@ -1304,7 +1304,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vet-dieta-gipoallergennyy-indeyka-holistik.jpg",
+    "photo": "assets/images/products/acari/vet-dieta-gipoallergennyy-indeyka-holistik.webp",
     "normPhoto": "assets/images/products/acari/vet-dieta-gipoallergennyy-indeyka-holistik-norm.jpg",
     "source": "https://acariciarecocorm.ru/korm-i-konservy-delux-dog/vet-dieta-gipoallergennyy-indeyka-holistik.html",
     "storage": "24 мес",
@@ -1344,7 +1344,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vet-dieta-gipoallergennyy-utka-holistik.jpg",
+    "photo": "assets/images/products/acari/vet-dieta-gipoallergennyy-utka-holistik.webp",
     "normPhoto": "assets/images/products/acari/vet-dieta-gipoallergennyy-utka-holistik-norm.jpg",
     "source": "https://acariciarecocorm.ru/korm-i-konservy-delux-dog/vet-dieta-gipoallergennyy-utka-holistik.html",
     "storage": "24 мес",
@@ -1384,7 +1384,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vet-dieta-gipoallergennyy-yagnenok-holistik-cat.jpg",
+    "photo": "assets/images/products/acari/vet-dieta-gipoallergennyy-yagnenok-holistik-cat.webp",
     "normPhoto": "assets/images/products/acari/vet-dieta-gipoallergennyy-yagnenok-holistik-cat-norm.jpg",
     "source": "https://acariciarecocorm.ru/korm-i-konservy-delux-dog/vet-dieta-gipoallergennyy-yagnenok-holistik-cat.html",
     "storage": "24 мес",
@@ -1423,7 +1423,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vlazhnyy-konservirovannyy-korm-utka-muss-holistik.jpg",
+    "photo": "assets/images/products/acari/vlazhnyy-konservirovannyy-korm-utka-muss-holistik.webp",
     "normPhoto": "assets/images/products/acari/vlazhnyy-konservirovannyy-korm-utka-muss-holistik-norm.jpg",
     "source": "https://acariciarecocorm.ru/korm-i-konservy-delux-dog/vlazhnyy-konservirovannyy-korm-utka-muss-holistik.html",
     "storage": "24 мес",
@@ -1461,7 +1461,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vlazhnyy-konservirovannyy-korm-utka-s-ovoshchami-holistik.jpg",
+    "photo": "assets/images/products/acari/vlazhnyy-konservirovannyy-korm-utka-s-ovoshchami-holistik.webp",
     "normPhoto": "assets/images/products/acari/vlazhnyy-konservirovannyy-korm-utka-s-ovoshchami-holistik-norm.jpg",
     "source": "https://acariciarecocorm.ru/korm-i-konservy-delux-dog/vlazhnyy-konservirovannyy-korm-utka-s-ovoshchami-holistik.html",
     "storage": "24 мес",
@@ -1518,7 +1518,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/testi-indejka-s-yach.png",
+    "photo": "assets/images/products/acari/testi-indejka-s-yach.webp",
     "normPhoto": "assets/images/products/acari/testi-indejka-s-yach-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-sobak/testi-indejka-s-yach.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -1578,7 +1578,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vet-adog-sterilized-beef.png",
+    "photo": "assets/images/products/acari/vet-adog-sterilized-beef.webp",
     "normPhoto": "assets/images/products/acari/vet-adog-sterilized-beef-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-sobak/vet-adog-sterilized-beef.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -1635,7 +1635,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/aurora.png",
+    "photo": "assets/images/products/acari/aurora.webp",
     "normPhoto": "assets/images/products/acari/aurora-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-sobak/aurora.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -1692,7 +1692,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/avrora-prime.png",
+    "photo": "assets/images/products/acari/avrora-prime.webp",
     "normPhoto": "assets/images/products/acari/avrora-prime-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-sobak/avrora-prime.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -1750,7 +1750,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/a-baked-dog-rabbit.png",
+    "photo": "assets/images/products/acari/a-baked-dog-rabbit.webp",
     "normPhoto": "assets/images/products/acari/a-baked-dog-rabbit-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-sobak/a-baked-dog-rabbit.html",
     "storage": "3 мес. в закрытой упаковке, после вскрытия заводской упаковки срок хранения 15 дней при t от 0 до + 15 °C",
@@ -1808,7 +1808,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/a-baked-dog-beef.png",
+    "photo": "assets/images/products/acari/a-baked-dog-beef.webp",
     "normPhoto": "assets/images/products/acari/a-baked-dog-beef-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-sobak/a-baked-dog-beef.html",
     "storage": "3 мес. в закрытой упаковке, после вскрытия заводской упаковки срок хранения 15 дней при t от 0 до + 15 °C",
@@ -1866,7 +1866,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/a-baked-dog-duck.png",
+    "photo": "assets/images/products/acari/a-baked-dog-duck.webp",
     "normPhoto": "assets/images/products/acari/a-baked-dog-duck-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-sobak/a-baked-dog-duck.html",
     "storage": "3 мес. в закрытой упаковке, после вскрытия заводской упаковки срок хранения 15 дней при t от 0 до + 15 °C",
@@ -1926,7 +1926,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/abaked-dog-galeenyvenison.png",
+    "photo": "assets/images/products/acari/abaked-dog-galeenyvenison.webp",
     "normPhoto": "assets/images/products/acari/abaked-dog-galeenyvenison-norm.png",
     "source": "https://acariciarecocorm.ru/korm-i-konservy-delux-dog/abaked-dog-galeenyvenison.html",
     "storage": "3 мес. в закрытой упаковке, после вскрытия заводской упаковки срок хранения 15 дней при t от 0 до + 15 °C",
@@ -1986,7 +1986,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/a-baked-dog-galeeny.png",
+    "photo": "assets/images/products/acari/a-baked-dog-galeeny.webp",
     "normPhoto": "assets/images/products/acari/a-baked-dog-galeeny-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-sobak/a-baked-dog-galeeny.html",
     "storage": "3 мес. в закрытой упаковке, после вскрытия заводской упаковки срок хранения 15 дней при t от 0 до + 15 °C",
@@ -2044,7 +2044,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/a-baked-dog-lamb.png",
+    "photo": "assets/images/products/acari/a-baked-dog-lamb.webp",
     "normPhoto": "assets/images/products/acari/a-baked-dog-lamb-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-sobak/a-baked-dog-lamb.html",
     "storage": "3 мес. в закрытой упаковке, после вскрытия заводской упаковки срок хранения 15 дней при t от 0 до + 15 °C",
@@ -2102,7 +2102,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/a-baked-dog-fish.png",
+    "photo": "assets/images/products/acari/a-baked-dog-fish.webp",
     "normPhoto": "assets/images/products/acari/a-baked-dog-fish-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-sobak/a-baked-dog-fish.html",
     "storage": "3 мес. в закрытой упаковке, после вскрытия заводской упаковки срок хранения 15 дней при t от 0 до + 15 °C",
@@ -2159,7 +2159,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/flagman-holistic-naturcroq.png",
+    "photo": "assets/images/products/acari/flagman-holistic-naturcroq.webp",
     "normPhoto": "assets/images/products/acari/flagman-holistic-naturcroq-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-sobak/flagman-holistic-naturcroq.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -2216,7 +2216,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/flagman-fegato.png",
+    "photo": "assets/images/products/acari/flagman-fegato.webp",
     "normPhoto": "assets/images/products/acari/flagman-fegato-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-sobak/flagman-fegato.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -2273,7 +2273,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/optima-fish.png",
+    "photo": "assets/images/products/acari/optima-fish.webp",
     "normPhoto": "assets/images/products/acari/optima-fish-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-sobak/optima-fish.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -2331,7 +2331,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/power-flock-beef-lamb.png",
+    "photo": "assets/images/products/acari/power-flock-beef-lamb.webp",
     "normPhoto": "assets/images/products/acari/power-flock-beef-lamb-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-sobak/power-flock-beef-lamb.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -2389,7 +2389,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/power-flock-duck.png",
+    "photo": "assets/images/products/acari/power-flock-duck.webp",
     "normPhoto": "assets/images/products/acari/power-flock-duck-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-sobak/power-flock-duck.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -2446,7 +2446,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/regular.png",
+    "photo": "assets/images/products/acari/regular.webp",
     "normPhoto": "assets/images/products/acari/regular-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-sobak/regular.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -2503,7 +2503,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/superba-activ.png",
+    "photo": "assets/images/products/acari/superba-activ.webp",
     "normPhoto": "assets/images/products/acari/superba-activ-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-sobak/superba-activ.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -2563,7 +2563,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vet-adog-hypoallergenic-lamb-snow-white.png",
+    "photo": "assets/images/products/acari/vet-adog-hypoallergenic-lamb-snow-white.webp",
     "normPhoto": "assets/images/products/acari/vet-adog-hypoallergenic-lamb-snow-white-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-sobak/vet-adog-hypoallergenic-lamb-snow-white.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -2623,7 +2623,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vet-adog-hypoallergenic-bombix-snow-white.png",
+    "photo": "assets/images/products/acari/vet-adog-hypoallergenic-bombix-snow-white.webp",
     "normPhoto": "assets/images/products/acari/vet-adog-hypoallergenic-bombix-snow-white-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-sobak/vet-adog-hypoallergenic-bombix-snow-white.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -2683,7 +2683,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vet-adog-gastrointestinal-quailturkey-holistic.png",
+    "photo": "assets/images/products/acari/vet-adog-gastrointestinal-quailturkey-holistic.webp",
     "normPhoto": "assets/images/products/acari/vet-adog-gastrointestinal-quailturkey-holistic-norm.png",
     "source": "https://acariciarecocorm.ru/korm-i-konservy-delux-dog/vet-adog-gastrointestinal-quailturkey-holistic.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -2743,7 +2743,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vet-adog-gastrointestinal-lambrabbit-holistic.png",
+    "photo": "assets/images/products/acari/vet-adog-gastrointestinal-lambrabbit-holistic.webp",
     "normPhoto": "assets/images/products/acari/vet-adog-gastrointestinal-lambrabbit-holistic-norm.png",
     "source": "https://acariciarecocorm.ru/korm-i-konservy-delux-dog/vet-adog-gastrointestinal-lambrabbit-holistic.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -2804,7 +2804,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vet-adog-derma.png",
+    "photo": "assets/images/products/acari/vet-adog-derma.webp",
     "normPhoto": "assets/images/products/acari/vet-adog-derma-norm.png",
     "source": "https://acariciarecocorm.ru/korm-i-konservy-delux-dog/vet-adog-derma.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -2863,7 +2863,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vet-adog-urinary-lamb.png",
+    "photo": "assets/images/products/acari/vet-adog-urinary-lamb.webp",
     "normPhoto": "assets/images/products/acari/vet-adog-urinary-lamb-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-sobak/vet-adog-urinary-lamb.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -2922,7 +2922,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/hepatic-vegan-holistic.png",
+    "photo": "assets/images/products/acari/hepatic-vegan-holistic.webp",
     "normPhoto": "assets/images/products/acari/hepatic-vegan-holistic-norm.png",
     "source": "https://acariciarecocorm.ru/korm-i-konservy-delux-dog/hepatic-vegan-holistic.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -2982,7 +2982,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vet-adog-hypoallergenic-fish.png",
+    "photo": "assets/images/products/acari/vet-adog-hypoallergenic-fish.webp",
     "normPhoto": "assets/images/products/acari/vet-adog-hypoallergenic-fish-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-sobak/vet-adog-hypoallergenic-fish.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -3042,7 +3042,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vet-adog-sterilized-turkey.png",
+    "photo": "assets/images/products/acari/vet-adog-sterilized-turkey.webp",
     "normPhoto": "assets/images/products/acari/vet-adog-sterilized-turkey-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-sobak/vet-adog-sterilized-turkey.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -3102,7 +3102,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vet-adog-hypoallergenic-bombix.png",
+    "photo": "assets/images/products/acari/vet-adog-hypoallergenic-bombix.webp",
     "normPhoto": "assets/images/products/acari/vet-adog-hypoallergenic-bombix-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-sobak/vet-adog-hypoallergenic-bombix.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -3162,7 +3162,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vet-adog-hypoallergenic-lamb.png",
+    "photo": "assets/images/products/acari/vet-adog-hypoallergenic-lamb.webp",
     "normPhoto": "assets/images/products/acari/vet-adog-hypoallergenic-lamb-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-sobak/vet-adog-hypoallergenic-lamb.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -3219,7 +3219,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vitality-beef-lamb.png",
+    "photo": "assets/images/products/acari/vitality-beef-lamb.webp",
     "normPhoto": "assets/images/products/acari/vitality-beef-lamb-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-sobak/vitality-beef-lamb.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -3276,7 +3276,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vitality-turkey-rabbit.png",
+    "photo": "assets/images/products/acari/vitality-turkey-rabbit.webp",
     "normPhoto": "assets/images/products/acari/vitality-turkey-rabbit-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-sobak/vitality-turkey-rabbit.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -3315,7 +3315,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vet-dieta-gastro-indeyka-holistik-100.jpg",
+    "photo": "assets/images/products/acari/vet-dieta-gastro-indeyka-holistik-100.webp",
     "normPhoto": "assets/images/products/acari/vet-dieta-gastro-indeyka-holistik-100-norm.jpg",
     "source": "https://acariciarecocorm.ru/korm-i-konservy-delux-dog/vet-dieta-gastro-indeyka-holistik-100.html",
     "storage": "24 мес",
@@ -3354,7 +3354,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vet-dieta-gastro-indeyka-holistik-400.jpg",
+    "photo": "assets/images/products/acari/vet-dieta-gastro-indeyka-holistik-400.webp",
     "normPhoto": "assets/images/products/acari/vet-dieta-gastro-indeyka-holistik-400-norm.jpg",
     "source": "https://acariciarecocorm.ru/korm-i-konservy-delux-dog/vet-dieta-gastro-indeyka-holistik-400.html",
     "storage": "24 мес",
@@ -3394,7 +3394,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vet-dieta-gipoallergennyy-indeyka-holistik-100.jpg",
+    "photo": "assets/images/products/acari/vet-dieta-gipoallergennyy-indeyka-holistik-100.webp",
     "normPhoto": "assets/images/products/acari/vet-dieta-gipoallergennyy-indeyka-holistik-100-norm.jpg",
     "source": "https://acariciarecocorm.ru/korm-i-konservy-delux-dog/vet-dieta-gipoallergennyy-indeyka-holistik-100.html",
     "storage": "24 мес",
@@ -3434,7 +3434,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vet-dieta-gipoallergennyy-utka-holistik-400-g.jpg",
+    "photo": "assets/images/products/acari/vet-dieta-gipoallergennyy-utka-holistik-400-g.webp",
     "normPhoto": "assets/images/products/acari/vet-dieta-gipoallergennyy-utka-holistik-400-g-norm.jpg",
     "source": "https://acariciarecocorm.ru/korm-i-konservy-delux-dog/vet-dieta-gipoallergennyy-utka-holistik-400-g.html",
     "storage": "24 мес",
@@ -3474,7 +3474,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vet-dieta-gipoallergennyy-yagnenok-holistik.jpg",
+    "photo": "assets/images/products/acari/vet-dieta-gipoallergennyy-yagnenok-holistik.webp",
     "normPhoto": "",
     "source": "https://acariciarecocorm.ru/korm-i-konservy-delux-dog/vet-dieta-gipoallergennyy-yagnenok-holistik.html",
     "storage": "24 мес",
@@ -3512,7 +3512,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vet-dieta-rekaveri-utka-s-indeykoy-holistik.jpg",
+    "photo": "assets/images/products/acari/vet-dieta-rekaveri-utka-s-indeykoy-holistik.webp",
     "normPhoto": "assets/images/products/acari/vet-dieta-rekaveri-utka-s-indeykoy-holistik-norm.jpg",
     "source": "https://acariciarecocorm.ru/korm-i-konservy-delux-dog/vet-dieta-rekaveri-utka-s-indeykoy-holistik.html",
     "storage": "24 мес",
@@ -3560,7 +3560,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/de-lux-dog-rabbit.png",
+    "photo": "assets/images/products/acari/de-lux-dog-rabbit.webp",
     "normPhoto": "assets/images/products/acari/de-lux-dog-rabbit-norm.png",
     "source": "https://acariciarecocorm.ru/korm-i-konservy-delux-dog/de-lux-dog-rabbit.html",
     "storage": "Срок хранения 60 суток в закрытой упаковке и 5 суток после вскрытия при t от 0 до + 5 °C",
@@ -3608,7 +3608,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/de-lux-dog-venison.png",
+    "photo": "assets/images/products/acari/de-lux-dog-venison.webp",
     "normPhoto": "assets/images/products/acari/de-lux-dog-venison-norm.png",
     "source": "https://acariciarecocorm.ru/korm-i-konservy-delux-dog/de-lux-dog-venison.html",
     "storage": "Срок хранения 60 суток в закрытой упаковке и 5 суток после вскрытия при t от 0 до + 5 °C",
@@ -3655,7 +3655,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/de-lux-dog-quail.png",
+    "photo": "assets/images/products/acari/de-lux-dog-quail.webp",
     "normPhoto": "assets/images/products/acari/de-lux-dog-quail-norm.png",
     "source": "https://acariciarecocorm.ru/korm-i-konservy-delux-dog/de-lux-dog-quail.html",
     "storage": "Срок хранения 60 суток в закрытой упаковке и 5 суток после вскрытия при t от 0 до + 5 °C",
@@ -3702,7 +3702,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/de-lux-dog-duck.png",
+    "photo": "assets/images/products/acari/de-lux-dog-duck.webp",
     "normPhoto": "assets/images/products/acari/de-lux-dog-duck-norm.png",
     "source": "https://acariciarecocorm.ru/korm-i-konservy-delux-dog/de-lux-dog-duck.html",
     "storage": "Срок хранения 60 суток в закрытой упаковке и 5 суток после вскрытия при t от 0 до + 5 °C",
@@ -3749,7 +3749,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/de-lux-dog-galeeny.png",
+    "photo": "assets/images/products/acari/de-lux-dog-galeeny.webp",
     "normPhoto": "assets/images/products/acari/de-lux-dog-galeeny-norm.png",
     "source": "https://acariciarecocorm.ru/korm-i-konservy-delux-dog/de-lux-dog-galeeny.html",
     "storage": "Срок хранения 60 суток в закрытой упаковке и 5 суток после вскрытия при t от 0 до + 5 °C",
@@ -3796,7 +3796,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/de-lux-dog-lamb.png",
+    "photo": "assets/images/products/acari/de-lux-dog-lamb.webp",
     "normPhoto": "assets/images/products/acari/de-lux-dog-lamb-norm.png",
     "source": "https://acariciarecocorm.ru/korm-i-konservy-delux-dog/de-lux-dog-lamb.html",
     "storage": "Срок хранения 60 суток в закрытой упаковке и 5 суток после вскрытия при t от 0 до + 5 °C",
@@ -3834,7 +3834,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vlazhnyy-konservirovannyy-korm-dlya-sobak-rubets-govyazhiy-super-premium.jpg",
+    "photo": "assets/images/products/acari/vlazhnyy-konservirovannyy-korm-dlya-sobak-rubets-govyazhiy-super-premium.webp",
     "normPhoto": "assets/images/products/acari/vlazhnyy-konservirovannyy-korm-dlya-sobak-rubets-govyazhiy-super-premium-norm.jpg",
     "source": "https://acariciarecocorm.ru/korm-i-konservy-delux-dog/vlazhnyy-konservirovannyy-korm-dlya-sobak-rubets-govyazhiy-super-premium.html",
     "storage": "24 мес",
@@ -3873,7 +3873,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/vlazhnyy-konservirovannyy-korm-dlya-vzroslyh-sobak-vseh-porod-utka-s-ovoshchami-holistik-400-g.jpg",
+    "photo": "assets/images/products/acari/vlazhnyy-konservirovannyy-korm-dlya-vzroslyh-sobak-vseh-porod-utka-s-ovoshchami-holistik-400-g.webp",
     "normPhoto": "assets/images/products/acari/vlazhnyy-konservirovannyy-korm-dlya-vzroslyh-sobak-vseh-porod-utka-s-ovoshchami-holistik-400-g-norm.jpg",
     "source": "https://acariciarecocorm.ru/korm-i-konservy-delux-dog/vlazhnyy-konservirovannyy-korm-dlya-vzroslyh-sobak-vseh-porod-utka-s-ovoshchami-holistik-400-g.html",
     "storage": "24 мес",
@@ -3928,7 +3928,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/puppy.png",
+    "photo": "assets/images/products/acari/puppy.webp",
     "normPhoto": "assets/images/products/acari/puppy-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-sobak/puppy.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -3983,7 +3983,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/baby-dog-starter.png",
+    "photo": "assets/images/products/acari/baby-dog-starter.webp",
     "normPhoto": "assets/images/products/acari/baby-dog-starter-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-sobak/baby-dog-starter.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",
@@ -4038,7 +4038,7 @@ window.ACARI_PRODUCTS = [
         "p": null
       }
     ],
-    "photo": "assets/images/products/acari/junior-dog.png",
+    "photo": "assets/images/products/acari/junior-dog.webp",
     "normPhoto": "assets/images/products/acari/junior-dog-norm.png",
     "source": "https://acariciarecocorm.ru/korm-dlya-sobak/junior-dog.html",
     "storage": "6 мес, после вскрытия заводской упаковки срок хранения 25 дней при t от 0 до +20 °C",

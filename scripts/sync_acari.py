@@ -8,6 +8,7 @@ import re
 import ssl
 import time
 import unicodedata
+from io import BytesIO
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
@@ -16,6 +17,7 @@ from urllib.parse import quote, urljoin, urlparse, urlsplit, urlunsplit
 from urllib.request import Request, urlopen
 
 from lxml import html
+from PIL import Image
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -36,6 +38,7 @@ SSL_CONTEXT.verify_mode = ssl.CERT_NONE
 
 IMAGE_DIR = ROOT / "assets/images/products/acari"
 DATA_DIR = ROOT / "assets/data"
+PHOTO_SIZE = 800  # px, the longest side of catalogue photos
 
 
 def fetch(url: str, *, binary: bool = False) -> bytes | str:
@@ -238,6 +241,20 @@ def infer_tags(description: str, name: str, pet: str) -> list[str]:
     return list(dict.fromkeys(tags))[:5]
 
 
+def local_photo(url: str, slug: str) -> str:
+    """Pack shot for the catalogue: resized WebP, a few dozen KB instead of a megabyte."""
+    if not url:
+        return ""
+    target = IMAGE_DIR / f"{slug}.webp"
+    if not target.exists() or target.stat().st_size < 1000:
+        image = Image.open(BytesIO(fetch(url, binary=True)))
+        if image.mode not in ("RGB", "RGBA"):
+            image = image.convert("RGBA")
+        image.thumbnail((PHOTO_SIZE, PHOTO_SIZE), Image.LANCZOS)
+        image.save(target, "WEBP", quality=80, method=6)
+    return target.relative_to(ROOT).as_posix()
+
+
 def local_image(url: str, slug: str, suffix: str = "") -> str:
     if not url:
         return ""
@@ -303,7 +320,7 @@ def parse_product(url: str) -> dict:
     slug = Path(urlparse(url).path).stem
     product_id = f"acari-{slugify(slug)}"
     og_image = clean(doc.xpath("string(//meta[@property='og:image']/@content)"))
-    photo = local_image(urljoin(url, og_image), slugify(slug)) if og_image else ""
+    photo = local_photo(urljoin(url, og_image), slugify(slug)) if og_image else ""
 
     norm_href = clean(doc.xpath("string(//h4[contains(.,'Норма кормления')]/following-sibling::div[1]//img/@src)"))
     norm_photo = ""
